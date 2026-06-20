@@ -28,8 +28,8 @@ export default function Sidebar({ collapsed, onToggle }) {
     >
       {/* Logo */}
       <div className="flex items-center gap-3 px-5 h-16 shrink-0">
-        <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-[var(--accent)] shrink-0">
-          <Package className="w-4 h-4 text-white" strokeWidth={2.5} />
+        <div className="flex items-center justify-center w-8 h-8 shrink-0 rounded-full overflow-hidden bg-[var(--bg-primary)] border border-[var(--border)]">
+          <img src="/crate-logo.png" alt="Crate Logo" className="w-full h-full object-cover" />
         </div>
         <AnimatePresence>
           {!collapsed && (
@@ -40,7 +40,7 @@ export default function Sidebar({ collapsed, onToggle }) {
               transition={{ duration: 0.15 }}
               className="text-sm font-semibold tracking-tight text-[var(--text-primary)] whitespace-nowrap"
             >
-              B Inventory
+              Crate Inventory
             </motion.span>
           )}
         </AnimatePresence>

@@ -10,6 +10,7 @@ import {
 import WarehousePage from "./pages/WarehousePage";
 import ActivityPage from "./pages/ActivityPage";
 import ConnectionErrorView from "./components/layout/ConnectionErrorView";
+import SplashScreen from "./components/layout/SplashScreen";
 import { ToastProvider } from "./contexts/ToastContext";
 import { supabase } from "./services/supabaseClient";
 
@@ -20,17 +21,30 @@ function App() {
   const checkConnection = async () => {
     setIsChecking(true);
     setConnectionError(false);
-    try {
-      // Simple ping to check connection
-      const { error } = await supabase.from('products').select('id').limit(1);
-      if (error && error.message === 'Failed to fetch') {
-        setConnectionError(true);
+    
+    // Enforce a minimum 1.5s delay for the splash screen
+    const minDelay = new Promise(resolve => setTimeout(resolve, 1500));
+    
+    // The actual database ping
+    const dbPing = async () => {
+      try {
+        const { error } = await supabase.from('products').select('id').limit(1);
+        if (error && error.message === 'Failed to fetch') {
+          return false;
+        }
+        return true;
+      } catch (err) {
+        return false;
       }
-    } catch (err) {
+    };
+
+    const [_, isConnected] = await Promise.all([minDelay, dbPing()]);
+    
+    if (!isConnected) {
       setConnectionError(true);
-    } finally {
-      setIsChecking(false);
     }
+    
+    setIsChecking(false);
   };
 
   useEffect(() => {
@@ -38,11 +52,7 @@ function App() {
   }, []);
 
   if (isChecking) {
-    return (
-      <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center">
-        <div className="w-8 h-8 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
+    return <SplashScreen />;
   }
 
   if (connectionError) {

@@ -88,7 +88,7 @@ export default function Layout() {
               <Menu className="w-5 h-5" strokeWidth={1.75} />
             </button>
             <span className="ml-3 text-sm font-semibold tracking-tight text-[var(--text-primary)]">
-              B Inventory
+              Crate Inventory
             </span>
           </div>
         )}

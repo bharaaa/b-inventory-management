@@ -79,7 +79,7 @@ export default function InventoryDashboard() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <div>
             <h1 className="text-2xl sm:text-4xl font-semibold text-gray-800">
-              B Inventory Dashboard
+              Crate Inventory Dashboard
             </h1>
             <p className="text-xs sm:text-sm text-gray-500">
               Track and manage your stock items
