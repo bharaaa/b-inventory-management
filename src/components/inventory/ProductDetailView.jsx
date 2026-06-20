@@ -5,6 +5,7 @@ import { supabase } from '../../services/supabaseClient';
 import { formatActivityEvent } from "../../helpers/activityHelpers";
 import { formatDate } from '../../helpers/formatDate';
 import { timeAgo } from '../../helpers/timeAgo';
+import { useDrawer } from '../../contexts/DrawerContext';
 
 function getStatusBadge(stockCount) {
   if (stockCount >= 50) {
@@ -32,6 +33,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
   const [fetchedItem, setFetchedItem] = useState(null);
   const [movements, setMovements] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { openDrawer } = useDrawer();
 
   const item = initialItem || fetchedItem;
   const currentProductId = initialItem?.id || productId;
@@ -242,6 +244,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
                 type="button"
                 onClick={() => {
                   if (onEdit) onEdit(item);
+                  else openDrawer('EDIT_ITEM', { item });
                 }}
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-[var(--bg-card)] bg-[var(--text-primary)] rounded-xl hover:bg-[var(--text-secondary)] transition-colors cursor-pointer"
               >

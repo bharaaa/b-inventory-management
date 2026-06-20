@@ -68,7 +68,7 @@ export default function Layout() {
       </div>
 
       {/* App Window Shell */}
-      <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-lg overflow-hidden">
+      <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-md overflow-hidden">
         {/* Desktop sidebar */}
         {!isMobile && (
           <Sidebar
@@ -109,7 +109,7 @@ export default function Layout() {
         </AnimatePresence>
 
         {/* Nested Main Content Area */}
-        <main className="flex-1 flex flex-col bg-black/45 backdrop-blur-md md:m-3 md:rounded-[2rem] shadow-[inset_0_2px_12px_rgba(0,0,0,0.1)] border border-[var(--border)]/50 overflow-hidden relative z-20">
+        <main className="flex-1 flex flex-col bg-black/50 backdrop-blur-2xl md:m-3 md:rounded-[2rem] shadow-[inset_0_2px_12px_rgba(0,0,0,0.1)] border border-[var(--border)]/50 overflow-hidden relative z-20">
           {/* Top Navigation */}
           {isMobile && (
             <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-sm bg-[var(--bg-primary)]/80 border-b border-[var(--border)] shrink-0">
