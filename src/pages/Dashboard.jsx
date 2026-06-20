@@ -69,9 +69,9 @@ export default function Dashboard() {
       data.forEach((record) => {
         const dateStr = format(new Date(record.created_at), "MMM d");
         if (dailyData[dateStr]) {
-          if (record.movement_type === "inbound") {
+          if (record.quantity > 0) {
             dailyData[dateStr].inbound += record.quantity;
-          } else if (record.movement_type === "outbound") {
+          } else if (record.quantity < 0) {
             const qty = Math.abs(record.quantity);
             dailyData[dateStr].outbound += qty;
             dailyData[dateStr].ordersCount += 1;
@@ -296,33 +296,6 @@ export default function Dashboard() {
     },
   ];
 
-  const secondaryMetrics = [
-    {
-      title: "Order Fill Rate",
-      value: loading ? "..." : "98.5%",
-      change: 1.2,
-      changeLabel: "vs last month",
-      icon: <CheckCircle size={20} strokeWidth={1.5} />,
-      onClick: () => {} // Placeholder for future feature
-    },
-    {
-      title: "Inventory Turnover",
-      value: loading ? "..." : "4.2x",
-      change: 0.3,
-      changeLabel: "vs last month",
-      icon: <RefreshCcw size={20} strokeWidth={1.5} />,
-      onClick: () => navigate('/analytics')
-    },
-    {
-      title: "Pick Accuracy",
-      value: loading ? "..." : "99.8%",
-      change: 0.1,
-      changeLabel: "vs last month",
-      icon: <Crosshair size={20} strokeWidth={1.5} />,
-      onClick: () => {} // Placeholder for future feature
-    },
-  ];
-
   return (
     <div>
       {/* Page Header */}
@@ -369,23 +342,6 @@ export default function Dashboard() {
                 icon={metric.icon}
                 onClick={metric.onClick}
                 index={index}
-              />
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Row 2: Secondary Metric Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {secondaryMetrics.map((metric, index) => (
-            <motion.div key={metric.title} variants={itemVariants}>
-              <MetricCard
-                title={metric.title}
-                value={metric.value}
-                change={metric.change}
-                changeLabel={metric.changeLabel}
-                icon={metric.icon}
-                onClick={metric.onClick}
-                index={index + 4}
               />
             </motion.div>
           ))}

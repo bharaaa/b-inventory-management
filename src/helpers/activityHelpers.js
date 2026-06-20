@@ -7,7 +7,7 @@ import { ArrowDownRight, ArrowUpRight, Package, Settings, Tag } from 'lucide-rea
  */
 export function formatActivityEvent(item) {
   const isStock = item._type === 'stock';
-  const isInbound = isStock && item.movement_type === 'inbound';
+  const isInbound = isStock && item.quantity > 0;
   const isProductCreated = item.activity_type === 'product_created';
   
   let icon, bgClass, iconColor, title, description;
