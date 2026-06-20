@@ -149,7 +149,7 @@ export default function AddItemForm({ isOpen, onClose, onSuccess, totalUsedCapac
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 4, scale: 0.98 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute left-0 mt-2 w-full bg-white/80 backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.8)] z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto glass-refraction"
+                        className="absolute left-0 mt-2 w-full bg-[var(--bg-card)]/95 backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
                       >
                         {categories.map((cat) => (
                           <button
