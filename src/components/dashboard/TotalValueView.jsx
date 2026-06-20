@@ -37,24 +37,14 @@ export default function TotalValueView({ isOpen, onClose, items }) {
     <>
       {/* Header */}
       <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] relative z-10">
-        <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl bg-[var(--success)]/10 flex items-center justify-center flex-shrink-0 text-[var(--success)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] border border-[var(--success)]/20">
-            <DollarSign size={20} strokeWidth={2.5} />
-          </div>
-          <div>
-            <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
-              Value Breakdown
-            </h2>
-            <p className="text-sm font-medium text-[var(--text-tertiary)]">
-              Total Warehouse Value
-            </p>
-          </div>
-        </div>
+        <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
+          Value Breakdown
+        </h2>
         <button
           onClick={onClose}
           className="w-8 h-8 flex items-center justify-center rounded-lg bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.08)] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] cursor-pointer glass-refraction"
         >
-          <X size={18} />
+          <X size={20} />
         </button>
       </div>
 

@@ -5,25 +5,15 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
   return (
     <>
       {/* Header */}
-      <div className="flex items-center justify-between p-6 border-b border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] relative z-10">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl bg-[var(--error)]/10 backdrop-blur-md flex items-center justify-center flex-shrink-0 text-[var(--error)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_4px_12px_rgba(239,68,68,0.15)] ring-1 ring-[var(--error)]/20">
-            <AlertTriangle size={24} strokeWidth={2} />
-          </div>
-          <div>
-            <h2 className="text-xl font-bold text-[var(--text-primary)] tracking-tight">
-              Low Stock Alerts
-            </h2>
-            <p className="text-sm font-medium text-[var(--text-tertiary)] mt-0.5">
-              Items requiring immediate attention
-            </p>
-          </div>
-        </div>
+      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] relative z-10">
+        <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
+          Low Stock Alerts
+        </h2>
         <button
           onClick={onClose}
-          className="w-9 h-9 flex items-center justify-center rounded-xl bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.08)] backdrop-blur-sm text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] glass-refraction"
+          className="w-8 h-8 flex items-center justify-center rounded-lg bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.08)] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] cursor-pointer glass-refraction"
         >
-          <X size={18} />
+          <X size={20} />
         </button>
       </div>
 
