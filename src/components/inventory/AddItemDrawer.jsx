@@ -107,11 +107,11 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
 
           {/* Drawer Panel */}
           <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="relative w-full max-w-md h-full bg-white/70 backdrop-blur-2xl border-l border-[var(--border)] shadow-2xl flex flex-col"
+            initial={{ x: '100%', opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: '100%', opacity: 0 }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed top-4 right-4 bottom-4 w-[calc(100%-2rem)] md:w-[480px] bg-white/70 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] z-[101] flex flex-col border border-[var(--border)] rounded-3xl overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">

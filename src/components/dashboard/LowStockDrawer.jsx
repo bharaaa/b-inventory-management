@@ -18,11 +18,11 @@ export default function LowStockDrawer({ isOpen, onClose, lowStockItems, onViewI
 
           {/* Drawer */}
           <motion.div
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-y-0 right-0 w-full sm:w-[480px] bg-white/70 backdrop-blur-2xl shadow-2xl border-l border-[var(--border)] z-50 flex flex-col"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed top-4 right-4 bottom-4 w-[calc(100%-2rem)] sm:w-[480px] bg-white/70 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-[var(--border)] rounded-3xl z-50 flex flex-col overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">

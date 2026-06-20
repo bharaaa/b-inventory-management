@@ -24,7 +24,7 @@ export default function ActivityDetailDrawer({ isOpen, onClose, activity, onView
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 w-full md:w-[480px] bg-white/70 backdrop-blur-2xl shadow-2xl z-[101] flex flex-col border-l border-[var(--border)] overflow-hidden"
+            className="fixed top-4 right-4 bottom-4 w-[calc(100%-2rem)] md:w-[480px] bg-white/70 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] z-[101] flex flex-col border border-[var(--border)] rounded-3xl overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[var(--bg-card)]/50 backdrop-blur-md">

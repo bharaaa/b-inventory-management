@@ -103,7 +103,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[110] flex justify-end">
+        <div className="fixed inset-0 z-50 flex justify-end p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -119,7 +119,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="relative w-full max-w-md h-full bg-white/70 backdrop-blur-2xl border-l border-[var(--border)] shadow-2xl flex flex-col"
+            className="relative w-full max-w-md h-full bg-white/70 backdrop-blur-2xl border border-[var(--border)] rounded-3xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.12)] flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
