@@ -1,0 +1,1 @@
+export const TOTAL_WAREHOUSE_CAPACITY = 2500;
