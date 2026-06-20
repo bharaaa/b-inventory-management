@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function SplashScreen() {
   return (
-    <div className="fixed inset-0 z-[999] bg-[var(--bg-primary)] flex flex-col items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 z-[999] bg-[var(--bg-card)] flex flex-col items-center justify-center overflow-hidden">
       
       {/* Background ambient glow */}
       <motion.div 

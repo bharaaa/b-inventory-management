@@ -3,11 +3,13 @@ import { Outlet } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import Sidebar from './Sidebar';
+import { usePreferences } from '../../contexts/PreferencesContext';
 
 export default function Layout() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const { theme } = usePreferences();
 
   useEffect(() => {
     const mq = window.matchMedia('(max-width: 767px)');
@@ -36,27 +38,36 @@ export default function Layout() {
 
   return (
     <div 
-      className="flex h-screen w-screen overflow-hidden"
+      className="flex h-screen w-screen overflow-hidden transition-colors duration-500"
       style={{
-        background: `
-          linear-gradient(135deg, #eef1f6 0%, #e8e0f0 25%, #dfe8f5 50%, #ece5f3 75%, #eef1f6 100%)
-        `,
+        background: theme === 'dark' 
+          ? `radial-gradient(circle at top left, #1a1a1a 0%, #050505 40%, #000000 100%)`
+          : `linear-gradient(135deg, #eef1f6 0%, #e8e0f0 25%, #dfe8f5 50%, #ece5f3 75%, #eef1f6 100%)`,
       }}
     >
-      {/* Ambient gradient orbs for glass refraction */}
-      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
-        <div 
-          className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-60"
-          style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)' }}
-        />
-        <div 
-          className="absolute top-1/2 -right-48 w-125 h-125 rounded-full opacity-50"
-          style={{ background: 'radial-gradient(circle, rgba(99, 102, 241, 0.35) 0%, transparent 70%)' }}
-        />
-        <div 
-          className="absolute -bottom-24 left-1/3 w-80 h-80 rounded-full opacity-50"
-          style={{ background: 'radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%)' }}
-        />
+      {/* Curated geometric background to maximize glass refraction */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden flex items-center justify-center">
+        {/* --- SHARP VIBRANT SHAPES --- */}
+        
+        {/* Giant Ring (Top Left) */}
+        <div className="absolute -top-[20vh] -left-[10vw] w-[45vw] h-[45vw] rounded-full border-[2px] border-[var(--accent)] opacity-30 mix-blend-multiply" />
+        
+        {/* Solid Vibrant Circle (Center Right) */}
+        <div className="absolute top-[30vh] -right-[5vw] w-[30vw] h-[30vw] rounded-full bg-gradient-to-tr from-[var(--accent)] via-[var(--accent-hover)] to-[#ec4899] opacity-15 mix-blend-multiply" />
+
+        {/* Small Dense Circle (Bottom Left) */}
+        <div className="absolute -bottom-[10vh] left-[15vw] w-[20vw] h-[20vw] rounded-full bg-gradient-to-br from-[var(--success)] to-teal-400 opacity-20 mix-blend-multiply" />
+
+        {/* --- ARCHITECTURAL LINES --- */}
+        
+        {/* Primary Diagonal */}
+        <div className="absolute top-1/2 left-1/2 w-[200vw] h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-40 -translate-x-1/2 -translate-y-1/2 -rotate-45" />
+        
+        {/* Secondary Vertical */}
+        <div className="absolute top-0 left-[25vw] w-[1px] h-[100vh] bg-gradient-to-b from-[var(--text-tertiary)] to-transparent opacity-30" />
+        
+        {/* Secondary Horizontal */}
+        <div className="absolute top-[75vh] left-0 w-[100vw] h-[1px] bg-gradient-to-r from-transparent via-[var(--success)] to-transparent opacity-30" />
       </div>
 
       {/* Desktop sidebar */}
@@ -105,7 +116,7 @@ export default function Layout() {
           <div className="sticky top-0 z-30 flex items-center h-14 px-4 backdrop-blur-sm bg-[var(--bg-card)] border-b border-[var(--border)]">
             <button
               onClick={() => setMobileOpen(true)}
-              className="flex items-center justify-center w-9 h-9 rounded-xl text-[var(--text-secondary)] hover:bg-white/40 hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
+              className="flex items-center justify-center w-9 h-9 rounded-xl text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
               aria-label="Open navigation"
             >
               <Menu className="w-5 h-5" strokeWidth={1.75} />

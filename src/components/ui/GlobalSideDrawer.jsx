@@ -34,7 +34,7 @@ export default function GlobalSideDrawer() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className={`relative w-[calc(100%-2rem)] ${widthClass} h-full bg-white/70 backdrop-blur-xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] z-[101] flex flex-col border border-[var(--border)] rounded-3xl overflow-hidden glass-refraction`}
+            className={`glass-panel relative w-[calc(100%-2rem)] ${widthClass} h-full z-[101] flex flex-col rounded-3xl overflow-hidden`}
           >
             <AnimatePresence mode="wait">
               <motion.div

@@ -26,7 +26,7 @@ export default function ActivityDetailView({ isOpen, onClose, activity, onViewPr
               </div>
               <button
                 onClick={onClose}
-                className="p-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-white/40 rounded-full transition-colors"
+                className="p-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-[rgba(255,255,255,0.05)] rounded-full transition-colors"
               >
                 <X size={20} />
               </button>
@@ -36,10 +36,10 @@ export default function ActivityDetailView({ isOpen, onClose, activity, onViewPr
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               
               {/* Product Card */}
-              <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-2xl p-5 relative overflow-hidden glass-refraction">
+              <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-2xl p-5 relative overflow-hidden glass-refraction">
                 <div className="absolute top-0 left-0 w-1 h-full bg-[var(--accent)]" />
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-[var(--border)] glass-refraction">
+                  <div className="p-3 bg-[rgba(255,255,255,0.08)] backdrop-blur-sm rounded-xl border border-[var(--border)] glass-refraction">
                     <Box size={24} className="text-[var(--text-secondary)]" />
                   </div>
                   <div className="flex-1">
@@ -62,7 +62,7 @@ export default function ActivityDetailView({ isOpen, onClose, activity, onViewPr
               {/* Details List */}
               <div>
                 <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Event Details</h3>
-                <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-2xl divide-y divide-[var(--border)] glass-refraction">
+                <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-2xl divide-y divide-[var(--border)] glass-refraction">
                   <div className="flex items-start gap-3 p-4">
                     <Calendar size={18} className="text-[var(--text-tertiary)] mt-0.5" />
                     <div>

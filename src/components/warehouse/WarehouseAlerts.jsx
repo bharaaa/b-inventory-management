@@ -35,7 +35,7 @@ export default function WarehouseAlerts({ items, onOpenLowStock }) {
 
       <div className="space-y-3">
         {alerts.length === 0 ? (
-          <div className="text-center py-6 border border-[var(--border)] border-dashed rounded-xl bg-white/30 backdrop-blur-sm glass-refraction">
+          <div className="text-center py-6 border border-[var(--border)] border-dashed rounded-xl bg-[rgba(255,255,255,0.03)] backdrop-blur-sm glass-refraction">
             <p className="text-sm text-[var(--text-secondary)]">No active alerts</p>
           </div>
         ) : (
@@ -45,7 +45,7 @@ export default function WarehouseAlerts({ items, onOpenLowStock }) {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 + (i * 0.1) }}
-              className="flex items-start gap-3 p-3 rounded-xl border border-[var(--border)] bg-white/30 backdrop-blur-sm glass-refraction"
+              className="flex items-start gap-3 p-3 rounded-xl border border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm glass-refraction"
             >
               <div className={`mt-0.5 shrink-0 ${alert.status === 'critical' ? 'text-[var(--error)]' : 'text-[var(--warning)]'}`}>
                 {alert.status === 'critical' ? <PackageX size={16} /> : <AlertCircle size={16} />}
@@ -69,7 +69,7 @@ export default function WarehouseAlerts({ items, onOpenLowStock }) {
       {alerts.length > 0 && (
         <button
           onClick={onOpenLowStock}
-          className="w-full mt-4 flex items-center justify-center gap-2 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/40 rounded-lg transition-colors cursor-pointer"
+          className="w-full mt-4 flex items-center justify-center gap-2 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[rgba(255,255,255,0.05)] rounded-lg transition-colors cursor-pointer"
         >
           View All Alerts
           <ChevronRight size={14} />

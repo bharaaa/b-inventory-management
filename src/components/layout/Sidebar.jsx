@@ -24,7 +24,7 @@ export default function Sidebar({ collapsed, onToggle }) {
   return (
     <aside
       style={{ width: collapsed ? 72 : 256 }}
-      className="relative z-20 flex flex-col h-[calc(100vh-2rem)] my-4 ml-4 rounded-3xl backdrop-blur-xl bg-white/40 border border-white/50 shadow-lg transition-[width] duration-300 ease-in-out shrink-0 overflow-hidden glass-refraction"
+      className="glass-panel relative z-20 flex flex-col h-[calc(100vh-2rem)] my-4 ml-4 rounded-3xl transition-[width] duration-300 ease-in-out shrink-0 overflow-hidden"
     >
       {/* Inner highlight edge */}
       <div className="absolute inset-0 pointer-events-none rounded-3xl" 
@@ -63,7 +63,7 @@ export default function Sidebar({ collapsed, onToggle }) {
                 'group flex items-center gap-3 rounded-xl py-2.5 px-3 text-sm font-medium transition-all duration-200 relative',
                 isActive
                   ? 'bg-[var(--accent)]/12 text-[var(--accent)] border border-[var(--accent)]/15 shadow-sm backdrop-blur-sm'
-                  : 'text-[var(--text-secondary)] hover:bg-white/50 hover:text-[var(--text-primary)] border border-transparent',
+                  : 'text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.08)] hover:text-[var(--text-primary)] border border-transparent',
               ].join(' ')
             }
           >
@@ -124,7 +124,7 @@ export default function Sidebar({ collapsed, onToggle }) {
         {/* Collapse toggle */}
         <button
           onClick={onToggle}
-          className={`flex items-center gap-3 rounded-xl py-2.5 px-3 text-[var(--text-tertiary)] hover:bg-white/50 hover:text-[var(--text-secondary)] transition-colors duration-150 cursor-pointer ${
+          className={`flex items-center gap-3 rounded-xl py-2.5 px-3 text-[var(--text-tertiary)] hover:bg-[rgba(255,255,255,0.08)] hover:text-[var(--text-secondary)] transition-colors duration-150 cursor-pointer ${
             collapsed ? 'justify-center' : ''
           }`}
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}

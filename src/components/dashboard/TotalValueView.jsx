@@ -36,7 +36,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
   return (
     <>
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-white/30 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] relative z-10">
+      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] relative z-10">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-xl bg-[var(--success)]/10 flex items-center justify-center flex-shrink-0 text-[var(--success)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] border border-[var(--success)]/20">
             <DollarSign size={20} strokeWidth={2.5} />
@@ -52,15 +52,15 @@ export default function TotalValueView({ isOpen, onClose, items }) {
         </div>
         <button
           onClick={onClose}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-white/30 hover:bg-white/50 backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] cursor-pointer glass-refraction"
+          className="w-8 h-8 flex items-center justify-center rounded-lg bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.08)] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] cursor-pointer glass-refraction"
         >
           <X size={18} />
         </button>
       </div>
 
       {/* Grand Total Summary */}
-      <div className="p-6 border-b border-[var(--border)] bg-white/30 backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] z-0">
-        <div className="bg-white/50 backdrop-blur-md rounded-2xl p-6 border border-[var(--border)] shadow-[inset_0_2px_4px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.04)] flex items-center justify-between glass-refraction">
+      <div className="p-6 border-b border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] z-0">
+        <div className="bg-[rgba(255,255,255,0.08)] backdrop-blur-md rounded-2xl p-6 border border-[var(--border)] shadow-[inset_0_2px_4px_rgba(255,255,255,0.8),0_8px_24px_rgba(0,0,0,0.04)] flex items-center justify-between glass-refraction">
           <div>
             <p className="text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wider mb-1">Grand Total</p>
             <p className="text-4xl font-extrabold text-[var(--text-primary)] tracking-tight drop-shadow-sm">
@@ -81,7 +81,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
         
         {sortedItems.length === 0 ? (
           <div className="text-center py-12">
-            <div className="w-16 h-16 rounded-2xl bg-white/50 backdrop-blur-md shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)] border border-[var(--border)] flex items-center justify-center mx-auto mb-4 text-[var(--text-tertiary)] glass-refraction">
+            <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.08)] backdrop-blur-md shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)] border border-[var(--border)] flex items-center justify-center mx-auto mb-4 text-[var(--text-tertiary)] glass-refraction">
               <Package size={28} />
             </div>
             <p className="text-sm font-semibold text-[var(--text-primary)]">No items found</p>
@@ -114,7 +114,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                 <motion.div 
                   key={item.id}
                   variants={itemVariants}
-                  className="bg-white/50 backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col gap-3 shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.8)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all duration-300 group glass-refraction"
+                  className="bg-[rgba(255,255,255,0.08)] backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col gap-3 shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.8)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all duration-300 group glass-refraction"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-center gap-3">
@@ -122,7 +122,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                         <img
                           src={item.image_url}
                           alt={item.name}
-                          className="w-11 h-11 rounded-xl object-cover bg-white/50 border border-[var(--border)] shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] shrink-0"
+                          className="w-11 h-11 rounded-xl object-cover bg-[rgba(255,255,255,0.08)] border border-[var(--border)] shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] shrink-0"
                         />
                       ) : (
                         <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-sm border border-[var(--border)] shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)] flex items-center justify-center shrink-0">
@@ -141,7 +141,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                   </div>
 
                   {/* Calculation Breakdown */}
-                  <div className="flex items-center justify-between text-xs px-3.5 py-2.5 bg-white/40 backdrop-blur-sm rounded-xl border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] glass-refraction">
+                  <div className="flex items-center justify-between text-xs px-3.5 py-2.5 bg-[rgba(255,255,255,0.05)] backdrop-blur-sm rounded-xl border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] glass-refraction">
                     <span className="text-[var(--text-secondary)] font-medium">
                       <span className="font-bold text-[var(--text-primary)]">{stock}</span> units
                     </span>

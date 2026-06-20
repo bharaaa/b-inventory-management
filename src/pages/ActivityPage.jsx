@@ -223,8 +223,8 @@ export default function ActivityPage() {
                       }}
                       className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
                         dateFilter === option.value 
-                          ? 'bg-white/40 text-[var(--text-primary)] font-medium' 
-                          : 'text-[var(--text-secondary)] hover:bg-white/30 hover:text-[var(--text-primary)]'
+                          ? 'bg-[rgba(255,255,255,0.05)] text-[var(--text-primary)] font-medium' 
+                          : 'text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.03)] hover:text-[var(--text-primary)]'
                       }`}
                     >
                       {option.label}
@@ -261,13 +261,13 @@ export default function ActivityPage() {
         <div className="flex bg-[var(--bg-card)] backdrop-blur-md rounded-xl border border-[var(--border)] p-1 w-full sm:w-auto overflow-x-auto">
           <button
             onClick={() => setActiveTab('log')}
-            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'log' ? 'bg-white/40 text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
+            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'log' ? 'bg-[rgba(255,255,255,0.05)] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
           >
             Activity Log
           </button>
           <button
             onClick={() => setActiveTab('timeline')}
-            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'timeline' ? 'bg-white/40 text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
+            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'timeline' ? 'bg-[rgba(255,255,255,0.05)] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
           >
             Activity Timeline
           </button>
@@ -336,7 +336,7 @@ export default function ActivityPage() {
                         exit="hidden"
                         layout
                         onClick={() => openDrawer('ACTIVITY_DETAIL', { activity: movement, onViewProduct: (productId) => openDrawer('PRODUCT_DETAIL', { productId }) })}
-                        className="border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 hover:bg-white/30 cursor-pointer"
+                        className="border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 hover:bg-[rgba(255,255,255,0.03)] cursor-pointer"
                       >
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
                           {format(movement.rawDate, "MMM d, yyyy h:mm a")}

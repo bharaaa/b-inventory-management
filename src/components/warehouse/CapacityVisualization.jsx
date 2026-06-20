@@ -49,7 +49,7 @@ export default function CapacityVisualization({ usedCapacity, totalCapacity, ite
         </div>
 
         {/* Custom Progress Bar */}
-        <div className="w-full h-4 bg-white/30 rounded-full overflow-hidden flex relative">
+        <div className="w-full h-4 bg-[rgba(255,255,255,0.03)] rounded-full overflow-hidden flex relative">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${percentage}%` }}
@@ -65,12 +65,12 @@ export default function CapacityVisualization({ usedCapacity, totalCapacity, ite
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <div className={`bg-white/30 backdrop-blur-sm border ${percentage >= 90 ? 'border-[var(--error)]/30' : 'border-[var(--border)]'} rounded-xl p-4 transition-colors duration-500 glass-refraction`}>
+        <div className={`bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border ${percentage >= 90 ? 'border-[var(--error)]/30' : 'border-[var(--border)]'} rounded-xl p-4 transition-colors duration-500 glass-refraction`}>
           <p className="text-xs text-[var(--text-tertiary)] font-medium mb-1">Available Space</p>
           <p className={`text-lg font-bold ${percentage >= 90 ? 'text-[var(--error)]' : 'text-[var(--text-primary)]'}`}>{availableCapacity.toLocaleString()}</p>
           <p className={`text-xs ${percentage >= 90 ? 'text-[var(--error)]' : 'text-[var(--success)]'} font-medium mt-1 transition-colors duration-500`}>Units remaining</p>
         </div>
-        <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 glass-refraction">
+        <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 glass-refraction">
           <p className="text-xs text-[var(--text-tertiary)] font-medium mb-1">Product Count</p>
           <p className="text-lg font-bold text-[var(--text-primary)]">{itemCount.toLocaleString()}</p>
           <p className="text-xs text-[var(--text-secondary)] font-medium mt-1">Unique SKUs</p>

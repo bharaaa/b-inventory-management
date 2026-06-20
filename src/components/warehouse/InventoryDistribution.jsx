@@ -52,7 +52,7 @@ export default function InventoryDistribution({ items, totalStock }) {
                 <span className="text-[var(--text-tertiary)] w-10 text-right">{dist.percentage.toFixed(1)}%</span>
               </div>
             </div>
-            <div className="w-full h-2 bg-white/30 rounded-full overflow-hidden">
+            <div className="w-full h-2 bg-[rgba(255,255,255,0.03)] rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${dist.percentage}%` }}

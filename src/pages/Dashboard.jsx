@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Package, AlertTriangle, DollarSign, Gauge } from "lucide-react";
+import { Package, AlertTriangle, DollarSign, Gauge, CheckCircle, RefreshCcw, Crosshair } from "lucide-react";
 import { supabase } from "../services/supabaseClient";
 import { format, subDays } from "date-fns";
 import { useNavigate } from "react-router-dom";
@@ -296,6 +296,33 @@ export default function Dashboard() {
     },
   ];
 
+  const secondaryMetrics = [
+    {
+      title: "Order Fill Rate",
+      value: loading ? "..." : "98.5%",
+      change: 1.2,
+      changeLabel: "vs last month",
+      icon: <CheckCircle size={20} strokeWidth={1.5} />,
+      onClick: () => {} // Placeholder for future feature
+    },
+    {
+      title: "Inventory Turnover",
+      value: loading ? "..." : "4.2x",
+      change: 0.3,
+      changeLabel: "vs last month",
+      icon: <RefreshCcw size={20} strokeWidth={1.5} />,
+      onClick: () => navigate('/analytics')
+    },
+    {
+      title: "Pick Accuracy",
+      value: loading ? "..." : "99.8%",
+      change: 0.1,
+      changeLabel: "vs last month",
+      icon: <Crosshair size={20} strokeWidth={1.5} />,
+      onClick: () => {} // Placeholder for future feature
+    },
+  ];
+
   return (
     <div>
       {/* Page Header */}
@@ -328,22 +355,44 @@ export default function Dashboard() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5"
+        className="flex flex-col gap-5"
       >
-        {/* Row 1: Metric Cards */}
-        {metrics.map((metric, index) => (
-          <motion.div key={metric.title} variants={itemVariants}>
-            <MetricCard
-              title={metric.title}
-              value={metric.value}
-              change={metric.change}
-              changeLabel={metric.changeLabel}
-              icon={metric.icon}
-              onClick={metric.onClick}
-              index={index}
-            />
-          </motion.div>
-        ))}
+        {/* Row 1: Primary Metric Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+          {metrics.map((metric, index) => (
+            <motion.div key={metric.title} variants={itemVariants}>
+              <MetricCard
+                title={metric.title}
+                value={metric.value}
+                change={metric.change}
+                changeLabel={metric.changeLabel}
+                icon={metric.icon}
+                onClick={metric.onClick}
+                index={index}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Row 2: Secondary Metric Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          {secondaryMetrics.map((metric, index) => (
+            <motion.div key={metric.title} variants={itemVariants}>
+              <MetricCard
+                title={metric.title}
+                value={metric.value}
+                change={metric.change}
+                changeLabel={metric.changeLabel}
+                icon={metric.icon}
+                onClick={metric.onClick}
+                index={index + 4}
+              />
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
+
 
         {/* Main Content Area (Left: 3 columns) */}
         <motion.div variants={itemVariants} className="lg:col-span-3 flex flex-col gap-5">
@@ -357,6 +406,7 @@ export default function Dashboard() {
           <CategoryChart data={categoryDistribution} />
           <ActivityTimeline activities={recentActivities} />
         </motion.div>
+        </div>
       </motion.div>
     </div>
   );

@@ -40,7 +40,7 @@ export function ToastProvider({ children }) {
               {/* Glass subtle gradient */}
               <div className="absolute inset-0 bg-gradient-to-r from-white/[0.02] to-transparent pointer-events-none" />
               
-              <div className="shrink-0 p-1.5 rounded-full bg-[var(--bg-primary)] border border-[var(--border)]">
+              <div className="shrink-0 p-1.5 rounded-full bg-[var(--bg-card)] border border-[var(--border)]">
                 {toast.type === 'success' && <CheckCircle2 className="text-[var(--success)]" size={18} />}
                 {toast.type === 'error' && <AlertCircle className="text-[var(--error)]" size={18} />}
                 {toast.type === 'info' && <Info className="text-[var(--accent)]" size={18} />}

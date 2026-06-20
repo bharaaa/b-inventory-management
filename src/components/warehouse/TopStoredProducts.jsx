@@ -24,7 +24,7 @@ export default function TopStoredProducts({ items, totalCapacity }) {
             Highest physical volume
           </p>
         </div>
-        <div className="w-8 h-8 rounded-lg bg-white/30 flex items-center justify-center text-[var(--text-secondary)]">
+        <div className="w-8 h-8 rounded-lg bg-[rgba(255,255,255,0.03)] flex items-center justify-center text-[var(--text-secondary)]">
           <Package size={16} strokeWidth={2} />
         </div>
       </div>
@@ -41,10 +41,10 @@ export default function TopStoredProducts({ items, totalCapacity }) {
                   <img
                     src={item.image_url}
                     alt={item.name}
-                    className="w-10 h-10 rounded-lg object-cover bg-white/30 border border-[var(--border)] shrink-0"
+                    className="w-10 h-10 rounded-lg object-cover bg-[rgba(255,255,255,0.03)] border border-[var(--border)] shrink-0"
                   />
                 ) : (
-                  <div className="w-10 h-10 rounded-lg bg-white/30 border border-[var(--border)] flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-lg bg-[rgba(255,255,255,0.03)] border border-[var(--border)] flex items-center justify-center shrink-0">
                     <Package size={16} className="text-[var(--text-tertiary)]" />
                   </div>
                 )}
@@ -54,7 +54,7 @@ export default function TopStoredProducts({ items, totalCapacity }) {
                     <span className="text-xs text-[var(--text-secondary)]">{item.stock_count} units</span>
                     <span className="text-xs font-semibold text-[var(--text-primary)]">{percentage}% space</span>
                   </div>
-                  <div className="w-full h-1.5 bg-white/30 rounded-full overflow-hidden mt-1.5">
+                  <div className="w-full h-1.5 bg-[rgba(255,255,255,0.03)] rounded-full overflow-hidden mt-1.5">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${percentage}%` }}
@@ -71,7 +71,7 @@ export default function TopStoredProducts({ items, totalCapacity }) {
 
       <button
         onClick={() => navigate('/inventory')}
-        className="w-full mt-5 flex items-center justify-center gap-2 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-white/40 rounded-lg transition-colors cursor-pointer"
+        className="w-full mt-5 flex items-center justify-center gap-2 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[rgba(255,255,255,0.05)] rounded-lg transition-colors cursor-pointer"
       >
         View All Inventory
         <ArrowRight size={14} />

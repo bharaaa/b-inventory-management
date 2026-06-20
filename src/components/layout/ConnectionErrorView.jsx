@@ -3,7 +3,7 @@ import { Database, RefreshCw, ServerCrash } from 'lucide-react';
 
 export default function ConnectionErrorView({ onRetry }) {
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] flex items-center justify-center p-6 relative overflow-hidden">
+    <div className="min-h-screen bg-[var(--bg-card)] flex items-center justify-center p-6 relative overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--error)]/5 blur-[120px] rounded-full pointer-events-none" />
 

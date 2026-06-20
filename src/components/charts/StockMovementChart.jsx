@@ -89,7 +89,7 @@ export default function StockMovementChart({ data }) {
         <h3 className="text-sm font-semibold text-[var(--text-primary)] tracking-tight">
           Sales
         </h3>
-        <div className="flex items-center gap-1 bg-white/30 backdrop-blur-sm rounded-lg p-0.5 glass-refraction">
+        <div className="flex items-center gap-1 bg-[rgba(255,255,255,0.03)] backdrop-blur-sm rounded-lg p-0.5 glass-refraction">
           {timeRanges.map((range) => (
             <button
               key={range}

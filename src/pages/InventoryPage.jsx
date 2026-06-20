@@ -75,7 +75,7 @@ function StockCell({ item, updateStock }) {
       <button
         onClick={() => updateStock(item.id, item.stock_count, -1)}
         disabled={item.stock_count <= 0}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-white/40 hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
         <Minus size={14} />
       </button>
@@ -90,12 +90,12 @@ function StockCell({ item, updateStock }) {
           onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="w-14 text-center font-medium bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
+          className="w-14 text-center font-medium bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
         />
       ) : (
         <span
           onClick={() => setIsEditing(true)}
-          className="w-14 text-center font-medium cursor-text hover:bg-white/40 hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors tooltip-trigger"
+          className="w-14 text-center font-medium cursor-text hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors tooltip-trigger"
           title="Click to edit stock"
         >
           {item.stock_count.toLocaleString()}
@@ -104,7 +104,7 @@ function StockCell({ item, updateStock }) {
 
       <button
         onClick={() => updateStock(item.id, item.stock_count, 1)}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-white/40 hover:text-[var(--text-primary)] transition-colors"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] transition-colors"
       >
         <Plus size={14} />
       </button>
@@ -318,7 +318,7 @@ export default function InventoryPage() {
                   className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
                     sortBy === key
                       ? "text-[var(--accent)] bg-[var(--accent-subtle)] font-medium"
-                      : "text-[var(--text-secondary)] hover:bg-white/30 hover:text-[var(--text-primary)]"
+                      : "text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.03)] hover:text-[var(--text-primary)]"
                   }`}
                 >
                   {label}
@@ -340,7 +340,7 @@ export default function InventoryPage() {
           className={`flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-xl border transition-all duration-200 cursor-pointer sm:ml-4 ${
             isSelectionMode 
               ? "bg-[var(--accent)]/10 border-[var(--accent)]/30 text-[var(--accent)]" 
-              : "bg-[var(--bg-card)] backdrop-blur-md border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-white/50"
+              : "bg-[var(--bg-card)] backdrop-blur-md border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[rgba(255,255,255,0.08)]"
           } glass-refraction`}
         >
           <ListChecks size={16} />
@@ -371,7 +371,7 @@ export default function InventoryPage() {
                     <div className="relative flex items-center justify-center w-5 h-5 flex-shrink-0">
                       <input
                         type="checkbox"
-                        className="peer appearance-none w-5 h-5 border border-[var(--border)] rounded-[4px] bg-[var(--bg-primary)] checked:bg-[var(--accent)] checked:border-[var(--accent)] hover:border-[var(--text-secondary)] transition-all cursor-pointer"
+                        className="peer appearance-none w-5 h-5 border border-[var(--border)] rounded-[4px] bg-[var(--bg-card)] checked:bg-[var(--accent)] checked:border-[var(--accent)] hover:border-[var(--text-secondary)] transition-all cursor-pointer"
                         checked={selectedIds.length > 0 && selectedIds.length === filteredItems.length && filteredItems.length > 0}
                         onChange={handleSelectAll}
                       />
@@ -411,29 +411,29 @@ export default function InventoryPage() {
                   >
                     <td className="p-0 align-middle">
                       <div className={`transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] overflow-hidden flex items-center justify-center py-4 ${isSelectionMode ? "w-[68px] px-6 opacity-100" : "w-0 px-0 opacity-0"}`}>
-                        <div className="w-4 h-4 rounded bg-white/30 animate-pulse flex-shrink-0" />
+                        <div className="w-4 h-4 rounded bg-[rgba(255,255,255,0.03)] animate-pulse flex-shrink-0" />
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-white/30 rounded-md w-8 animate-pulse" />
+                      <div className="h-4 bg-[rgba(255,255,255,0.03)] rounded-md w-8 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-white/30 rounded-md w-36 animate-pulse" />
+                      <div className="h-4 bg-[rgba(255,255,255,0.03)] rounded-md w-36 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-white/30 rounded-md w-16 animate-pulse" />
+                      <div className="h-4 bg-[rgba(255,255,255,0.03)] rounded-md w-16 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-white/30 rounded-md w-12 animate-pulse" />
+                      <div className="h-4 bg-[rgba(255,255,255,0.03)] rounded-md w-12 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-6 bg-white/30 rounded-full w-20 animate-pulse" />
+                      <div className="h-6 bg-[rgba(255,255,255,0.03)] rounded-full w-20 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-white/30 rounded-md w-28 animate-pulse" />
+                      <div className="h-4 bg-[rgba(255,255,255,0.03)] rounded-md w-28 animate-pulse" />
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <div className="h-6 bg-white/30 rounded-md w-6 animate-pulse ml-auto" />
+                      <div className="h-6 bg-[rgba(255,255,255,0.03)] rounded-md w-6 animate-pulse ml-auto" />
                     </td>
                   </tr>
                 ))
@@ -490,14 +490,14 @@ export default function InventoryPage() {
                       item, 
                       onEdit: (i) => openDrawer('EDIT_ITEM', { item: i, totalUsedCapacity, onSuccess: fetchItems }) 
                     })}
-                    className={`border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 cursor-pointer ${selectedIds.includes(item.id) ? 'bg-[var(--accent)]/5' : 'hover:bg-white/30'}`}
+                    className={`border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 cursor-pointer ${selectedIds.includes(item.id) ? 'bg-[var(--accent)]/5' : 'hover:bg-[rgba(255,255,255,0.03)]'}`}
                   >
                     <td className="p-0 align-middle" onClick={(e) => e.stopPropagation()}>
                       <div className={`transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] overflow-hidden flex items-center justify-center py-4 ${isSelectionMode ? "w-[68px] px-6 opacity-100" : "w-0 px-0 opacity-0"}`}>
                         <div className="relative flex items-center justify-center w-5 h-5 flex-shrink-0">
                           <input
                             type="checkbox"
-                            className="peer appearance-none w-5 h-5 border border-[var(--border)] rounded-[4px] bg-[var(--bg-primary)] checked:bg-[var(--accent)] checked:border-[var(--accent)] hover:border-[var(--text-secondary)] transition-all cursor-pointer"
+                            className="peer appearance-none w-5 h-5 border border-[var(--border)] rounded-[4px] bg-[var(--bg-card)] checked:bg-[var(--accent)] checked:border-[var(--accent)] hover:border-[var(--text-secondary)] transition-all cursor-pointer"
                             checked={selectedIds.includes(item.id)}
                             onChange={() => handleSelectOne(item.id)}
                           />
@@ -531,7 +531,7 @@ export default function InventoryPage() {
                           e.stopPropagation();
                           openDrawer('EDIT_ITEM', { item, totalUsedCapacity, onSuccess: fetchItems });
                         }}
-                        className="p-1.5 rounded-lg text-[var(--text-tertiary)] hover:bg-white/30 hover:text-[var(--text-primary)] transition-colors tooltip-trigger"
+                        className="p-1.5 rounded-lg text-[var(--text-tertiary)] hover:bg-[rgba(255,255,255,0.03)] hover:text-[var(--text-primary)] transition-colors tooltip-trigger"
                         title="Edit Item"
                       >
                         <Pencil size={16} />
@@ -578,7 +578,7 @@ export default function InventoryPage() {
                 setSelectedIds([]);
                 setIsSelectionMode(false);
               }}
-              className="text-[var(--text-tertiary)] hover:text-[var(--text-primary)] p-1.5 rounded-full hover:bg-white/30 transition-colors ml-2 cursor-pointer"
+              className="text-[var(--text-tertiary)] hover:text-[var(--text-primary)] p-1.5 rounded-full hover:bg-[rgba(255,255,255,0.03)] transition-colors ml-2 cursor-pointer"
             >
               <X size={16} />
             </button>
@@ -612,7 +612,7 @@ export default function InventoryPage() {
                 <button
                   type="button"
                   onClick={() => setShowBulkDeleteConfirm(false)}
-                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white/40 transition-colors cursor-pointer glass-refraction"
+                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-[rgba(255,255,255,0.05)] transition-colors cursor-pointer glass-refraction"
                 >
                   Cancel
                 </button>

@@ -5,16 +5,18 @@ import Dashboard from "./pages/Dashboard";
 import InventoryPage from "./pages/InventoryPage";
 import {
   AnalyticsPage,
-  SettingsPage,
 } from "./pages/PlaceholderPages";
+import SettingsPage from "./pages/SettingsPage";
 import WarehousePage from "./pages/WarehousePage";
 import ActivityPage from "./pages/ActivityPage";
 import ConnectionErrorView from "./components/layout/ConnectionErrorView";
 import SplashScreen from "./components/layout/SplashScreen";
 import { ToastProvider } from "./contexts/ToastContext";
 import { DrawerProvider } from "./contexts/DrawerContext";
+import { PreferencesProvider } from "./contexts/PreferencesContext";
 import GlobalSideDrawer from "./components/ui/GlobalSideDrawer";
 import { supabase } from "./services/supabaseClient";
+
 function App() {
   const [connectionError, setConnectionError] = useState(false);
   const [isChecking, setIsChecking] = useState(true);
@@ -61,21 +63,23 @@ function App() {
   }
 
   return (
-    <ToastProvider>
-      <DrawerProvider>
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="inventory" element={<InventoryPage />} />
-            <Route path="analytics" element={<AnalyticsPage />} />
-            <Route path="warehouse" element={<WarehousePage />} />
-            <Route path="activity" element={<ActivityPage />} />
-            <Route path="settings" element={<SettingsPage />} />
-          </Route>
-        </Routes>
-        <GlobalSideDrawer />
-      </DrawerProvider>
-    </ToastProvider>
+    <PreferencesProvider>
+      <ToastProvider>
+        <DrawerProvider>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="inventory" element={<InventoryPage />} />
+              <Route path="analytics" element={<AnalyticsPage />} />
+              <Route path="warehouse" element={<WarehousePage />} />
+              <Route path="activity" element={<ActivityPage />} />
+              <Route path="settings" element={<SettingsPage />} />
+            </Route>
+          </Routes>
+          <GlobalSideDrawer />
+        </DrawerProvider>
+      </ToastProvider>
+    </PreferencesProvider>
   );
 }
 

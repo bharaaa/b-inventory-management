@@ -15,26 +15,26 @@
 /* === Tailwind v4 Theme Extension === */
 @theme {
   /* — Background — */
-  --color-bg-primary: #eef1f6;
-  --color-bg-secondary: rgba(255, 255, 255, 0.35);
-  --color-bg-card: rgba(255, 255, 255, 0.55);
-  --color-bg-card-hover: rgba(255, 255, 255, 0.72);
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-card: var(--bg-card);
+  --color-bg-card-hover: var(--bg-card-hover);
 
   /* — Text — */
-  --color-text-primary: #1a1a2e;
-  --color-text-secondary: #4a5568;
-  --color-text-tertiary: #94a3b8;
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
 
   /* — Borders — */
-  --color-border: rgba(255, 255, 255, 0.55);
-  --color-border-hover: rgba(255, 255, 255, 0.75);
-  --color-border-active: rgba(139, 92, 246, 0.4);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --color-border-active: var(--border-active);
 
-  /* — Accent (Violet) — */
-  --color-accent: #7c3aed;
-  --color-accent-hover: #6d28d9;
-  --color-accent-subtle: rgba(139, 92, 246, 0.08);
-  --color-accent-muted: #8b5cf6;
+  /* — Accent — */
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-muted: var(--accent-muted);
 
   /* — Semantic: Success — */
   --color-success: #10b981;
@@ -62,6 +62,7 @@
    ============================================================================ */
 
 :root {
+  /* LIGHT MODE TOKENS */
   /* — Background — */
   --bg-primary: #eef1f6;
   --bg-secondary: rgba(255, 255, 255, 0.35);
@@ -76,13 +77,13 @@
   /* — Borders — */
   --border: rgba(255, 255, 255, 0.55);
   --border-hover: rgba(255, 255, 255, 0.75);
-  --border-active: rgba(139, 92, 246, 0.4);
+  --border-active: rgba(0, 0, 0, 0.4);
 
-  /* — Accent (Violet) — */
-  --accent: #7c3aed;
-  --accent-hover: #6d28d9;
-  --accent-subtle: rgba(139, 92, 246, 0.08);
-  --accent-muted: #8b5cf6;
+  /* — Accent (Black) — */
+  --accent: #000000;
+  --accent-hover: #333333;
+  --accent-subtle: rgba(0, 0, 0, 0.08);
+  --accent-muted: #666666;
 
   /* — Semantic — */
   --success: #10b981;
@@ -103,12 +104,53 @@
   --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* — Glass Tokens — */
-  --glass-blur: 2px;
+  /* — Glass Tokens (Light Mode) — */
+  --glass-blur: 10px;
   --glass-saturation: 1.4;
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
   --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  --glass-refraction-light-start: var(--glass-refraction-light-start);
+  --glass-refraction-light-end: var(--glass-refraction-light-end);
+  --glass-refraction-panel-start: var(--glass-refraction-panel-start);
+  --glass-refraction-panel-end: var(--glass-refraction-panel-end);
+}
+
+.dark {
+  /* DARK MODE TOKENS */
+  /* — Background — */
+  --bg-primary: #050505;
+  --bg-secondary: rgba(30, 30, 30, 0.25);
+  --bg-card: rgba(25, 25, 25, 0.4);
+  --bg-card-hover: rgba(40, 40, 40, 0.6);
+
+  /* — Text — */
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-tertiary: #71717a;
+
+  /* — Borders — */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-hover: var(--glass-refraction-light-end);
+  --border-active: var(--glass-refraction-light-start);
+
+  /* — Accent (White) — */
+  --accent: #ffffff;
+  --accent-hover: #d4d4d8;
+  --accent-subtle: var(--glass-refraction-panel-start);
+  --accent-muted: #a1a1aa;
+
+  /* — Glass Tokens (Dark Mode) — */
+  --glass-blur: 16px;
+  --glass-saturation: 1.2;
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --glass-refraction-light-start: rgba(255, 255, 255, 0.1);
+  --glass-refraction-light-end: var(--glass-refraction-panel-end);
+  --glass-refraction-panel-start: rgba(255, 255, 255, 0.04);
+  --glass-refraction-panel-end: rgba(255, 255, 255, 0.01);
+
 }
 
 
@@ -292,6 +334,17 @@
     box-shadow: var(--glass-shadow), var(--glass-highlight);
   }
 
+  /* — Glass Panel (For Sidebar/Drawers) —
+     Uses the same base but a much softer refraction to avoid overwhelming large surfaces. */
+  .glass-panel {
+    position: relative;
+    background: var(--bg-card);
+    backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
+    border: 1px solid var(--border);
+    box-shadow: var(--glass-shadow-lg);
+  }
+
   .card-inset {
     background: var(--bg-secondary);
     backdrop-filter: blur(12px) saturate(1.4);
@@ -313,13 +366,40 @@
     border-radius: inherit;
     background: linear-gradient(
       115deg, 
-      rgba(255, 255, 255, 0.4) 0%, 
+      var(--glass-refraction-light-start) 0%, 
       rgba(255, 255, 255, 0.05) 25%, 
       rgba(255, 255, 255, 0) 50%, 
       rgba(255, 255, 255, 0.05) 75%, 
-      rgba(255, 255, 255, 0.2) 100%
+      var(--glass-refraction-light-end) 100%
     );
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -1px 1px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -1px 1px var(--glass-refraction-light-end);
+  }
+
+  /* Subtler refraction for large panels */
+  .glass-panel::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    border-radius: inherit;
+    background: linear-gradient(
+      115deg, 
+      var(--glass-refraction-panel-start) 0%, 
+      rgba(255, 255, 255, 0) 30%, 
+      rgba(255, 255, 255, 0) 70%, 
+      var(--glass-refraction-panel-end) 100%
+    );
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  }
+
+  /* — Disable Refraction Override — */
+  .disable-refraction .glass::after,
+  .disable-refraction .card::after,
+  .disable-refraction .card-flush::after,
+  .disable-refraction .glass-panel::after,
+  .disable-refraction .glass-refraction::after {
+    display: none !important;
   }
 
   /* — Badges —
@@ -360,7 +440,7 @@
   }
 
   .badge-neutral {
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--glass-refraction-light-start);
     color: var(--text-secondary);
   }
 
@@ -435,7 +515,7 @@
   }
 
   .btn-ghost:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: var(--glass-refraction-light-start);
     color: var(--text-primary);
   }
 
@@ -551,12 +631,12 @@
     border-radius: inherit;
     background: linear-gradient(
       115deg, 
-      rgba(255, 255, 255, 0.4) 0%, 
+      var(--glass-refraction-light-start) 0%, 
       rgba(255, 255, 255, 0.05) 25%, 
       rgba(255, 255, 255, 0) 50%, 
       rgba(255, 255, 255, 0.05) 75%, 
-      rgba(255, 255, 255, 0.2) 100%
+      var(--glass-refraction-light-end) 100%
     );
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -1px 1px rgba(255, 255, 255, 0.2);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -1px 1px var(--glass-refraction-light-end);
   }
 }
