@@ -341,7 +341,7 @@ export default function InventoryPage() {
             isSelectionMode 
               ? "bg-[var(--accent)]/10 border-[var(--accent)]/30 text-[var(--accent)]" 
               : "bg-[var(--bg-card)] backdrop-blur-md border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-[rgba(255,255,255,0.08)]"
-          } glass-refraction`}
+          }`}
         >
           <ListChecks size={16} />
           <span className="hidden sm:inline">Select</span>
@@ -612,7 +612,7 @@ export default function InventoryPage() {
                 <button
                   type="button"
                   onClick={() => setShowBulkDeleteConfirm(false)}
-                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-[rgba(255,255,255,0.05)] transition-colors cursor-pointer glass-refraction"
+                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-[rgba(255,255,255,0.05)] transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>

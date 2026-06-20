@@ -29,7 +29,7 @@ function PlaceholderPage({ title, description, icon: Icon }) {
         transition={{ duration: 0.5, delay: 0.15 }}
         className="bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-2xl p-16 flex flex-col items-center justify-center text-center"
       >
-        <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] backdrop-blur-sm flex items-center justify-center mb-5 glass-refraction">
+        <div className="w-16 h-16 rounded-2xl bg-[rgba(255,255,255,0.03)] backdrop-blur-sm flex items-center justify-center mb-5">
           <Icon size={28} strokeWidth={1.5} className="text-[var(--text-tertiary)]" />
         </div>
         <div className="flex items-center gap-2 mb-2">

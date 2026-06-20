@@ -35,7 +35,7 @@ export default function WarehouseAlerts({ items, onOpenLowStock }) {
 
       <div className="space-y-3">
         {alerts.length === 0 ? (
-          <div className="text-center py-6 border border-[var(--border)] border-dashed rounded-xl bg-[rgba(255,255,255,0.03)] backdrop-blur-sm glass-refraction">
+          <div className="text-center py-6 border border-[var(--border)] border-dashed rounded-xl bg-[rgba(255,255,255,0.03)] backdrop-blur-sm">
             <p className="text-sm text-[var(--text-secondary)]">No active alerts</p>
           </div>
         ) : (
@@ -45,7 +45,7 @@ export default function WarehouseAlerts({ items, onOpenLowStock }) {
               initial={{ opacity: 0, x: -10 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.5 + (i * 0.1) }}
-              className="flex items-start gap-3 p-3 rounded-xl border border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm glass-refraction"
+              className="flex items-start gap-3 p-3 rounded-xl border border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm"
             >
               <div className={`mt-0.5 shrink-0 ${alert.status === 'critical' ? 'text-[var(--error)]' : 'text-[var(--warning)]'}`}>
                 {alert.status === 'critical' ? <PackageX size={16} /> : <AlertCircle size={16} />}

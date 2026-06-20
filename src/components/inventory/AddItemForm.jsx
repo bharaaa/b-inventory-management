@@ -92,7 +92,7 @@ export default function AddItemForm({ isOpen, onClose, onSuccess, totalUsedCapac
               </h2>
               <button
                 onClick={onClose}
-                className="w-8 h-8 flex items-center justify-center rounded-lg bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.08)] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] cursor-pointer glass-refraction"
+                className="w-8 h-8 flex items-center justify-center rounded-lg bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.08)] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] cursor-pointer"
               >
                 <X size={20} />
               </button>
@@ -110,7 +110,7 @@ export default function AddItemForm({ isOpen, onClose, onSuccess, totalUsedCapac
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2.5 text-sm bg-[rgba(255,255,255,0.08)] backdrop-blur-sm border border-[var(--border)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:bg-white/15 focus:ring-4 focus:ring-[var(--accent)]/10 hover:bg-white/10 hover:border-[var(--accent)]/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all duration-200 glass-refraction"
+                  className="w-full px-4 py-2.5 text-sm bg-[rgba(255,255,255,0.08)] backdrop-blur-sm border border-[var(--border)] rounded-xl text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] focus:bg-white/15 focus:ring-4 focus:ring-[var(--accent)]/10 hover:bg-white/10 hover:border-[var(--accent)]/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all duration-200"
                   placeholder="e.g. Magic Keyboard"
                 />
               </div>
@@ -145,7 +145,7 @@ export default function AddItemForm({ isOpen, onClose, onSuccess, totalUsedCapac
                         const val = e.target.value.replace(/[^0-9]/g, '');
                         setFormData({...formData, stock_count: val});
                       }}
-                      className={`w-full bg-[rgba(255,255,255,0.08)] backdrop-blur-sm shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] border ${isOverCapacity ? 'border-[var(--error)] focus:ring-4 focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10 hover:border-[var(--accent)]/50'} rounded-xl px-4 py-2.5 text-sm outline-none focus:bg-white/15 hover:bg-white/10 transition-all duration-200 glass-refraction`}
+                      className={`w-full bg-[rgba(255,255,255,0.08)] backdrop-blur-sm shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] border ${isOverCapacity ? 'border-[var(--error)] focus:ring-4 focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10 hover:border-[var(--accent)]/50'} rounded-xl px-4 py-2.5 text-sm outline-none focus:bg-white/15 hover:bg-white/10 transition-all duration-200`}
                       required
                     />
                     {isOverCapacity && (
@@ -187,7 +187,7 @@ export default function AddItemForm({ isOpen, onClose, onSuccess, totalUsedCapac
                         const cleanVal = parts.length > 2 ? parts[0] + '.' + parts.slice(1).join('') : val;
                         setFormData({ ...formData, price: cleanVal });
                       }}
-                      className={`w-full bg-[rgba(255,255,255,0.08)] backdrop-blur-sm shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] border ${isInvalidPrice ? 'border-[var(--error)] focus:ring-4 focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10 hover:border-[var(--accent)]/50'} rounded-xl pl-8 pr-4 py-2.5 text-sm outline-none focus:bg-white/15 hover:bg-white/10 transition-all duration-200 glass-refraction`}
+                      className={`w-full bg-[rgba(255,255,255,0.08)] backdrop-blur-sm shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] border ${isInvalidPrice ? 'border-[var(--error)] focus:ring-4 focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10 hover:border-[var(--accent)]/50'} rounded-xl pl-8 pr-4 py-2.5 text-sm outline-none focus:bg-white/15 hover:bg-white/10 transition-all duration-200`}
                     />
                     {isInvalidPrice && (
                       <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--error)]">
@@ -209,7 +209,7 @@ export default function AddItemForm({ isOpen, onClose, onSuccess, totalUsedCapac
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[rgba(255,255,255,0.05)] backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white/60 hover:text-[var(--text-primary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-200 cursor-pointer glass-refraction"
+                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[rgba(255,255,255,0.05)] backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white/60 hover:text-[var(--text-primary)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] transition-all duration-200 cursor-pointer"
               >
                 Cancel
               </button>

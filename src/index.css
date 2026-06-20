@@ -77,8 +77,8 @@
 
   /* — Borders — */
   --border: rgba(255, 255, 255, 0.1);
-  --border-hover: var(--glass-refraction-light-end);
-  --border-active: var(--glass-refraction-light-start);
+  --border-hover: rgba(255, 255, 255, 0.05);
+  --border-active: rgba(255, 255, 255, 0.1);
 
   /* — Accent (White) — */
   --accent: #ffffff;
@@ -112,10 +112,7 @@
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
   --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
   --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  --glass-refraction-light-start: rgba(255, 255, 255, 0.1);
-  --glass-refraction-light-end: var(--glass-refraction-panel-end);
-  --glass-refraction-panel-start: rgba(255, 255, 255, 0.04);
-  --glass-refraction-panel-end: rgba(255, 255, 255, 0.01);
+  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 
@@ -319,53 +316,6 @@
     padding: 1rem;
   }
 
-  /* — Liquid Glass Refraction Pseudo-elements — */
-  .glass::after,
-  .card::after,
-  .card-flush::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    pointer-events: none;
-    border-radius: inherit;
-    background: linear-gradient(
-      115deg, 
-      var(--glass-refraction-light-start) 0%, 
-      rgba(255, 255, 255, 0.05) 25%, 
-      rgba(255, 255, 255, 0) 50%, 
-      rgba(255, 255, 255, 0.05) 75%, 
-      var(--glass-refraction-light-end) 100%
-    );
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -1px 1px var(--glass-refraction-light-end);
-  }
-
-  /* Subtler refraction for large panels */
-  .glass-panel::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    pointer-events: none;
-    border-radius: inherit;
-    background: linear-gradient(
-      115deg, 
-      var(--glass-refraction-panel-start) 0%, 
-      rgba(255, 255, 255, 0) 30%, 
-      rgba(255, 255, 255, 0) 70%, 
-      var(--glass-refraction-panel-end) 100%
-    );
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.15);
-  }
-
-  /* — Disable Refraction Override — */
-  .disable-refraction .glass::after,
-  .disable-refraction .card::after,
-  .disable-refraction .card-flush::after,
-  .disable-refraction .glass-panel::after,
-  .disable-refraction .glass-refraction::after {
-    display: none !important;
-  }
 
   /* — Badges —
      Muted, low-contrast badges using semantic colors.
@@ -405,7 +355,7 @@
   }
 
   .badge-neutral {
-    background: var(--glass-refraction-light-start);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--text-secondary);
   }
 
@@ -480,7 +430,7 @@
   }
 
   .btn-ghost:hover {
-    background: var(--glass-refraction-light-start);
+    background: rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
   }
 
@@ -582,26 +532,5 @@
     -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   }
 
-  /* — Liquid Glass Refraction — */
-  .glass-refraction {
-    position: relative;
-  }
-  
-  .glass-refraction::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    z-index: 10;
-    pointer-events: none;
-    border-radius: inherit;
-    background: linear-gradient(
-      115deg, 
-      var(--glass-refraction-light-start) 0%, 
-      rgba(255, 255, 255, 0.05) 25%, 
-      rgba(255, 255, 255, 0) 50%, 
-      rgba(255, 255, 255, 0.05) 75%, 
-      var(--glass-refraction-light-end) 100%
-    );
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.8), inset 0 -1px 1px var(--glass-refraction-light-end);
-  }
+
 }

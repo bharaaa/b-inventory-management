@@ -68,7 +68,7 @@ export default function Layout() {
       </div>
 
       {/* App Window Shell */}
-      <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-3xl overflow-hidden glass-refraction">
+      <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-3xl overflow-hidden">
         {/* Desktop sidebar */}
         {!isMobile && (
           <Sidebar

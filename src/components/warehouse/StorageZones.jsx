@@ -73,7 +73,7 @@ export default function StorageZones({ items }) {
 
       <div className="grid grid-cols-2 gap-4">
         {zones.map((zone, i) => (
-          <div key={zone.name} className="flex flex-col items-center p-4 rounded-xl bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] relative overflow-hidden group glass-refraction">
+          <div key={zone.name} className="flex flex-col items-center p-4 rounded-xl bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] relative overflow-hidden group">
             {/* Elegant Circular Progress */}
             <div className="relative w-16 h-16 mb-3">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">

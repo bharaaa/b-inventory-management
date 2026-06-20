@@ -24,7 +24,7 @@ export default function CategoryDropdown({ categories, value, onChange }) {
         onClick={() => setOpen(!open)}
         className={`w-full flex items-center justify-between px-4 py-2.5 text-sm bg-[rgba(255,255,255,0.08)] backdrop-blur-sm border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] focus:bg-white/15 focus:ring-4 focus:ring-[var(--accent)]/10 hover:bg-white/10 hover:border-[var(--accent)]/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all duration-200 cursor-pointer ${
           open ? "border-[var(--accent)] ring-1 ring-[var(--accent)]/20" : ""
-        } glass-refraction`}
+        }`}
       >
         <span className="text-[var(--text-primary)]">
           {categories.find(c => c.id === value)?.name || (categories.length === 0 ? "Loading categories..." : "Select Category")}
