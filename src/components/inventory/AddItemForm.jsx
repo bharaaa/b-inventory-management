@@ -5,7 +5,7 @@ import { supabase } from '../../services/supabaseClient';
 import { useToast } from '../../contexts/ToastContext';
 import { TOTAL_WAREHOUSE_CAPACITY } from '../../config/constants';
 
-export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCapacity = 0 }) {
+export default function AddItemForm({ isOpen, onClose, onSuccess, totalUsedCapacity = 0 }) {
   const { addToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -93,27 +93,8 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end">
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="absolute inset-0 bg-black/20 backdrop-blur-md"
-          />
-
-          {/* Drawer Panel */}
-          <motion.div
-            initial={{ x: '100%', opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: '100%', opacity: 0 }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-4 right-4 bottom-4 w-[calc(100%-2rem)] md:w-[480px] bg-white/70 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] z-[101] flex flex-col border border-[var(--border)] rounded-3xl overflow-hidden"
-          >
-            {/* Header */}
+    <>
+      {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
               <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
                 Add New Item
@@ -289,9 +270,6 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
                 {loading ? <Loader2 size={16} className="animate-spin" /> : 'Add Item'}
               </button>
             </div>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
+    </>
   );
 }

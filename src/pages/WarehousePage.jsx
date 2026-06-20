@@ -12,8 +12,7 @@ import WarehouseAlerts from "../components/warehouse/WarehouseAlerts";
 import TopStoredProducts from "../components/warehouse/TopStoredProducts";
 import WarehouseSummary from "../components/warehouse/WarehouseSummary";
 import ActivityTimeline from "../components/dashboard/ActivityTimeline";
-import LowStockDrawer from "../components/dashboard/LowStockDrawer";
-import ProductDetailDrawer from "../components/inventory/ProductDetailDrawer";
+import { useDrawer } from "../contexts/DrawerContext";
 import { formatActivityEvent } from "../helpers/activityHelpers";
 import { TOTAL_WAREHOUSE_CAPACITY } from "../config/constants";
 
@@ -43,9 +42,7 @@ export default function WarehousePage() {
   const [recentActivities, setRecentActivities] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Modals
-  const [isLowStockOpen, setIsLowStockOpen] = useState(false);
-  const [viewingItem, setViewingItem] = useState(null);
+  const { openDrawer } = useDrawer();
 
   useEffect(() => {
     fetchData();
@@ -246,7 +243,7 @@ export default function WarehousePage() {
           <StorageZones items={items} />
           <WarehouseAlerts 
             items={items} 
-            onOpenLowStock={() => setIsLowStockOpen(true)} 
+            onOpenLowStock={() => openDrawer('LOW_STOCK', { lowStockItems, onViewItem: (item) => openDrawer('PRODUCT_DETAIL', { item, onEdit: (i) => openDrawer('EDIT_ITEM', { item: i, totalUsedCapacity, onSuccess: fetchData }) }) })} 
           />
           <TopStoredProducts items={items} totalCapacity={TOTAL_WAREHOUSE_CAPACITY} />
         </div>
@@ -256,26 +253,6 @@ export default function WarehousePage() {
       <div className="mt-5">
         <WarehouseSummary items={items} />
       </div>
-
-      {/* Drawers */}
-      <LowStockDrawer
-        isOpen={isLowStockOpen}
-        onClose={() => setIsLowStockOpen(false)}
-        lowStockItems={lowStockItems}
-        onViewItem={(item) => {
-          setIsLowStockOpen(false);
-          setViewingItem(item);
-        }}
-      />
-
-      <ProductDetailDrawer
-        isOpen={!!viewingItem}
-        onClose={() => setViewingItem(null)}
-        item={viewingItem}
-        onItemUpdated={(updatedItem) => {
-          setViewingItem(updatedItem);
-        }}
-      />
     </div>
   );
 }

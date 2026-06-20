@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, DollarSign, Package } from 'lucide-react';
 
-export default function TotalValueDrawer({ isOpen, onClose, items }) {
+export default function TotalValueView({ isOpen, onClose, items }) {
   // Calculate values
   const grandTotal = items.reduce((sum, item) => sum + (item.stock_count * (item.price || 0)), 0);
   
@@ -19,28 +19,8 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
   }).format(grandTotal);
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-md z-50"
-            onClick={onClose}
-          />
-
-          {/* Drawer */}
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed top-4 right-4 bottom-4 w-[calc(100%-2rem)] sm:w-[480px] bg-white/70 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] border border-[var(--border)] rounded-3xl z-50 flex flex-col overflow-hidden"
-          >
-            {/* Header */}
+    <>
+      {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[var(--success)]/10 flex items-center justify-center flex-shrink-0 text-[var(--success)]">
@@ -157,9 +137,6 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
                 </div>
               )}
             </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+    </>
   );
 }

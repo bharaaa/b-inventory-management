@@ -2,31 +2,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Calendar, Info, Box } from 'lucide-react';
 import { format } from 'date-fns';
 
-export default function ActivityDetailDrawer({ isOpen, onClose, activity, onViewProduct }) {
+export default function ActivityDetailView({ isOpen, onClose, activity, onViewProduct }) {
   if (!activity) return null;
 
   const Icon = activity.icon;
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <>
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="fixed inset-0 bg-black/40 backdrop-blur-md z-[100]"
-          />
-
-          <motion.div
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-4 right-4 bottom-4 w-[calc(100%-2rem)] md:w-[480px] bg-white/70 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] z-[101] flex flex-col border border-[var(--border)] rounded-3xl overflow-hidden"
-          >
-            {/* Header */}
+    <>
+      {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[var(--bg-card)]/50 backdrop-blur-md">
               <div className="flex items-center gap-3">
                 <div className={`p-2 rounded-xl ${activity.bgClass}`}>
@@ -114,9 +97,6 @@ export default function ActivityDetailDrawer({ isOpen, onClose, activity, onView
               </div>
 
             </div>
-          </motion.div>
-        </>
-      )}
-    </AnimatePresence>
+    </>
   );
 }

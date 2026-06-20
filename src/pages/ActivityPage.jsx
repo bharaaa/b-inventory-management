@@ -5,8 +5,7 @@ import { supabase } from "../services/supabaseClient";
 import { format } from "date-fns";
 import { formatActivityEvent } from "../helpers/activityHelpers";
 import { timeAgo } from "../helpers/timeAgo";
-import ActivityDetailDrawer from "../components/activity/ActivityDetailDrawer";
-import ProductDetailDrawer from "../components/inventory/ProductDetailDrawer";
+import { useDrawer } from "../contexts/DrawerContext";
 import ActivityTimeline from "../components/dashboard/ActivityTimeline";
 import CalendarTimeline from "../components/activity/CalendarTimeline";
 
@@ -34,8 +33,7 @@ export default function ActivityPage() {
   const [dateFilter, setDateFilter] = useState("all");
   const [isDateDropdownOpen, setIsDateDropdownOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("log");
-  const [selectedActivity, setSelectedActivity] = useState(null);
-  const [selectedProductId, setSelectedProductId] = useState(null);
+  const { openDrawer } = useDrawer();
 
   const fetchActivities = async () => {
     setLoading(true);
@@ -276,22 +274,6 @@ export default function ActivityPage() {
         </div>
       </motion.div>
 
-      <ActivityDetailDrawer
-        isOpen={!!selectedActivity}
-        onClose={() => setSelectedActivity(null)}
-        activity={selectedActivity}
-        onViewProduct={(productId) => {
-          setSelectedActivity(null);
-          setSelectedProductId(productId);
-        }}
-      />
-
-      <ProductDetailDrawer
-        isOpen={!!selectedProductId}
-        onClose={() => setSelectedProductId(null)}
-        productId={selectedProductId}
-      />
-
       {activeTab === 'log' && (
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -353,7 +335,7 @@ export default function ActivityPage() {
                         animate="visible"
                         exit="hidden"
                         layout
-                        onClick={() => setSelectedActivity(movement)}
+                        onClick={() => openDrawer('ACTIVITY_DETAIL', { activity: movement, onViewProduct: (productId) => openDrawer('PRODUCT_DETAIL', { productId }) })}
                         className="border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 hover:bg-white/30 cursor-pointer"
                       >
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
@@ -395,7 +377,7 @@ export default function ActivityPage() {
           <CalendarTimeline 
             activities={filteredActivities} 
             dateFilter={dateFilter}
-            onNodeClick={(act) => setSelectedActivity(act)}
+            onNodeClick={(act) => openDrawer('ACTIVITY_DETAIL', { activity: act, onViewProduct: (productId) => openDrawer('PRODUCT_DETAIL', { productId }) })}
           />
         </div>
       )}

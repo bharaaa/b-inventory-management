@@ -5,7 +5,7 @@ import { supabase } from '../../services/supabaseClient';
 import { useToast } from '../../contexts/ToastContext';
 import { TOTAL_WAREHOUSE_CAPACITY } from '../../config/constants';
 
-export default function EditItemDrawer({ isOpen, onClose, onSuccess, item, totalUsedCapacity = 0 }) {
+export default function EditItemForm({ isOpen, onClose, item: initialItem, onSuccess, totalUsedCapacity = 0 }) {
   const { addToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -154,27 +154,8 @@ export default function EditItemDrawer({ isOpen, onClose, onSuccess, item, total
   };
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <div className="fixed inset-0 z-50 flex justify-end p-4">
-          {/* Backdrop */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={onClose}
-            className="absolute inset-0 bg-black/20 backdrop-blur-md"
-          />
-
-          {/* Drawer Panel */}
-          <motion.div
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="relative w-full max-w-md h-full bg-white/70 backdrop-blur-2xl border border-[var(--border)] rounded-3xl overflow-hidden shadow-[0_8px_40px_rgba(0,0,0,0.12)] flex flex-col"
-          >
-            {/* Header */}
+    <>
+      {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
               <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
                 Edit Item
@@ -358,8 +339,6 @@ export default function EditItemDrawer({ isOpen, onClose, onSuccess, item, total
                 {loading ? <Loader2 size={16} className="animate-spin" /> : 'Save Changes'}
               </button>
             </div>
-          </motion.div>
-
           {/* Delete Confirmation Full-Screen Overlay */}
           <AnimatePresence>
             {showDeleteConfirm && (
@@ -404,8 +383,6 @@ export default function EditItemDrawer({ isOpen, onClose, onSuccess, item, total
               </div>
             )}
           </AnimatePresence>
-        </div>
-      )}
-    </AnimatePresence>
+    </>
   );
 }

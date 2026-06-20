@@ -10,10 +10,7 @@ import CategoryChart from "../components/charts/CategoryChart";
 import ValueDistributionChart from "../components/charts/ValueDistributionChart";
 import ActivityTimeline from "../components/dashboard/ActivityTimeline";
 import InventoryTable from "../components/dashboard/InventoryTable";
-import LowStockDrawer from "../components/dashboard/LowStockDrawer";
-import TotalValueDrawer from "../components/dashboard/TotalValueDrawer";
-import ProductDetailDrawer from "../components/inventory/ProductDetailDrawer";
-import EditItemDrawer from "../components/inventory/EditItemDrawer";
+import { useDrawer } from "../contexts/DrawerContext";
 import { formatActivityEvent } from "../helpers/activityHelpers";
 
 const containerVariants = {
@@ -45,10 +42,7 @@ export default function Dashboard() {
   const [stockMovement, setStockMovement] = useState([]);
   const navigate = useNavigate();
 
-  const [isLowStockOpen, setIsLowStockOpen] = useState(false);
-  const [isTotalValueOpen, setIsTotalValueOpen] = useState(false);
-  const [viewingItem, setViewingItem] = useState(null);
-  const [editingItem, setEditingItem] = useState(null);
+  const { openDrawer, closeDrawer } = useDrawer();
 
   useEffect(() => {
     async function fetchStockMovements() {
@@ -282,7 +276,7 @@ export default function Dashboard() {
       changeLabel: "vs last month",
       inverseGood: true, // For low stock, a negative change is good
       icon: <AlertTriangle size={20} strokeWidth={1.5} />,
-      onClick: () => setIsLowStockOpen(true)
+      onClick: () => openDrawer('LOW_STOCK', { lowStockItems, onViewItem: (item) => openDrawer('PRODUCT_DETAIL', { item, onEdit: (i) => openDrawer('EDIT_ITEM', { item: i, totalUsedCapacity, onSuccess: fetchItems }) }) })
     },
     {
       title: "Total Value",
@@ -290,7 +284,7 @@ export default function Dashboard() {
       change: calculateChange(totalValue, snapshots.lastMonth?.total_value),
       changeLabel: "vs last month",
       icon: <DollarSign size={20} strokeWidth={1.5} />,
-      onClick: () => setIsTotalValueOpen(true)
+      onClick: () => openDrawer('TOTAL_VALUE', { items })
     },
     {
       title: "Warehouse Health",
@@ -364,43 +358,6 @@ export default function Dashboard() {
           <ActivityTimeline activities={recentActivities} />
         </motion.div>
       </motion.div>
-
-      <LowStockDrawer
-        isOpen={isLowStockOpen}
-        onClose={() => setIsLowStockOpen(false)}
-        lowStockItems={lowStockItems}
-        onViewItem={(item) => {
-          setIsLowStockOpen(false);
-          setViewingItem(item);
-        }}
-      />
-
-      <TotalValueDrawer
-        isOpen={isTotalValueOpen}
-        onClose={() => setIsTotalValueOpen(false)}
-        items={items}
-      />
-
-      <ProductDetailDrawer
-        isOpen={!!viewingItem}
-        onClose={() => setViewingItem(null)}
-        item={viewingItem}
-        onEdit={(item) => setEditingItem(item)}
-        onItemUpdated={(updatedItem) => {
-          setViewingItem(updatedItem);
-        }}
-      />
-
-      <EditItemDrawer
-        isOpen={!!editingItem}
-        onClose={() => setEditingItem(null)}
-        item={editingItem}
-        totalUsedCapacity={totalUsedCapacity}
-        onSuccess={() => {
-          setEditingItem(null);
-          // Real-time subscriptions will automatically fetch updated data
-        }}
-      />
     </div>
   );
 }

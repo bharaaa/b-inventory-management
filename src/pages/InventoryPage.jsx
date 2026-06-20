@@ -1,15 +1,12 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, SlidersHorizontal, X, Plus, Minus, Pencil, Trash2, Check, ListChecks } from "lucide-react";
+import { Search, SlidersHorizontal, X, Plus, Minus, Pencil, Trash2, Check, ListChecks, Package } from "lucide-react";
 import { supabase } from "../services/supabaseClient";
 import { timeAgo } from "../helpers/timeAgo";
 import { formatDate } from "../helpers/formatDate";
-import AddItemDrawer from "../components/inventory/AddItemDrawer";
-import EditItemDrawer from "../components/inventory/EditItemDrawer";
-import ProductDetailDrawer from "../components/inventory/ProductDetailDrawer";
-import BulkEditModal from "../components/inventory/BulkEditModal";
-import Layout from "../components/layout/Layout";
 import { useToast } from "../contexts/ToastContext";
+import { useDrawer } from "../contexts/DrawerContext";
+import BulkEditModal from "../components/inventory/BulkEditModal";
 import { TOTAL_WAREHOUSE_CAPACITY } from "../config/constants";
 
 const sortOptions = {
@@ -116,15 +113,13 @@ function StockCell({ item, updateStock }) {
 }
 
 export default function InventoryPage() {
+  const { openDrawer } = useDrawer();
   const { addToast } = useToast();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [openSort, setOpenSort] = useState(false);
   const [sortBy, setSortBy] = useState("last_updated_desc");
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [editingItem, setEditingItem] = useState(null);
-  const [viewingItem, setViewingItem] = useState(null);
   const [selectedIds, setSelectedIds] = useState([]);
   const [showBulkDeleteConfirm, setShowBulkDeleteConfirm] = useState(false);
   const [showBulkEditModal, setShowBulkEditModal] = useState(false);
@@ -173,14 +168,12 @@ export default function InventoryPage() {
     const newStock = Math.max(0, currentStock + delta);
     if (newStock < 0) return;
 
-    // Validation: Check if new stock exceeds capacity
     const capacityDifference = newStock - currentStock;
     if (capacityDifference > 0 && (totalUsedCapacity + capacityDifference) > TOTAL_WAREHOUSE_CAPACITY) {
       addToast(`Cannot update stock: Exceeds total warehouse capacity of ${TOTAL_WAREHOUSE_CAPACITY.toLocaleString()} units.`, 'error');
       return;
     }
     
-    // Optimistic UI update
     setItems(items.map(item => 
       item.id === id ? { ...item, stock_count: newStock, last_updated: new Date().toISOString() } : item
     ));
@@ -196,7 +189,6 @@ export default function InventoryPage() {
     if (error) {
       console.error(error);
       alert("Failed to update stock");
-      // Revert back by re-fetching
       fetchItems();
     } else {
       addToast("Stock updated successfully", "success");
@@ -239,7 +231,6 @@ export default function InventoryPage() {
     fetchItems();
   }, []);
 
-  // Close sort dropdown on outside click
   useEffect(() => {
     function handleClick(e) {
       if (openSort && !e.target.closest("[data-sort-menu]")) {
@@ -252,7 +243,6 @@ export default function InventoryPage() {
 
   return (
     <div className="flex flex-col h-full min-h-0 pb-2">
-      {/* Page Header */}
       <div className="mb-8">
         <motion.h1
           initial={{ opacity: 0, y: -8 }}
@@ -272,14 +262,12 @@ export default function InventoryPage() {
         </motion.p>
       </div>
 
-      {/* Controls Bar */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.15 }}
         className="flex flex-col sm:flex-row sm:items-center gap-3 mb-5"
       >
-        {/* Search */}
         <div className="relative flex-1 max-w-sm">
           <Search
             size={16}
@@ -303,7 +291,6 @@ export default function InventoryPage() {
           )}
         </div>
 
-        {/* Sort */}
         <div className="relative" data-sort-menu>
           <button
             id="sort-toggle"
@@ -341,12 +328,10 @@ export default function InventoryPage() {
           )}
         </div>
 
-        {/* Item Count */}
         <div className="text-sm text-[var(--text-tertiary)] hidden sm:block ml-auto">
           {filteredItems.length} {filteredItems.length === 1 ? "item" : "items"}
         </div>
 
-        {/* Selection Mode Toggle */}
         <button
           onClick={() => {
             setIsSelectionMode(!isSelectionMode);
@@ -362,17 +347,15 @@ export default function InventoryPage() {
           <span className="hidden sm:inline">Select</span>
         </button>
 
-        {/* Add Item Button */}
         <button
-          onClick={() => setIsAddModalOpen(true)}
-          className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] transition-colors cursor-pointer sm:ml-4 shadow-[0_2px_8px_rgba(124,58,237,0.3)]"
+          onClick={() => openDrawer('ADD_ITEM', { totalUsedCapacity, onSuccess: fetchItems })}
+          className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-colors cursor-pointer sm:ml-4"
         >
           <Plus size={16} />
           <span>New Item</span>
         </button>
       </motion.div>
 
-      {/* Table Card */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -415,7 +398,6 @@ export default function InventoryPage() {
                   Last Updated
                 </th>
                 <th className="px-6 py-4 text-right w-16">
-                  {/* Actions */}
                 </th>
               </tr>
             </thead>
@@ -504,7 +486,10 @@ export default function InventoryPage() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.03 }}
-                    onClick={() => setViewingItem(item)}
+                    onClick={() => openDrawer('PRODUCT_DETAIL', { 
+                      item, 
+                      onEdit: (i) => openDrawer('EDIT_ITEM', { item: i, totalUsedCapacity, onSuccess: fetchItems }) 
+                    })}
                     className={`border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 cursor-pointer ${selectedIds.includes(item.id) ? 'bg-[var(--accent)]/5' : 'hover:bg-white/30'}`}
                   >
                     <td className="p-0 align-middle" onClick={(e) => e.stopPropagation()}>
@@ -542,7 +527,10 @@ export default function InventoryPage() {
                     </td>
                     <td className="px-6 py-4 text-right" onClick={(e) => e.stopPropagation()}>
                       <button
-                        onClick={() => setEditingItem(item)}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          openDrawer('EDIT_ITEM', { item, totalUsedCapacity, onSuccess: fetchItems });
+                        }}
                         className="p-1.5 rounded-lg text-[var(--text-tertiary)] hover:bg-white/30 hover:text-[var(--text-primary)] transition-colors tooltip-trigger"
                         title="Edit Item"
                       >
@@ -556,36 +544,6 @@ export default function InventoryPage() {
           </table>
         </div>
       </motion.div>
-
-      <AddItemDrawer
-        isOpen={isAddModalOpen}
-        onClose={() => setIsAddModalOpen(false)}
-        onSuccess={() => {
-          fetchItems();
-          setIsAddModalOpen(false);
-        }}
-        totalUsedCapacity={totalUsedCapacity}
-      />
-
-      <EditItemDrawer
-        item={editingItem}
-        isOpen={!!editingItem}
-        onClose={() => setEditingItem(null)}
-        onSuccess={() => {
-          fetchItems();
-          setEditingItem(null);
-        }}
-        totalUsedCapacity={totalUsedCapacity}
-      />
-
-      <ProductDetailDrawer
-        item={viewingItem}
-        isOpen={!!viewingItem}
-        onClose={() => setViewingItem(null)}
-        onEdit={(item) => setEditingItem(item)}
-      />
-
-      {/* Floating Bulk Action Bar */}
       <AnimatePresence>
         {selectedIds.length > 0 && (
           <motion.div
