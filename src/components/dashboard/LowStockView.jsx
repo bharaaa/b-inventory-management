@@ -35,17 +35,17 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
                 key={item.id}
-                className="group relative bg-[rgba(255,255,255,0.05)] backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300 hover:bg-white/60 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] glass-refraction"
+                className="group relative bg-[rgba(255,255,255,0.05)] backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300 hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.1)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
               >
                 <div className="flex items-center gap-4">
                   {item.image_url ? (
                     <img
                       src={item.image_url}
                       alt={item.name}
-                      className="w-14 h-14 rounded-xl object-cover bg-[rgba(255,255,255,0.08)] border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.4)]"
+                      className="w-14 h-14 rounded-xl object-cover bg-[rgba(255,255,255,0.08)] border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
                     />
                   ) : (
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-white/60 to-white/20 backdrop-blur-sm border border-[var(--border)] flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]">
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-[var(--border)] flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
                       <Package size={24} className="text-[var(--text-tertiary)]" strokeWidth={1.5} />
                     </div>
                   )}
