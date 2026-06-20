@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useRef } from 'react';
 
 const DrawerContext = createContext();
 
@@ -6,8 +6,12 @@ export function DrawerProvider({ children }) {
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState(null);
   const [payload, setPayload] = useState({});
+  const timeoutRef = useRef(null);
 
   const openDrawer = (drawerType, drawerPayload = {}) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     setType(drawerType);
     setPayload(drawerPayload);
     setIsOpen(true);
@@ -15,7 +19,7 @@ export function DrawerProvider({ children }) {
 
   const closeDrawer = () => {
     setIsOpen(false);
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setType(null);
       setPayload({});
     }, 300); // Wait for animation before clearing content

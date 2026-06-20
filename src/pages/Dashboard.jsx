@@ -276,7 +276,7 @@ export default function Dashboard() {
       changeLabel: "vs last month",
       inverseGood: true, // For low stock, a negative change is good
       icon: <AlertTriangle size={20} strokeWidth={1.5} />,
-      onClick: () => openDrawer('LOW_STOCK', { lowStockItems, onViewItem: (item) => openDrawer('PRODUCT_DETAIL', { item, onEdit: (i) => openDrawer('EDIT_ITEM', { item: i, totalUsedCapacity, onSuccess: fetchItems }) }) })
+      onClick: () => openDrawer('LOW_STOCK', { lowStockItems, onViewItem: (item) => openDrawer('PRODUCT_DETAIL', { item, onEdit: (i) => openDrawer('EDIT_ITEM', { item: i, totalUsedCapacity }) }) })
     },
     {
       title: "Total Value",

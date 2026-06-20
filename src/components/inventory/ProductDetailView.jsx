@@ -241,8 +241,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
               <button
                 type="button"
                 onClick={() => {
-                  onClose();
-                  onEdit(item);
+                  if (onEdit) onEdit(item);
                 }}
                 className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-[var(--bg-card)] bg-[var(--text-primary)] rounded-xl hover:bg-[var(--text-secondary)] transition-colors cursor-pointer"
               >

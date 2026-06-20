@@ -36,12 +36,23 @@ export default function GlobalSideDrawer() {
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
             className={`relative w-[calc(100%-2rem)] ${widthClass} h-full bg-white/70 backdrop-blur-2xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] z-[101] flex flex-col border border-[var(--border)] rounded-3xl overflow-hidden`}
           >
-            {type === 'ADD_ITEM' && <AddItemForm isOpen={isOpen} {...payload} onClose={closeDrawer} />}
-            {type === 'EDIT_ITEM' && <EditItemForm isOpen={isOpen} {...payload} onClose={closeDrawer} />}
-            {type === 'PRODUCT_DETAIL' && <ProductDetailView isOpen={isOpen} {...payload} onClose={closeDrawer} />}
-            {type === 'ACTIVITY_DETAIL' && <ActivityDetailView isOpen={isOpen} {...payload} onClose={closeDrawer} />}
-            {type === 'LOW_STOCK' && <LowStockView isOpen={isOpen} {...payload} onClose={closeDrawer} />}
-            {type === 'TOTAL_VALUE' && <TotalValueView isOpen={isOpen} {...payload} onClose={closeDrawer} />}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={type}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+                className="flex-1 flex flex-col min-h-0 w-full h-full"
+              >
+                {type === 'ADD_ITEM' && <AddItemForm isOpen={isOpen} {...payload} onClose={closeDrawer} />}
+                {type === 'EDIT_ITEM' && <EditItemForm isOpen={isOpen} {...payload} onClose={closeDrawer} />}
+                {type === 'PRODUCT_DETAIL' && <ProductDetailView isOpen={isOpen} {...payload} onClose={closeDrawer} />}
+                {type === 'ACTIVITY_DETAIL' && <ActivityDetailView isOpen={isOpen} {...payload} onClose={closeDrawer} />}
+                {type === 'LOW_STOCK' && <LowStockView isOpen={isOpen} {...payload} onClose={closeDrawer} />}
+                {type === 'TOTAL_VALUE' && <TotalValueView isOpen={isOpen} {...payload} onClose={closeDrawer} />}
+              </motion.div>
+            </AnimatePresence>
           </motion.div>
         </div>
       )}
