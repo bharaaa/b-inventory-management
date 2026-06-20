@@ -9,12 +9,12 @@ import {
 import { motion } from 'framer-motion';
 
 const PIE_COLORS = [
-  '#171717', // almost black
-  '#404040', // dark gray
-  '#737373', // medium gray
-  '#a3a3a3', // light gray
-  '#d4d4d4', // lighter gray
-  '#f5f5f5', // very light gray (for others)
+  '#8b5cf6', // violet-500
+  '#a78bfa', // violet-400
+  '#c4b5fd', // violet-300
+  '#ddd6fe', // violet-200
+  '#ede9fe', // violet-100
+  '#f5f3ff', // violet-50
 ];
 
 function CustomTooltip({ active, payload }) {
@@ -28,14 +28,14 @@ function CustomTooltip({ active, payload }) {
   }).format(data.value);
 
   return (
-    <div className="bg-white rounded-xl border border-[var(--border)] shadow-sm p-3 min-w-[160px]">
+    <div className="bg-[var(--bg-card)]/95 backdrop-blur-xl rounded-xl border border-[var(--border)] shadow-lg p-3 min-w-[160px]">
       <p className="text-xs font-medium text-[var(--text-primary)] mb-1 truncate">
         {data.name}
       </p>
       <div className="flex items-center gap-1.5">
         <span
           className="w-2 h-2 rounded-full"
-          style={{ backgroundColor: payload[0].color || '#171717' }}
+          style={{ backgroundColor: payload[0].color || '#8b5cf6' }}
         />
         <span className="text-xs font-semibold text-[var(--text-secondary)]">
           {formattedValue}

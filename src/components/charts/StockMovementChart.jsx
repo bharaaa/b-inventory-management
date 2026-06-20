@@ -16,14 +16,14 @@ function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
 
   return (
-    <div className="bg-white rounded-xl border border-[var(--border)] shadow-sm p-3 min-w-[140px]">
+    <div className="bg-[var(--bg-card)]/95 backdrop-blur-xl rounded-xl border border-[var(--border)] shadow-lg p-3 min-w-[140px]">
       <p className="text-xs font-medium text-[var(--text-primary)] mb-2">
         {label}
       </p>
       <div className="space-y-1">
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-[#171717]" />
+            <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
             <span className="text-xs text-[var(--text-secondary)]">Inbound</span>
           </div>
           <span className="text-xs font-medium text-[var(--text-primary)]">
@@ -33,7 +33,7 @@ function CustomTooltip({ active, payload, label }) {
         {payload[1] && (
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-[#a3a3a3]" />
+              <span className="w-2 h-2 rounded-full bg-[var(--success)]" />
               <span className="text-xs text-[var(--text-secondary)]">Outbound</span>
             </div>
             <span className="text-xs font-medium text-[var(--text-primary)]">
@@ -127,7 +127,7 @@ export default function StockMovementChart({ data }) {
             <CartesianGrid
               horizontal
               vertical={false}
-              stroke="#e5e5e5"
+              stroke="rgba(255,255,255,0.05)"
               strokeDasharray="3 3"
             />
             <XAxis
@@ -146,17 +146,17 @@ export default function StockMovementChart({ data }) {
             />
             <Tooltip
               content={<CustomTooltip />}
-              cursor={{ fill: 'rgba(0, 0, 0, 0.04)', radius: 4 }}
+              cursor={{ fill: 'rgba(255, 255, 255, 0.05)', radius: 4 }}
             />
             <Bar
               dataKey="inbound"
-              fill="#171717"
+              fill="var(--accent)"
               radius={[3, 3, 0, 0]}
               barSize={14}
             />
             <Bar
               dataKey="outbound"
-              fill="#a3a3a3"
+              fill="var(--success)"
               radius={[3, 3, 0, 0]}
               barSize={14}
             />
@@ -167,11 +167,11 @@ export default function StockMovementChart({ data }) {
       {/* Legend */}
       <div className="flex items-center gap-5 mt-4 pt-3 border-t border-[var(--border)]">
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-sm bg-[#171717]" />
+          <span className="w-2.5 h-2.5 rounded-sm bg-[var(--accent)]" />
           <span className="text-xs text-[var(--text-secondary)]">Inbound</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-2.5 h-2.5 rounded-sm bg-[#a3a3a3]" />
+          <span className="w-2.5 h-2.5 rounded-sm bg-[var(--success)]" />
           <span className="text-xs text-[var(--text-secondary)]">Outbound</span>
         </div>
       </div>
