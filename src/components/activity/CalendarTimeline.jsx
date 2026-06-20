@@ -187,7 +187,7 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
                           whileHover={{ scale: 1.15, zIndex: 60 }}
                           className={`w-8 h-8 rounded-full shadow-md border-2 border-white flex items-center justify-center cursor-pointer ${act.bgClass.replace('subtle', 'solid')} bg-[var(--bg-card)]`}
                         >
-                          <IconComp size={14} className={act.iconColor} strokeWidth={2.5} />
+                          <IconComp size={16} className={act.iconColor} strokeWidth={2.5} fill="currentColor" />
                         </motion.button>
 
                         {/* Tooltip */}

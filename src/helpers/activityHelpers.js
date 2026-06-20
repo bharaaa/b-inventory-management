@@ -20,8 +20,8 @@ export function formatActivityEvent(item) {
     description = isInbound ? `Added ${Math.abs(item.quantity)} units` : `Removed ${Math.abs(item.quantity)} units`;
   } else {
     icon = isProductCreated ? Package : item.activity_type === 'category_update' ? Tag : Settings;
-    bgClass = isProductCreated ? 'bg-[var(--accent-subtle)]' : 'bg-[var(--bg-secondary)]';
-    iconColor = isProductCreated ? 'text-[var(--accent)]' : 'text-[var(--text-secondary)]';
+    bgClass = isProductCreated ? 'bg-[var(--accent)]/10 border border-[var(--accent)]/20' : 'bg-white/10 border border-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]';
+    iconColor = isProductCreated ? 'text-[var(--accent)]' : 'text-white';
     title = isProductCreated ? 'Product Created' : 
             item.activity_type === 'price_update' ? 'Price Updated' :
             item.activity_type === 'name_update' ? 'Name Updated' :

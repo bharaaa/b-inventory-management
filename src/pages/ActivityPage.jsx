@@ -351,7 +351,7 @@ export default function ActivityPage() {
                             <div
                               className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${movement.bgClass} ${movement.iconColor}`}
                             >
-                              <IconComp size={14} strokeWidth={3} />
+                              <IconComp size={16} strokeWidth={2.5} fill="currentColor" />
                             </div>
                             <span className="text-sm font-medium text-[var(--text-primary)]">
                               {movement.title}
