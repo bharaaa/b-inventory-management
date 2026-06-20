@@ -23,9 +23,9 @@ const itemVariants = {
   },
 };
 
-export default function ActivityTimeline({ activities = [], title = "Recent Activity" }) {
+export default function ActivityTimeline({ activities = [], title = "Recent Activity", limit = 6, showHeader = true }) {
   const navigate = useNavigate();
-  const visibleActivities = activities.slice(0, 6);
+  const visibleActivities = limit ? activities.slice(0, limit) : activities;
 
   return (
     <motion.div
@@ -35,17 +35,19 @@ export default function ActivityTimeline({ activities = [], title = "Recent Acti
       className="bg-[var(--bg-card)] rounded-2xl border border-[var(--border)] p-6"
     >
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-[var(--text-primary)] tracking-tight">
-          {title}
-        </h3>
-        <button 
-          onClick={() => navigate('/activity')}
-          className="text-xs font-medium text-[var(--accent)] hover:underline underline-offset-2 transition-colors cursor-pointer"
-        >
-          View All
-        </button>
-      </div>
+      {showHeader && (
+        <div className="mb-6 flex items-center justify-between">
+          <h3 className="text-sm font-semibold text-[var(--text-primary)] tracking-tight">
+            {title}
+          </h3>
+          <button 
+            onClick={() => navigate('/activity')}
+            className="text-xs font-medium text-[var(--accent)] hover:underline underline-offset-2 transition-colors cursor-pointer"
+          >
+            View All
+          </button>
+        </div>
+      )}
 
       {/* Timeline */}
       <motion.div
