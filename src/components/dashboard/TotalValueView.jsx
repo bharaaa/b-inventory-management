@@ -64,7 +64,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
       </div>
 
       {/* Content List */}
-      <div className="flex-1 overflow-y-auto p-6 bg-white/10 backdrop-blur-sm">
+      <div className="flex-1 overflow-y-auto p-6 scrollbar-thin">
         <h3 className="text-xs font-bold text-[var(--text-tertiary)] uppercase tracking-wider mb-4 flex items-center gap-2">
           Value by Item <span className="w-full h-px bg-[var(--border)] flex-1 block"></span>
         </h3>
@@ -104,7 +104,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                 <motion.div 
                   key={item.id}
                   variants={itemVariants}
-                  className="bg-[rgba(255,255,255,0.08)] backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col gap-3 shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.8)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.9)] transition-all duration-300 group"
+                  className="bg-[rgba(255,255,255,0.05)] backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col gap-3 shadow-[0_2px_8px_rgba(0,0,0,0.04),inset_0_1px_0_rgba(255,255,255,0.05)] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.1)] hover:bg-white/10 transition-all duration-300 group"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-center gap-3">
@@ -115,7 +115,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                           className="w-11 h-11 rounded-xl object-cover bg-[rgba(255,255,255,0.08)] border border-[var(--border)] shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)] shrink-0"
                         />
                       ) : (
-                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-sm border border-[var(--border)] shadow-[inset_0_2px_4px_rgba(255,255,255,0.8)] flex items-center justify-center shrink-0">
+                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] flex items-center justify-center shrink-0">
                           <Package size={18} className="text-[var(--text-tertiary)]" />
                         </div>
                       )}
