@@ -119,7 +119,7 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
           </div>
 
           {/* Grid Body */}
-          <div className="flex flex-1 py-8">
+          <div className="flex flex-1 py-5">
             <div className="flex flex-1 relative h-full w-full">
               
               {/* Sticky Y-Axis (Hours) */}

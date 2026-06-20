@@ -373,13 +373,18 @@ export default function ActivityPage() {
       )}
 
       {activeTab === 'timeline' && (
-        <div className="flex-1 min-h-0 flex flex-col">
+        <motion.div 
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
+          className="flex-1 min-h-0 flex flex-col"
+        >
           <CalendarTimeline 
             activities={filteredActivities} 
             dateFilter={dateFilter}
             onNodeClick={(act) => openDrawer('ACTIVITY_DETAIL', { activity: act, onViewProduct: (productId) => openDrawer('PRODUCT_DETAIL', { productId }) })}
           />
-        </div>
+        </motion.div>
       )}
     </div>
   );
