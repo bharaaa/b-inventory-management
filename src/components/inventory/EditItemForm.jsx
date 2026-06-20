@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Loader2, ChevronDown, Trash2, AlertCircle } from 'lucide-react';
+import { X, Loader2, Trash2, AlertCircle } from 'lucide-react';
 import { supabase } from '../../services/supabaseClient';
 import { useToast } from '../../contexts/ToastContext';
 import { TOTAL_WAREHOUSE_CAPACITY } from '../../config/constants';
+import CategoryDropdown from '../ui/CategoryDropdown';
 
 export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUsedCapacity = 0 }) {
   const { addToast } = useToast();
   const [loading, setLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [openCategory, setOpenCategory] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     category_id: '',
@@ -189,50 +189,11 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
                 <label className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
                   Category
                 </label>
-                <div className="relative" data-category-menu>
-                  <button
-                    type="button"
-                    onClick={() => setOpenCategory(!openCategory)}
-                    className={`w-full flex items-center justify-between px-4 py-2.5 text-sm bg-[rgba(255,255,255,0.08)] backdrop-blur-sm border border-[var(--border)] rounded-xl focus:outline-none focus:border-[var(--accent)] focus:bg-white/15 focus:ring-4 focus:ring-[var(--accent)]/10 hover:bg-white/10 hover:border-[var(--accent)]/50 shadow-[inset_0_2px_4px_rgba(0,0,0,0.02)] transition-all duration-200 cursor-pointer ${
-                      openCategory ? "border-[var(--accent)] ring-1 ring-[var(--accent)]/20" : ""
-                    } glass-refraction`}
-                  >
-                    <span className="text-[var(--text-primary)]">
-                      {categories.find(c => c.id === formData.category_id)?.name || (categories.length === 0 ? "Loading categories..." : "Select Category")}
-                    </span>
-                    <ChevronDown size={16} className={`text-[var(--text-tertiary)] transition-transform duration-200 ${openCategory ? 'rotate-180' : ''}`} />
-                  </button>
-
-                  <AnimatePresence>
-                    {openCategory && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 4, scale: 0.98 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 4, scale: 0.98 }}
-                        transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute left-0 mt-2 w-full bg-[var(--bg-card)]/95 backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
-                      >
-                        {categories.map((cat) => (
-                          <button
-                            key={cat.id}
-                            type="button"
-                            onClick={() => {
-                              setFormData({ ...formData, category_id: cat.id });
-                              setOpenCategory(false);
-                            }}
-                            className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
-                              formData.category_id === cat.id
-                                ? "text-[var(--accent)] bg-[var(--accent-subtle)] font-medium"
-                                : "text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)]"
-                            }`}
-                          >
-                            {cat.name}
-                          </button>
-                        ))}
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                <CategoryDropdown
+                  categories={categories}
+                  value={formData.category_id}
+                  onChange={(id) => setFormData({ ...formData, category_id: id })}
+                />
               </div>
 
               <div className="flex gap-4">
