@@ -10,12 +10,12 @@ import {
 import { motion } from 'framer-motion';
 
 const BAR_COLORS = [
-  '#8b5cf6',
-  '#a78bfa',
-  '#c4b5fd',
-  '#ddd6fe',
-  '#ede9fe',
-  '#f5f3ff',
+  '#007AFF',
+  '#5AC8FA',
+  '#30D158',
+  '#FF9F0A',
+  '#AF52DE',
+  '#FF453A',
 ];
 
 function CustomTooltip({ active, payload }) {
@@ -24,7 +24,7 @@ function CustomTooltip({ active, payload }) {
   const { category, count } = payload[0].payload;
 
   return (
-    <div className="bg-[var(--bg-card)]/95 backdrop-blur-xl border border-[var(--border)] shadow-lg p-3 min-w-[140px]">
+    <div className="bg-white/80 backdrop-blur-xl border border-black/[0.06] shadow-lg p-3 min-w-[140px] rounded-xl">
       <p className="text-xs font-medium text-[var(--text-primary)] mb-1">
         {category}
       </p>
@@ -76,7 +76,7 @@ export default function CategoryChart({ data }) {
             />
             <Tooltip
               content={<CustomTooltip />}
-              cursor={{ fill: 'rgba(255, 255, 255, 0.05)', radius: 6 }}
+              cursor={{ fill: 'rgba(0, 0, 0, 0.04)', radius: 6 }}
             />
             <Bar dataKey="count" barSize={28} radius={[0, 6, 6, 0]}>
               {(data || []).map((_, index) => (

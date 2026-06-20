@@ -37,38 +37,22 @@ export default function Layout() {
 
   return (
     <div
-      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500"
-      style={{
-        background: `radial-gradient(circle at top left, #1a1a1a 0%, #050505 40%, #000000 100%)`
-      }}
+      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500 bg-[#F7F8FA]"
     >
-      {/* Curated geometric background to maximize glass refraction */}
+      {/* Curated pastel background to maximize glass refraction */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden flex items-center justify-center">
-        {/* --- SHARP VIBRANT SHAPES --- */}
+        {/* Soft Blue Blob (Top Right) */}
+        <div className="absolute -top-[10vh] -right-[10vw] w-[40vw] h-[40vw] rounded-full bg-gradient-to-br from-[#007AFF]/8 to-[#5AC8FA]/5 blur-3xl" />
 
-        {/* Giant Ring (Top Left) */}
-        <div className="absolute -top-[20vh] -right-[10vw] w-[45vw] h-[45vw] rounded-full border-2 border-(--accent) opacity-30 mix-blend-multiply bg-(--accent)" />
+        {/* Soft Green Blob (Bottom Left) */}
+        <div className="absolute -bottom-[10vh] -left-[5vw] w-[30vw] h-[30vw] rounded-full bg-gradient-to-br from-[#30D158]/6 to-[#5AC8FA]/4 blur-3xl" />
 
-        {/* Solid Vibrant Circle (Center Right) */}
-        <div className="absolute top-[30vh] -right-[5vw] w-[30vw] h-[30vw] rounded-full bg-gradient-to-tr from-[var(--accent)] via-[var(--accent-hover)] to-[#ec4899] opacity-15 mix-blend-multiply" />
-
-        {/* Small Dense Circle (Bottom Left) */}
-        <div className="absolute -bottom-[10vh] left-[15vw] w-[20vw] h-[20vw] rounded-full bg-gradient-to-br from-[var(--success)] to-teal-400 opacity-20 mix-blend-multiply" />
-
-        {/* --- ARCHITECTURAL LINES --- */}
-
-        {/* Primary Diagonal */}
-        <div className="absolute top-1/2 left-1/2 w-[200vw] h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-40 -translate-x-1/2 -translate-y-1/2 -rotate-45" />
-
-        {/* Secondary Vertical */}
-        <div className="absolute top-0 left-[25vw] w-[1px] h-[100vh] bg-gradient-to-b from-[var(--text-tertiary)] to-transparent opacity-30" />
-
-        {/* Secondary Horizontal */}
-        <div className="absolute top-[75vh] left-0 w-[100vw] h-[1px] bg-gradient-to-r from-transparent via-[var(--success)] to-transparent opacity-30" />
+        {/* Soft Pink/Orange Blob (Center) */}
+        <div className="absolute top-[30vh] left-[30vw] w-[35vw] h-[35vw] rounded-full bg-gradient-to-br from-[#AF52DE]/5 to-[#FF9F0A]/3 blur-3xl" />
       </div>
 
       {/* App Window Shell */}
-      <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-md overflow-hidden">
+      <div className="relative z-10 flex w-full h-full overflow-hidden">
         {/* Desktop sidebar */}
         {!isMobile && (
           <Sidebar
@@ -87,7 +71,7 @@ export default function Layout() {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
-                className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md"
+                className="fixed inset-0 z-40 bg-black/15 backdrop-blur-sm"
                 onClick={() => setMobileOpen(false)}
               />
 
@@ -97,7 +81,7 @@ export default function Layout() {
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
                 transition={{ type: "spring", stiffness: 350, damping: 35 }}
-                className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-lg border-r border-[var(--border)]"
+                className="fixed inset-y-0 left-0 z-50 w-64 bg-white/70 backdrop-blur-md border-r border-[var(--border)]"
               >
                 <Sidebar
                   collapsed={false}
@@ -109,13 +93,13 @@ export default function Layout() {
         </AnimatePresence>
 
         {/* Nested Main Content Area */}
-        <main className="flex-1 flex flex-col bg-black/50 backdrop-blur-2xl md:m-3 md:rounded-[2rem] shadow-[inset_0_2px_12px_rgba(0,0,0,0.1)] border border-[var(--border)]/50 overflow-hidden relative z-20">
+        <main className="flex-1 flex flex-col bg-white/30 backdrop-blur-xl md:m-3 md:rounded-[2rem] shadow-[0_0_0_1px_rgba(0,0,0,0.04)] border border-white/60 overflow-hidden relative z-20">
           {/* Top Navigation */}
           {isMobile && (
-            <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-sm bg-[var(--bg-primary)]/80 border-b border-[var(--border)] shrink-0">
+            <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-xl bg-white/60 border-b border-[var(--border)] shrink-0">
               <button
                 onClick={() => setMobileOpen(true)}
-                className="flex items-center justify-center w-10 h-10 rounded-xl text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
+                className="flex items-center justify-center w-10 h-10 rounded-xl text-[var(--text-secondary)] hover:bg-black/[0.04] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
                 aria-label="Open navigation"
               >
                 <Menu className="w-5 h-5" strokeWidth={1.75} />

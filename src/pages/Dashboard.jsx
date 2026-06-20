@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Package, AlertTriangle, DollarSign, Gauge, CheckCircle, RefreshCcw, Crosshair } from "lucide-react";
+import { Package, AlertTriangle, DollarSign, Gauge } from "lucide-react";
 import { supabase } from "../services/supabaseClient";
 import { format, subDays } from "date-fns";
 import { useNavigate } from "react-router-dom";

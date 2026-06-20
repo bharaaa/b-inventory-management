@@ -9,12 +9,12 @@ import {
 import { motion } from 'framer-motion';
 
 const PIE_COLORS = [
-  '#8b5cf6', // violet-500
-  '#a78bfa', // violet-400
-  '#c4b5fd', // violet-300
-  '#ddd6fe', // violet-200
-  '#ede9fe', // violet-100
-  '#f5f3ff', // violet-50
+  '#007AFF',
+  '#5AC8FA',
+  '#30D158',
+  '#FF9F0A',
+  '#AF52DE',
+  '#FF453A',
 ];
 
 function CustomTooltip({ active, payload }) {
@@ -28,7 +28,7 @@ function CustomTooltip({ active, payload }) {
   }).format(data.value);
 
   return (
-    <div className="bg-[var(--bg-card)]/95 backdrop-blur-xl rounded-xl border border-[var(--border)] shadow-lg p-3 min-w-[160px]">
+    <div className="bg-white/80 backdrop-blur-xl rounded-xl border border-black/[0.06] shadow-lg p-3 min-w-[160px]">
       <p className="text-xs font-medium text-[var(--text-primary)] mb-1 truncate">
         {data.name}
       </p>

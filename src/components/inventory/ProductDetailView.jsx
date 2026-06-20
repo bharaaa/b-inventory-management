@@ -105,7 +105,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
   return (
     <>
       {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[rgba(255,255,255,0.05)] backdrop-blur-sm">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/60 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)]">
               <div className="flex items-center gap-3">
                 <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
                   {item?.name}
@@ -130,7 +130,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
                   Overview
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
+                  <div className="bg-white/60 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
                     <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
                       <Package size={14} />
                       <span className="text-xs font-medium">Current Stock</span>
@@ -139,7 +139,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
                       {item?.stock_count} <span className="text-sm font-normal text-[var(--text-tertiary)]">units</span>
                     </p>
                   </div>
-                  <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
+                  <div className="bg-white/60 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
                     <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
                       <DollarSign size={14} />
                       <span className="text-xs font-medium">Unit Price</span>
@@ -148,7 +148,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
                       {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item?.price || 0)}
                     </p>
                   </div>
-                  <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
+                  <div className="bg-white/60 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
                     <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
                       <DollarSign size={14} />
                       <span className="text-xs font-medium">Total Value</span>
@@ -157,7 +157,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
                       {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format((item?.stock_count || 0) * (item?.price || 0))}
                     </p>
                   </div>
-                  <div className="bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
+                  <div className="bg-white/60 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
                     <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
                       <Tag size={14} />
                       <span className="text-xs font-medium">Category</span>
@@ -181,7 +181,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
                     <div className="w-6 h-6 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
                   </div>
                 ) : movements.length === 0 ? (
-                  <div className="text-center py-8 bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] border-dashed rounded-xl">
+                  <div className="text-center py-8 bg-white/60 backdrop-blur-sm border border-[var(--border)] border-dashed rounded-xl shadow-sm">
                     <p className="text-sm text-[var(--text-secondary)]">No activity recorded yet.</p>
                   </div>
                 ) : (
@@ -232,11 +232,11 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
             </div>
 
             {/* Footer */}
-            <div className="p-6 border-t border-[var(--border)] bg-[rgba(255,255,255,0.05)] backdrop-blur-sm flex gap-3">
+            <div className="p-6 border-t border-[var(--border)] bg-white/40 backdrop-blur-sm flex gap-3">
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-[rgba(255,255,255,0.05)] transition-colors cursor-pointer"
+                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/50 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white hover:text-[var(--text-primary)] transition-colors cursor-pointer shadow-sm"
               >
                 Close
               </button>
@@ -246,7 +246,7 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
                   if (onEdit) onEdit(item);
                   else openDrawer('EDIT_ITEM', { item });
                 }}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-[var(--bg-card)] bg-[var(--text-primary)] rounded-xl hover:bg-[var(--text-secondary)] transition-colors cursor-pointer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent-fg)] bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-all duration-200 cursor-pointer"
               >
                 Edit Item <ArrowRight size={16} />
               </button>

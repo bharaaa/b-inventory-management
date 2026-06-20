@@ -5,13 +5,13 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
   return (
     <>
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm shadow-[inset_0_1px_0_rgba(255,255,255,0.6)] relative z-10">
+      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-white/60 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
         <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
           Low Stock Alerts
         </h2>
         <button
           onClick={onClose}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-[rgba(255,255,255,0.03)] hover:bg-[rgba(255,255,255,0.08)] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] cursor-pointer"
+          className="w-8 h-8 flex items-center justify-center rounded-lg bg-black/[0.02] hover:bg-black/[0.04] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] cursor-pointer"
         >
           <X size={20} />
         </button>
@@ -35,17 +35,17 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
                 key={item.id}
-                className="group relative bg-[rgba(255,255,255,0.05)] backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300 hover:bg-white/10 hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(0,0,0,0.06),inset_0_1px_0_rgba(255,255,255,0.1)] shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+                className="group relative bg-white/60 backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300 hover:bg-white/80 hover:-translate-y-0.5 hover:shadow-lg shadow-sm"
               >
                 <div className="flex items-center gap-4">
                   {item.image_url ? (
                     <img
                       src={item.image_url}
                       alt={item.name}
-                      className="w-14 h-14 rounded-xl object-cover bg-[rgba(255,255,255,0.08)] border border-[var(--border)] shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]"
+                      className="w-14 h-14 rounded-xl object-cover bg-black/[0.02] border border-[var(--border)]"
                     />
                   ) : (
-                    <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-sm border border-[var(--border)] flex items-center justify-center shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+                    <div className="w-14 h-14 rounded-xl bg-white/40 backdrop-blur-sm border border-[var(--border)] flex items-center justify-center shadow-sm">
                       <Package size={24} className="text-[var(--text-tertiary)]" strokeWidth={1.5} />
                     </div>
                   )}
@@ -64,7 +64,7 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
                 
                 <button
                   onClick={() => onViewItem(item)}
-                  className="flex items-center justify-center sm:w-auto w-full gap-2 px-4 py-2 text-sm font-semibold text-[var(--accent)] bg-[var(--accent)]/10 backdrop-blur-sm border border-[var(--accent)]/20 hover:bg-[var(--accent)] hover:text-[var(--accent-fg)] rounded-xl transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] group-hover:shadow-[0_4px_16px_rgba(124,58,237,0.2),inset_0_1px_0_rgba(255,255,255,0.3)] cursor-pointer"
+                  className="flex items-center justify-center sm:w-auto w-full gap-2 px-4 py-2 text-sm font-semibold text-[var(--accent)] bg-[var(--accent)]/10 backdrop-blur-sm border border-[var(--accent)]/20 hover:bg-[var(--accent)] hover:text-[var(--accent-fg)] rounded-xl transition-all duration-300 shadow-sm hover:shadow-[0_4px_16px_rgba(0,122,255,0.2)] cursor-pointer"
                 >
                   View Details
                   <ArrowRight size={16} strokeWidth={2.5} />

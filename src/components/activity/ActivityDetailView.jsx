@@ -9,10 +9,10 @@ export default function ActivityDetailView({ isOpen, onClose, activity, onViewPr
 
   return (
     <>
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[rgba(255,255,255,0.05)] backdrop-blur-md relative z-10">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/60 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
               <div className="flex items-center gap-3">
                 <div className={`p-2 rounded-xl ${activity.bgClass}`}>
-                  <Icon size={18} className={activity.iconColor} />
+                  <Icon size={18} strokeWidth={3} className={activity.iconColor} />
                 </div>
                 <div>
                   <h2 className="text-base font-semibold text-[var(--text-primary)]">
@@ -25,7 +25,7 @@ export default function ActivityDetailView({ isOpen, onClose, activity, onViewPr
               </div>
               <button
                 onClick={onClose}
-                className="p-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-[rgba(255,255,255,0.05)] rounded-full transition-colors"
+                className="p-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-black/[0.04] rounded-full transition-colors"
               >
                 <X size={20} />
               </button>
@@ -35,10 +35,10 @@ export default function ActivityDetailView({ isOpen, onClose, activity, onViewPr
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               
               {/* Product Card */}
-              <div className="bg-[rgba(255,255,255,0.08)] backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] border border-[var(--border)] rounded-2xl p-5 relative overflow-hidden">
+              <div className="bg-white/60 backdrop-blur-md shadow-sm border border-[var(--border)] rounded-2xl p-5 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-[var(--accent)]" />
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-[rgba(255,255,255,0.08)] backdrop-blur-sm rounded-xl border border-[var(--border)]">
+                  <div className="p-3 bg-white/40 backdrop-blur-sm rounded-xl border border-[var(--border)] shadow-sm">
                     <Box size={24} className="text-[var(--text-secondary)]" />
                   </div>
                   <div className="flex-1">
@@ -61,7 +61,7 @@ export default function ActivityDetailView({ isOpen, onClose, activity, onViewPr
               {/* Details List */}
               <div>
                 <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Event Details</h3>
-                <div className="bg-[rgba(255,255,255,0.08)] backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] border border-[var(--border)] rounded-2xl divide-y divide-[var(--border)]">
+                <div className="bg-white/60 backdrop-blur-md shadow-sm border border-[var(--border)] rounded-2xl divide-y divide-[var(--border)]">
                   <div className="flex items-start gap-3 p-4">
                     <Calendar size={18} className="text-[var(--text-tertiary)] mt-0.5" />
                     <div>
@@ -82,7 +82,7 @@ export default function ActivityDetailView({ isOpen, onClose, activity, onViewPr
                   {activity.originalItem && activity.originalItem.quantity !== undefined && (
                     <div className="flex items-start gap-3 p-4">
                       <div className={`p-1 rounded-md ${activity.bgClass} mt-0.5`}>
-                        <Icon size={14} className={activity.iconColor} />
+                        <Icon size={14} strokeWidth={3} className={activity.iconColor} />
                       </div>
                       <div>
                         <p className="text-xs font-medium text-[var(--text-tertiary)] mb-0.5">Quantity Change</p>

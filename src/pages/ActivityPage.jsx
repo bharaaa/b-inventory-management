@@ -195,7 +195,7 @@ export default function ActivityPage() {
           <div className="relative z-50">
             <button
               onClick={() => setIsDateDropdownOpen(!isDateDropdownOpen)}
-              className="flex items-center gap-2 px-4 py-2 bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-tertiary)] transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20"
+              className="flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-[var(--border)] rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-tertiary)] hover:bg-white/80 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 shadow-sm"
             >
               <Calendar size={16} className="text-[var(--text-tertiary)]" />
               {filterOptions.find(o => o.value === dateFilter)?.label}
@@ -212,7 +212,7 @@ export default function ActivityPage() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute top-full right-0 mt-2 w-48 bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-xl shadow-xl overflow-hidden py-1"
+                  className="absolute top-full right-0 mt-2 w-48 bg-white/80 backdrop-blur-md border border-[var(--border)] rounded-xl shadow-xl overflow-hidden py-1"
                 >
                   {filterOptions.map(option => (
                     <button
@@ -223,8 +223,8 @@ export default function ActivityPage() {
                       }}
                       className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
                         dateFilter === option.value 
-                          ? 'bg-[rgba(255,255,255,0.05)] text-[var(--text-primary)] font-medium' 
-                          : 'text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.03)] hover:text-[var(--text-primary)]'
+                          ? 'bg-black/[0.04] text-[var(--text-primary)] font-medium' 
+                          : 'text-[var(--text-secondary)] hover:bg-black/[0.04] hover:text-[var(--text-primary)]'
                       }`}
                     >
                       {option.label}
@@ -245,7 +245,7 @@ export default function ActivityPage() {
               placeholder="Search activities..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)]"
+              className="w-full pl-9 pr-4 py-2 bg-white/60 backdrop-blur-md border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 focus:border-[var(--accent)] hover:bg-white/80 transition-all placeholder:text-[var(--text-tertiary)] shadow-sm"
             />
           </div>
         </motion.div>
@@ -258,32 +258,35 @@ export default function ActivityPage() {
         transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
         className="flex items-center gap-2 mb-6"
       >
-        <div className="flex bg-[var(--bg-card)] backdrop-blur-md rounded-xl border border-[var(--border)] p-1 w-full sm:w-auto overflow-x-auto">
+        <div className="flex bg-white/40 backdrop-blur-md rounded-xl border border-[var(--border)] p-1 w-full sm:w-auto overflow-x-auto shadow-sm">
           <button
             onClick={() => setActiveTab('log')}
-            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'log' ? 'bg-[rgba(255,255,255,0.05)] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
+            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'log' ? 'bg-white text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] hover:bg-white/50'}`}
           >
             Activity Log
           </button>
           <button
             onClick={() => setActiveTab('timeline')}
-            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'timeline' ? 'bg-[rgba(255,255,255,0.05)] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'}`}
+            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'timeline' ? 'bg-white text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] hover:bg-white/50'}`}
           >
             Activity Timeline
           </button>
         </div>
       </motion.div>
 
-      {activeTab === 'log' && (
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-          className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] shadow-sm flex-1 flex flex-col min-h-0 overflow-hidden"
-        >
+      <AnimatePresence mode="wait">
+        {activeTab === 'log' && (
+          <motion.div
+            key="log"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="bg-white/60 backdrop-blur-md rounded-2xl border border-[var(--border)] shadow-sm flex-1 flex flex-col min-h-0 overflow-hidden"
+          >
           <div className="overflow-auto flex-1">
             <table className="w-full text-sm text-left">
-              <thead className="sticky top-0 z-10 bg-[var(--bg-card)] backdrop-blur-md shadow-[0_1px_0_0_var(--border)]">
+              <thead className="sticky top-0 z-10 bg-white/80 backdrop-blur-md shadow-[0_1px_0_0_var(--border)]">
                 <tr>
                   <th className="px-6 py-4 text-xs uppercase font-medium text-[var(--text-tertiary)] tracking-wider">
                     Date & Time
@@ -303,7 +306,7 @@ export default function ActivityPage() {
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="divide-y divide-[var(--border)] bg-[var(--bg-card)]"
+              className="divide-y divide-[var(--border)] bg-transparent"
             >
               <AnimatePresence>
                 {loading && activities.length === 0 ? (
@@ -336,7 +339,7 @@ export default function ActivityPage() {
                         exit="hidden"
                         layout
                         onClick={() => openDrawer('ACTIVITY_DETAIL', { activity: movement, onViewProduct: (productId) => openDrawer('PRODUCT_DETAIL', { productId }) })}
-                        className="border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 hover:bg-[rgba(255,255,255,0.03)] cursor-pointer"
+                        className="border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 hover:bg-white/40 cursor-pointer"
                       >
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
                           {format(movement.rawDate, "MMM d, yyyy h:mm a")}
@@ -351,7 +354,7 @@ export default function ActivityPage() {
                             <div
                               className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${movement.bgClass} ${movement.iconColor}`}
                             >
-                              <IconComp size={16} strokeWidth={2.5} fill="currentColor" />
+                              <IconComp size={16} strokeWidth={3} className={movement.iconColor} />
                             </div>
                             <span className="text-sm font-medium text-[var(--text-primary)]">
                               {movement.title}
@@ -370,22 +373,25 @@ export default function ActivityPage() {
           </table>
         </div>
         </motion.div>
-      )}
+        )}
 
-      {activeTab === 'timeline' && (
-        <motion.div 
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-          className="flex-1 min-h-0 flex flex-col"
-        >
+        {activeTab === 'timeline' && (
+          <motion.div 
+            key="timeline"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -16 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="flex-1 min-h-0 flex flex-col"
+          >
           <CalendarTimeline 
             activities={filteredActivities} 
             dateFilter={dateFilter}
             onNodeClick={(act) => openDrawer('ACTIVITY_DETAIL', { activity: act, onViewProduct: (productId) => openDrawer('PRODUCT_DETAIL', { productId }) })}
           />
         </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 }

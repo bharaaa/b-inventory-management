@@ -90,16 +90,16 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
   const COLUMN_MIN_WIDTH = 200; 
 
   return (
-    <div className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] shadow-sm flex flex-col h-full overflow-hidden">
+    <div className="bg-white/60 backdrop-blur-md rounded-2xl border border-[var(--border)] shadow-sm flex flex-col h-full overflow-hidden">
       
       {/* Scrollable Container */}
       <div className="flex-1 overflow-auto relative flex flex-col">
         <div className="min-w-max w-full flex flex-col flex-1 h-full min-h-[800px]">
           
           {/* Sticky Header (Dates) */}
-          <div className="flex border-b border-[var(--border)] bg-[rgba(255,255,255,0.03)] backdrop-blur-sm sticky top-0 z-40">
+          <div className="flex border-b border-[var(--border)] bg-white/80 backdrop-blur-md sticky top-0 z-40">
             {/* Corner Cell (Time Axis Label space) */}
-            <div className="w-20 shrink-0 border-r border-[var(--border)] bg-[rgba(255,255,255,0.05)] backdrop-blur-sm sticky left-0 z-50 shadow-[2px_0_5px_rgba(0,0,0,0.02)]" />
+            <div className="w-20 shrink-0 border-r border-[var(--border)] bg-white/80 backdrop-blur-md sticky left-0 z-50 shadow-[2px_0_5px_rgba(0,0,0,0.02)]" />
             
             {/* Date Columns Header */}
             {columns.map((col, idx) => (
@@ -123,7 +123,7 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
             <div className="flex flex-1 relative h-full w-full">
               
               {/* Sticky Y-Axis (Hours) */}
-              <div className="w-20 shrink-0 border-r border-[var(--border)] bg-[rgba(255,255,255,0.05)] backdrop-blur-sm sticky left-0 z-30 shadow-[2px_0_5px_rgba(0,0,0,0.02)] relative">
+              <div className="w-20 shrink-0 border-r border-[var(--border)] bg-white/60 backdrop-blur-md sticky left-0 z-30 shadow-[2px_0_5px_rgba(0,0,0,0.02)] relative">
                 {hoursAxis.map((h, i) => (
                   <div 
                     key={i} 
@@ -136,7 +136,7 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
               </div>
 
               {/* Grid Columns Area */}
-              <div className="flex flex-1 relative bg-white/10">
+              <div className="flex flex-1 relative bg-transparent">
               
               {/* Global Horizontal Grid Lines (Hours) */}
               {hoursAxis.map((h, i) => (
@@ -185,9 +185,9 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
                         <motion.button
                           onClick={() => onNodeClick && onNodeClick(act)}
                           whileHover={{ scale: 1.15, zIndex: 60 }}
-                          className={`w-8 h-8 rounded-full shadow-md border-2 border-white flex items-center justify-center cursor-pointer ${act.bgClass.replace('subtle', 'solid')} bg-[var(--bg-card)]`}
+                          className={`w-8 h-8 rounded-full shadow-sm border-2 border-white flex items-center justify-center cursor-pointer ${act.bgClass.replace('subtle', 'solid')} bg-white`}
                         >
-                          <IconComp size={16} className={act.iconColor} strokeWidth={2.5} fill="currentColor" />
+                          <IconComp size={16} className={act.iconColor} strokeWidth={3} />
                         </motion.button>
 
                         {/* Tooltip */}
@@ -198,14 +198,13 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
                               animate={{ opacity: 1, y: 0, scale: 1 }}
                               exit={{ opacity: 0, y: 5, scale: 0.95 }}
                               transition={{ duration: 0.15 }}
-                              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 bg-[var(--text-primary)] text-[var(--bg-card)] rounded-xl p-3 shadow-xl pointer-events-none z-50"
+                              className="absolute top-full mt-2 left-1/2 -translate-x-1/2 w-64 bg-white/90 backdrop-blur-xl text-[var(--text-primary)] border border-[var(--border)] rounded-xl p-3 shadow-xl pointer-events-none z-50"
                             >
-                              <div className="absolute bottom-full left-1/2 -translate-x-1/2 border-4 border-transparent border-b-[var(--text-primary)]" />
-                              <div className="flex items-center gap-2 mb-2 pb-2 border-b border-white/10">
-                                <span className={`w-2 h-2 rounded-full`} style={{ backgroundColor: act.iconColor.match(/text-\[([^\]]+)\]/)?.[1] || 'white' }} />
-                                <span className="text-xs font-semibold text-white/90 uppercase tracking-wider">{act.title}</span>
+                              <div className="flex items-center gap-2 mb-2 pb-2 border-b border-[var(--border)]">
+                                <span className={`w-2 h-2 rounded-full`} style={{ backgroundColor: act.iconColor.match(/text-\[([^\]]+)\]/)?.[1] || 'currentColor' }} />
+                                <span className="text-xs font-semibold text-[var(--text-secondary)] uppercase tracking-wider">{act.title}</span>
                               </div>
-                              <div className="text-xs font-medium mb-1 text-white">{act.productName}</div>
+                              <div className="text-xs font-bold mb-1 text-[var(--text-primary)]">{act.productName}</div>
                               <div className="text-[11px] text-[var(--text-tertiary)] leading-tight line-clamp-2 mb-2">
                                 {act.description}
                               </div>

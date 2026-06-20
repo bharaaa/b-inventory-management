@@ -67,7 +67,7 @@ export default function ActivityTimeline({ activities = [], title = "Recent Acti
               {/* Icon Badge + Line */}
               <div className="flex flex-col items-center pt-1.5 relative">
                 <div className={`relative z-10 w-7 h-7 rounded-full flex items-center justify-center flex-shrink-0 ${activity.bgClass} ${activity.iconColor}`}>
-                  <activity.icon size={14} strokeWidth={2.5} fill="currentColor" />
+                  <activity.icon size={14} strokeWidth={3} />
                 </div>
                 {!isLast && (
                   <div

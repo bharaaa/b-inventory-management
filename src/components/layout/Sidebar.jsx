@@ -29,7 +29,7 @@ export default function Sidebar({ collapsed, onToggle }) {
 
       {/* Logo */}
       <div className="flex items-center gap-3 px-5 h-16 shrink-0">
-        <div className="flex items-center justify-center w-8 h-8 shrink-0 rounded-full overflow-hidden bg-white/60 border border-white/70 shadow-sm">
+        <div className="flex items-center justify-center w-8 h-8 shrink-0 rounded-full overflow-hidden bg-white/80 border border-black/5 shadow-sm">
           <img src="/crate-logo.png" alt="Crate Logo" className="w-full h-full object-cover" />
         </div>
         <AnimatePresence>
@@ -58,8 +58,8 @@ export default function Sidebar({ collapsed, onToggle }) {
               [
                 'group flex items-center gap-3 rounded-xl py-2.5 px-3 text-sm font-medium transition-all duration-200 relative',
                 isActive
-                  ? 'bg-[var(--accent)]/12 text-[var(--accent)] border border-[var(--accent)]/15 shadow-sm backdrop-blur-sm'
-                  : 'text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.08)] hover:text-[var(--text-primary)] border border-transparent',
+                  ? 'bg-[var(--accent)]/10 text-[var(--accent)] border border-[var(--accent)]/15 shadow-sm'
+                  : 'text-[var(--text-secondary)] hover:bg-black/[0.04] hover:text-[var(--text-primary)] border border-transparent',
               ].join(' ')
             }
           >
@@ -91,7 +91,7 @@ export default function Sidebar({ collapsed, onToggle }) {
       </nav>
 
       {/* Bottom section */}
-      <div className="mt-auto border-t border-white/40 px-3 py-3 flex flex-col gap-2">
+      <div className="mt-auto border-t border-black/[0.06] px-3 py-3 flex flex-col gap-2">
         {/* Workspace indicator */}
         <div
           className={`flex items-center gap-3 rounded-xl py-2 px-3 ${
@@ -120,7 +120,7 @@ export default function Sidebar({ collapsed, onToggle }) {
         {/* Collapse toggle */}
         <button
           onClick={onToggle}
-          className={`flex items-center gap-3 rounded-xl py-2.5 px-3 text-[var(--text-tertiary)] hover:bg-[rgba(255,255,255,0.08)] hover:text-[var(--text-secondary)] transition-colors duration-150 cursor-pointer ${
+          className={`flex items-center gap-3 rounded-xl py-2.5 px-3 text-[var(--text-tertiary)] hover:bg-black/[0.04] hover:text-[var(--text-secondary)] transition-colors duration-150 cursor-pointer ${
             collapsed ? 'justify-center' : ''
           }`}
           aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}

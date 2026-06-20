@@ -25,7 +25,7 @@ export default function GlobalSideDrawer() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeDrawer}
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/10 backdrop-blur-sm"
           />
 
           {/* Drawer Panel */}

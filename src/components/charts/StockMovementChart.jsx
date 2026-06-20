@@ -16,7 +16,7 @@ function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
 
   return (
-    <div className="bg-[var(--bg-card)]/95 backdrop-blur-xl rounded-xl border border-[var(--border)] shadow-lg p-3 min-w-[140px]">
+    <div className="bg-white/80 backdrop-blur-xl rounded-xl border border-black/[0.06] shadow-lg p-3 min-w-[140px]">
       <p className="text-xs font-medium text-[var(--text-primary)] mb-2">
         {label}
       </p>
@@ -89,7 +89,7 @@ export default function StockMovementChart({ data }) {
         <h3 className="text-sm font-semibold text-[var(--text-primary)] tracking-tight">
           Sales
         </h3>
-        <div className="flex items-center gap-1 bg-[rgba(255,255,255,0.03)] backdrop-blur-sm rounded-lg p-0.5">
+        <div className="flex items-center gap-1 bg-[rgba(0,0,0,0.04)] backdrop-blur-sm rounded-lg p-0.5">
           {timeRanges.map((range) => (
             <button
               key={range}
@@ -127,7 +127,7 @@ export default function StockMovementChart({ data }) {
             <CartesianGrid
               horizontal
               vertical={false}
-              stroke="rgba(255,255,255,0.05)"
+              stroke="rgba(0,0,0,0.06)"
               strokeDasharray="3 3"
             />
             <XAxis
@@ -146,7 +146,7 @@ export default function StockMovementChart({ data }) {
             />
             <Tooltip
               content={<CustomTooltip />}
-              cursor={{ fill: 'rgba(255, 255, 255, 0.05)', radius: 4 }}
+              cursor={{ fill: 'rgba(0, 0, 0, 0.04)', radius: 4 }}
             />
             <Bar
               dataKey="inbound"

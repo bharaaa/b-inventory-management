@@ -3,9 +3,9 @@ import { createContext, useContext, useState, useEffect } from 'react';
 const PreferencesContext = createContext();
 
 export function PreferencesProvider({ children }) {
-  // Permanently enforce dark mode on html tag (if any straggling CSS depends on it)
+  // Enforce light mode or respect user preference later
   useEffect(() => {
-    document.documentElement.classList.add('dark');
+    document.documentElement.classList.remove('dark');
   }, []);
 
   return (

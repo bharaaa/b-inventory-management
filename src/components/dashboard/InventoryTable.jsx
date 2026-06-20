@@ -60,7 +60,7 @@ function StockCell({ item, updateStock }) {
       <button
         onClick={() => updateStock(item.id, item.stock_count, -1)}
         disabled={item.stock_count <= 0}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-black/[0.04] hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
         <Minus size={14} />
       </button>
@@ -75,12 +75,12 @@ function StockCell({ item, updateStock }) {
           onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="w-12 text-center font-medium bg-[rgba(255,255,255,0.05)] backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
+          className="w-12 text-center font-medium bg-white/60 backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
         />
       ) : (
         <span
           onClick={() => setIsEditing(true)}
-          className="w-12 text-center font-medium cursor-text hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors"
+          className="w-12 text-center font-medium cursor-text hover:bg-black/[0.04] hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors"
           title="Click to edit"
         >
           {item.stock_count.toLocaleString()}
@@ -89,7 +89,7 @@ function StockCell({ item, updateStock }) {
 
       <button
         onClick={() => updateStock(item.id, item.stock_count, 1)}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] transition-colors"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-black/[0.04] hover:text-[var(--text-primary)] transition-colors"
       >
         <Plus size={14} />
       </button>
@@ -101,16 +101,16 @@ function SkeletonRow() {
   return (
     <tr>
       <td className="py-3 pr-4">
-        <div className="h-4 w-32 bg-[rgba(255,255,255,0.03)] rounded animate-pulse" />
+        <div className="h-4 w-32 bg-[rgba(0,0,0,0.04)] rounded animate-pulse" />
       </td>
       <td className="py-3 pr-4">
-        <div className="h-4 w-12 bg-[rgba(255,255,255,0.03)] rounded animate-pulse" />
+        <div className="h-4 w-12 bg-[rgba(0,0,0,0.04)] rounded animate-pulse" />
       </td>
       <td className="py-3 pr-4">
-        <div className="h-5 w-16 bg-[rgba(255,255,255,0.03)] rounded-full animate-pulse" />
+        <div className="h-5 w-16 bg-[rgba(0,0,0,0.04)] rounded-full animate-pulse" />
       </td>
       <td className="py-3">
-        <div className="h-4 w-20 bg-[rgba(255,255,255,0.03)] rounded animate-pulse" />
+        <div className="h-4 w-20 bg-[rgba(0,0,0,0.04)] rounded animate-pulse" />
       </td>
     </tr>
   );
@@ -216,7 +216,7 @@ export default function InventoryTable({ items = [], loading = false }) {
                       variants={rowVariants}
                       initial="hidden"
                       animate="visible"
-                      className="group hover:bg-[rgba(255,255,255,0.03)] transition-colors duration-150"
+                      className="group hover:bg-black/[0.02] transition-colors duration-150"
                     >
                       <td className="py-3 pr-4 text-sm font-medium text-[var(--text-primary)]">
                         {item.name}

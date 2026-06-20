@@ -27,7 +27,7 @@ export default function WarehouseSummary({ items }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] p-6"
+      className="bg-white/60 backdrop-blur-md rounded-2xl border border-[var(--border)] p-6 shadow-sm"
     >
       <h3 className="text-sm font-semibold text-[var(--text-primary)] tracking-tight mb-6">
         Warehouse Summary
