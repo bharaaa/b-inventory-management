@@ -24,7 +24,7 @@ export default function InventoryDistribution({ items, totalStock }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] rounded-2xl border border-[var(--border)] p-6"
+      className="bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border border-[var(--border)] p-6"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -52,7 +52,7 @@ export default function InventoryDistribution({ items, totalStock }) {
                 <span className="text-[var(--text-tertiary)] w-10 text-right">{dist.percentage.toFixed(1)}%</span>
               </div>
             </div>
-            <div className="w-full h-2 bg-[var(--bg-secondary)] rounded-full overflow-hidden">
+            <div className="w-full h-2 bg-white/30 rounded-full overflow-hidden">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${dist.percentage}%` }}

@@ -28,7 +28,7 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/20 backdrop-blur-md z-50"
             onClick={onClose}
           />
 
@@ -38,10 +38,10 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-y-0 right-0 w-full sm:w-[480px] bg-[var(--bg-primary)] shadow-2xl border-l border-[var(--border)] z-50 flex flex-col"
+            className="fixed inset-y-0 right-0 w-full sm:w-[480px] bg-white/70 backdrop-blur-2xl shadow-2xl border-l border-[var(--border)] z-50 flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-[var(--border)] bg-[var(--bg-card)]">
+            <div className="flex items-center justify-between p-6 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[var(--success)]/10 flex items-center justify-center flex-shrink-0 text-[var(--success)]">
                   <DollarSign size={20} strokeWidth={2} />
@@ -57,15 +57,15 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
               </div>
               <button
                 onClick={onClose}
-                className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[var(--bg-secondary)] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors"
+                className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/40 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors"
               >
                 <X size={18} />
               </button>
             </div>
 
             {/* Grand Total Summary */}
-            <div className="p-6 border-b border-[var(--border)] bg-[var(--bg-card)]">
-              <div className="bg-[var(--bg-primary)] rounded-xl p-5 border border-[var(--border)] flex items-center justify-between">
+            <div className="p-6 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
+              <div className="bg-white/30 backdrop-blur-sm rounded-xl p-5 border border-[var(--border)] flex items-center justify-between">
                 <div>
                   <p className="text-sm font-medium text-[var(--text-secondary)]">Grand Total</p>
                   <p className="text-3xl font-bold text-[var(--text-primary)] tracking-tight mt-1">
@@ -86,7 +86,7 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
               
               {sortedItems.length === 0 ? (
                 <div className="text-center py-12">
-                  <div className="w-16 h-16 rounded-2xl bg-[var(--bg-secondary)] flex items-center justify-center mx-auto mb-4 text-[var(--text-tertiary)]">
+                  <div className="w-16 h-16 rounded-2xl bg-white/30 backdrop-blur-sm flex items-center justify-center mx-auto mb-4 text-[var(--text-tertiary)]">
                     <Package size={28} />
                   </div>
                   <p className="text-sm font-medium text-[var(--text-primary)]">No items found</p>
@@ -113,7 +113,7 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
                     return (
                       <div 
                         key={item.id}
-                        className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-4 flex flex-col gap-3"
+                        className="bg-white/50 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 flex flex-col gap-3"
                       >
                         <div className="flex items-start justify-between gap-4">
                           <div className="flex items-center gap-3">
@@ -121,10 +121,10 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
                               <img
                                 src={item.image_url}
                                 alt={item.name}
-                                className="w-10 h-10 rounded-lg object-cover bg-[var(--bg-secondary)] border border-[var(--border)] shrink-0"
+                                className="w-10 h-10 rounded-lg object-cover bg-white/30 border border-[var(--border)] shrink-0"
                               />
                             ) : (
-                              <div className="w-10 h-10 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)] flex items-center justify-center shrink-0">
+                              <div className="w-10 h-10 rounded-lg bg-white/30 backdrop-blur-sm border border-[var(--border)] flex items-center justify-center shrink-0">
                                 <Package size={16} className="text-[var(--text-tertiary)]" />
                               </div>
                             )}
@@ -140,7 +140,7 @@ export default function TotalValueDrawer({ isOpen, onClose, items }) {
                         </div>
 
                         {/* Calculation Breakdown */}
-                        <div className="flex items-center justify-between text-xs px-3 py-2 bg-[var(--bg-primary)] rounded-lg border border-[var(--border)]">
+                        <div className="flex items-center justify-between text-xs px-3 py-2 bg-white/30 backdrop-blur-sm rounded-lg border border-[var(--border)]">
                           <span className="text-[var(--text-secondary)]">
                             <span className="font-semibold text-[var(--text-primary)]">{stock}</span> units
                           </span>

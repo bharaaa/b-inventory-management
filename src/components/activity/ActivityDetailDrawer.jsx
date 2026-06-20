@@ -16,7 +16,7 @@ export default function ActivityDetailDrawer({ isOpen, onClose, activity, onView
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[100]"
+            className="fixed inset-0 bg-black/40 backdrop-blur-md z-[100]"
           />
 
           <motion.div
@@ -24,7 +24,7 @@ export default function ActivityDetailDrawer({ isOpen, onClose, activity, onView
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed inset-y-0 right-0 w-full md:w-[480px] bg-[var(--bg-card)] shadow-2xl z-[101] flex flex-col border-l border-[var(--border)] overflow-hidden"
+            className="fixed inset-y-0 right-0 w-full md:w-[480px] bg-white/70 backdrop-blur-2xl shadow-2xl z-[101] flex flex-col border-l border-[var(--border)] overflow-hidden"
           >
             {/* Header */}
             <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[var(--bg-card)]/50 backdrop-blur-md">
@@ -43,7 +43,7 @@ export default function ActivityDetailDrawer({ isOpen, onClose, activity, onView
               </div>
               <button
                 onClick={onClose}
-                className="p-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-primary)] rounded-full transition-colors"
+                className="p-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-white/40 rounded-full transition-colors"
               >
                 <X size={20} />
               </button>
@@ -53,10 +53,10 @@ export default function ActivityDetailDrawer({ isOpen, onClose, activity, onView
             <div className="flex-1 overflow-y-auto p-6 space-y-6">
               
               {/* Product Card */}
-              <div className="bg-[var(--bg-primary)] border border-[var(--border)] rounded-2xl p-5 relative overflow-hidden">
+              <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-2xl p-5 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-1 h-full bg-[var(--accent)]" />
                 <div className="flex items-start gap-4">
-                  <div className="p-3 bg-[var(--bg-card)] rounded-xl border border-[var(--border)]">
+                  <div className="p-3 bg-white/50 backdrop-blur-sm rounded-xl border border-[var(--border)]">
                     <Box size={24} className="text-[var(--text-secondary)]" />
                   </div>
                   <div className="flex-1">
@@ -79,7 +79,7 @@ export default function ActivityDetailDrawer({ isOpen, onClose, activity, onView
               {/* Details List */}
               <div>
                 <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4">Event Details</h3>
-                <div className="bg-[var(--bg-primary)] border border-[var(--border)] rounded-2xl divide-y divide-[var(--border)]">
+                <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-2xl divide-y divide-[var(--border)]">
                   <div className="flex items-start gap-3 p-4">
                     <Calendar size={18} className="text-[var(--text-tertiary)] mt-0.5" />
                     <div>

@@ -11,7 +11,7 @@ export default function ConnectionErrorView({ onRetry }) {
         initial={{ opacity: 0, y: 24, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="w-full max-w-md bg-[var(--bg-card)] border border-[var(--border)] rounded-3xl p-8 shadow-2xl relative z-10 text-center"
+        className="w-full max-w-md bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-3xl p-8 shadow-2xl relative z-10 text-center"
       >
         <div className="w-20 h-20 mx-auto bg-[var(--error-subtle)] rounded-2xl flex items-center justify-center mb-6 shadow-inner">
           <div className="relative">

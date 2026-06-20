@@ -11,7 +11,7 @@ export default function MetricCard({ title, value, change, changeLabel, icon, in
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
       onClick={onClick}
-      className={`bg-[var(--bg-card)] rounded-2xl border border-[var(--border)] p-5 transition-colors duration-200 group ${onClick ? 'cursor-pointer hover:border-[var(--border-hover)]' : ''}`}
+      className={`bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border border-[var(--border)] p-5 transition-colors duration-200 group ${onClick ? 'cursor-pointer hover:border-[var(--border-hover)]' : ''}`}
     >
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm font-medium text-[var(--text-secondary)]">

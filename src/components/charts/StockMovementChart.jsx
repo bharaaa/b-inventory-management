@@ -82,14 +82,14 @@ export default function StockMovementChart({ data }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] rounded-2xl border border-[var(--border)] p-6"
+      className="bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border border-[var(--border)] p-6"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
         <h3 className="text-sm font-semibold text-[var(--text-primary)] tracking-tight">
           Sales
         </h3>
-        <div className="flex items-center gap-1 bg-[var(--bg-primary)] rounded-lg p-0.5">
+        <div className="flex items-center gap-1 bg-white/30 backdrop-blur-sm rounded-lg p-0.5">
           {timeRanges.map((range) => (
             <button
               key={range}

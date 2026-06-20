@@ -27,9 +27,9 @@ function PlaceholderPage({ title, description, icon: Icon }) {
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.15 }}
-        className="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl p-16 flex flex-col items-center justify-center text-center"
+        className="bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl p-16 flex flex-col items-center justify-center text-center"
       >
-        <div className="w-16 h-16 rounded-2xl bg-[var(--bg-secondary)] flex items-center justify-center mb-5">
+        <div className="w-16 h-16 rounded-2xl bg-white/30 backdrop-blur-sm flex items-center justify-center mb-5">
           <Icon size={28} strokeWidth={1.5} className="text-[var(--text-tertiary)]" />
         </div>
         <div className="flex items-center gap-2 mb-2">

@@ -35,7 +35,30 @@ export default function Layout() {
   }, [mobileOpen]);
 
   return (
-    <div className="flex h-screen w-screen overflow-hidden bg-[var(--bg-primary)]">
+    <div 
+      className="flex h-screen w-screen overflow-hidden"
+      style={{
+        background: `
+          linear-gradient(135deg, #eef1f6 0%, #e8e0f0 25%, #dfe8f5 50%, #ece5f3 75%, #eef1f6 100%)
+        `,
+      }}
+    >
+      {/* Ambient gradient orbs for glass refraction */}
+      <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
+        <div 
+          className="absolute -top-32 -left-32 w-96 h-96 rounded-full opacity-30 blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)' }}
+        />
+        <div 
+          className="absolute top-1/2 -right-48 w-[500px] h-[500px] rounded-full opacity-20 blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(99, 102, 241, 0.25) 0%, transparent 70%)' }}
+        />
+        <div 
+          className="absolute -bottom-24 left-1/3 w-80 h-80 rounded-full opacity-20 blur-3xl"
+          style={{ background: 'radial-gradient(circle, rgba(168, 85, 247, 0.2) 0%, transparent 70%)' }}
+        />
+      </div>
+
       {/* Desktop sidebar */}
       {!isMobile && (
         <Sidebar
@@ -54,7 +77,7 @@ export default function Layout() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-[2px]"
+              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-md"
               onClick={() => setMobileOpen(false)}
             />
 
@@ -76,13 +99,13 @@ export default function Layout() {
       </AnimatePresence>
 
       {/* Main content */}
-      <main className="flex-1 flex flex-col h-screen overflow-y-auto overflow-x-hidden">
+      <main className="relative z-10 flex-1 flex flex-col h-screen overflow-y-auto overflow-x-hidden">
         {/* Mobile top bar */}
         {isMobile && (
-          <div className="sticky top-0 z-30 flex items-center h-14 px-4 bg-[var(--bg-primary)] border-b border-[var(--border)]">
+          <div className="sticky top-0 z-30 flex items-center h-14 px-4 backdrop-blur-xl bg-[var(--bg-card)] border-b border-[var(--border)]">
             <button
               onClick={() => setMobileOpen(true)}
-              className="flex items-center justify-center w-9 h-9 rounded-xl text-[var(--text-secondary)] hover:bg-[var(--bg-card)] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
+              className="flex items-center justify-center w-9 h-9 rounded-xl text-[var(--text-secondary)] hover:bg-white/40 hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
               aria-label="Open navigation"
             >
               <Menu className="w-5 h-5" strokeWidth={1.75} />

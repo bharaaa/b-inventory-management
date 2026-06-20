@@ -10,7 +10,7 @@ export default function CapacityVisualization({ usedCapacity, totalCapacity, ite
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`bg-[var(--bg-card)] rounded-2xl border p-6 transition-colors duration-500 ${percentage >= 90 ? 'border-[var(--error)] shadow-[0_0_15px_rgba(239,68,68,0.15)] relative overflow-hidden' : 'border-[var(--border)]'}`}
+      className={`bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border p-6 transition-colors duration-500 ${percentage >= 90 ? 'border-[var(--error)] shadow-[0_0_15px_rgba(239,68,68,0.15)] relative overflow-hidden' : 'border-[var(--border)]'}`}
     >
       {percentage >= 90 && (
         <div className="absolute top-0 left-0 w-full h-1 bg-[var(--error)] animate-pulse" />
@@ -49,7 +49,7 @@ export default function CapacityVisualization({ usedCapacity, totalCapacity, ite
         </div>
 
         {/* Custom Progress Bar */}
-        <div className="w-full h-4 bg-[var(--bg-secondary)] rounded-full overflow-hidden flex relative">
+        <div className="w-full h-4 bg-white/30 rounded-full overflow-hidden flex relative">
           <motion.div 
             initial={{ width: 0 }}
             animate={{ width: `${percentage}%` }}
@@ -65,12 +65,12 @@ export default function CapacityVisualization({ usedCapacity, totalCapacity, ite
       </div>
 
       <div className="grid grid-cols-2 gap-4">
-        <div className={`bg-[var(--bg-primary)] border ${percentage >= 90 ? 'border-[var(--error)]/30' : 'border-[var(--border)]'} rounded-xl p-4 transition-colors duration-500`}>
+        <div className={`bg-white/30 backdrop-blur-sm border ${percentage >= 90 ? 'border-[var(--error)]/30' : 'border-[var(--border)]'} rounded-xl p-4 transition-colors duration-500`}>
           <p className="text-xs text-[var(--text-tertiary)] font-medium mb-1">Available Space</p>
           <p className={`text-lg font-bold ${percentage >= 90 ? 'text-[var(--error)]' : 'text-[var(--text-primary)]'}`}>{availableCapacity.toLocaleString()}</p>
           <p className={`text-xs ${percentage >= 90 ? 'text-[var(--error)]' : 'text-[var(--success)]'} font-medium mt-1 transition-colors duration-500`}>Units remaining</p>
         </div>
-        <div className="bg-[var(--bg-primary)] border border-[var(--border)] rounded-xl p-4">
+        <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
           <p className="text-xs text-[var(--text-tertiary)] font-medium mb-1">Product Count</p>
           <p className="text-lg font-bold text-[var(--text-primary)]">{itemCount.toLocaleString()}</p>
           <p className="text-xs text-[var(--text-secondary)] font-medium mt-1">Unique SKUs</p>

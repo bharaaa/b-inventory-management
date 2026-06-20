@@ -60,7 +60,7 @@ function StockCell({ item, updateStock }) {
       <button
         onClick={() => updateStock(item.id, item.stock_count, -1)}
         disabled={item.stock_count <= 0}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-white/40 hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
         <Minus size={14} />
       </button>
@@ -75,12 +75,12 @@ function StockCell({ item, updateStock }) {
           onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="w-12 text-center font-medium bg-[var(--bg-primary)] border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
+          className="w-12 text-center font-medium bg-white/40 backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
         />
       ) : (
         <span
           onClick={() => setIsEditing(true)}
-          className="w-12 text-center font-medium cursor-text hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors"
+          className="w-12 text-center font-medium cursor-text hover:bg-white/40 hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors"
           title="Click to edit"
         >
           {item.stock_count.toLocaleString()}
@@ -89,7 +89,7 @@ function StockCell({ item, updateStock }) {
 
       <button
         onClick={() => updateStock(item.id, item.stock_count, 1)}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] transition-colors"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-white/40 hover:text-[var(--text-primary)] transition-colors"
       >
         <Plus size={14} />
       </button>
@@ -101,16 +101,16 @@ function SkeletonRow() {
   return (
     <tr>
       <td className="py-3 pr-4">
-        <div className="h-4 w-32 bg-[var(--bg-secondary)] rounded animate-pulse" />
+        <div className="h-4 w-32 bg-white/30 rounded animate-pulse" />
       </td>
       <td className="py-3 pr-4">
-        <div className="h-4 w-12 bg-[var(--bg-secondary)] rounded animate-pulse" />
+        <div className="h-4 w-12 bg-white/30 rounded animate-pulse" />
       </td>
       <td className="py-3 pr-4">
-        <div className="h-5 w-16 bg-[var(--bg-secondary)] rounded-full animate-pulse" />
+        <div className="h-5 w-16 bg-white/30 rounded-full animate-pulse" />
       </td>
       <td className="py-3">
-        <div className="h-4 w-20 bg-[var(--bg-secondary)] rounded animate-pulse" />
+        <div className="h-4 w-20 bg-white/30 rounded animate-pulse" />
       </td>
     </tr>
   );
@@ -163,7 +163,7 @@ export default function InventoryTable({ items = [], loading = false }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] rounded-2xl border border-[var(--border)] p-6"
+      className="bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border border-[var(--border)] p-6"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
@@ -216,7 +216,7 @@ export default function InventoryTable({ items = [], loading = false }) {
                       variants={rowVariants}
                       initial="hidden"
                       animate="visible"
-                      className="group hover:bg-[var(--bg-secondary)] transition-colors duration-150"
+                      className="group hover:bg-white/30 transition-colors duration-150"
                     >
                       <td className="py-3 pr-4 text-sm font-medium text-[var(--text-primary)]">
                         {item.name}

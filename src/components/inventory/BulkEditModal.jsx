@@ -117,7 +117,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/40 backdrop-blur-md"
           />
 
           <motion.div
@@ -125,9 +125,9 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative w-full max-w-md bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl shadow-xl"
+            className="relative w-full max-w-md bg-white/70 backdrop-blur-2xl border border-[var(--border)] rounded-2xl shadow-xl"
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[var(--bg-card)] rounded-t-2xl">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm rounded-t-2xl">
               <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
                 Bulk Edit ({selectedIds.length} items)
               </h2>
@@ -139,7 +139,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
               </button>
             </div>
 
-            <form onSubmit={handleSubmit} className="p-6 space-y-5 bg-[var(--bg-card)] rounded-b-2xl">
+            <form onSubmit={handleSubmit} className="p-6 space-y-5 rounded-b-2xl">
               <p className="text-sm text-[var(--text-secondary)] mb-4">
                 Leave fields empty to keep their current values unchanged.
               </p>
@@ -152,7 +152,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                   <button
                     type="button"
                     onClick={() => setOpenCategory(!openCategory)}
-                    className={`w-full flex items-center justify-between px-3 py-2 text-sm bg-[var(--bg-primary)] border border-[var(--border)] rounded-lg focus:outline-none focus:border-[var(--accent)] transition-all cursor-pointer ${
+                    className={`w-full flex items-center justify-between px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg focus:outline-none focus:border-[var(--accent)] transition-all cursor-pointer ${
                       openCategory ? "border-[var(--accent)] ring-1 ring-[var(--accent)]/20" : ""
                     }`}
                   >
@@ -171,7 +171,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 4, scale: 0.98 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute left-0 mt-2 w-full bg-[var(--bg-card)] border border-[var(--border)] rounded-xl shadow-sm z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
+                        className="absolute left-0 mt-2 w-full bg-white/70 backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-sm z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
                       >
                         <button
                           type="button"
@@ -182,7 +182,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                           className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
                             formData.category_id === ''
                               ? "text-[var(--accent)] bg-[var(--accent-subtle)] font-medium"
-                              : "text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]"
+                              : "text-[var(--text-secondary)] hover:bg-white/40 hover:text-[var(--text-primary)]"
                           }`}
                         >
                           Leave unchanged
@@ -198,7 +198,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                             className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
                               formData.category_id === cat.id
                                 ? "text-[var(--accent)] bg-[var(--accent-subtle)] font-medium"
-                                : "text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]"
+                                : "text-[var(--text-secondary)] hover:bg-white/40 hover:text-[var(--text-primary)]"
                             }`}
                           >
                             {cat.name}
@@ -221,7 +221,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                     min="0"
                     value={formData.stock_count}
                     onChange={(e) => setFormData({ ...formData, stock_count: e.target.value })}
-                    className="w-full px-3 py-2 text-sm bg-[var(--bg-primary)] border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)]"
+                    className="w-full px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)]"
                     placeholder="Leave unchanged"
                   />
                 </div>
@@ -236,7 +236,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                     step="0.01"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    className="w-full px-3 py-2 text-sm bg-[var(--bg-primary)] border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)]"
+                    className="w-full px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)]"
                     placeholder="Leave unchanged"
                   />
                 </div>
@@ -246,14 +246,14 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                 <button
                   type="button"
                   onClick={onClose}
-                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[var(--bg-card)] border border-[var(--border)] rounded-xl hover:bg-[var(--bg-secondary)] transition-colors cursor-pointer"
+                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/50 border border-[var(--border)] rounded-xl hover:bg-white/40 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] transition-colors disabled:opacity-70 cursor-pointer"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-colors disabled:opacity-70 cursor-pointer"
                 >
                   {loading ? <Loader2 size={16} className="animate-spin" /> : 'Apply Updates'}
                 </button>

@@ -102,7 +102,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/20 backdrop-blur-md"
           />
 
           {/* Drawer Panel */}
@@ -111,10 +111,10 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="relative w-full max-w-md h-full bg-[var(--bg-card)] border-l border-[var(--border)] shadow-2xl flex flex-col"
+            className="relative w-full max-w-md h-full bg-white/70 backdrop-blur-2xl border-l border-[var(--border)] shadow-2xl flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[var(--bg-card)]">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
               <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
                 Add New Item
               </h2>
@@ -127,7 +127,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
             </div>
 
             {/* Form Body - Scrollable */}
-            <form id="add-item-form" onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5 bg-[var(--bg-card)]">
+            <form id="add-item-form" onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
                   Item Name
@@ -138,7 +138,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-3 py-2 text-sm bg-[var(--bg-primary)] border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all"
+                  className="w-full px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all"
                   placeholder="e.g. Magic Keyboard"
                 />
               </div>
@@ -151,7 +151,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
                   <button
                     type="button"
                     onClick={() => setOpenCategory(!openCategory)}
-                    className={`w-full flex items-center justify-between px-3 py-2 text-sm bg-[var(--bg-primary)] border border-[var(--border)] rounded-lg focus:outline-none focus:border-[var(--accent)] transition-all cursor-pointer ${
+                    className={`w-full flex items-center justify-between px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg focus:outline-none focus:border-[var(--accent)] transition-all cursor-pointer ${
                       openCategory ? "border-[var(--accent)] ring-1 ring-[var(--accent)]/20" : ""
                     }`}
                   >
@@ -168,7 +168,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 4, scale: 0.98 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute left-0 mt-2 w-full bg-[var(--bg-card)] border border-[var(--border)] rounded-xl shadow-sm z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
+                        className="absolute left-0 mt-2 w-full bg-white/70 backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-sm z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
                       >
                         {categories.map((cat) => (
                           <button
@@ -181,7 +181,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
                             className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
                               formData.category_id === cat.id
                                 ? "text-[var(--accent)] bg-[var(--accent-subtle)] font-medium"
-                                : "text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]"
+                                : "text-[var(--text-secondary)] hover:bg-white/40 hover:text-[var(--text-primary)]"
                             }`}
                           >
                             {cat.name}
@@ -212,7 +212,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
                         const val = e.target.value.replace(/[^0-9]/g, '');
                         setFormData({...formData, stock_count: val});
                       }}
-                      className={`w-full bg-[var(--bg-primary)] border ${isOverCapacity ? 'border-[var(--error)] focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--text-primary)] focus:ring-1 focus:ring-[var(--text-primary)]'} rounded-xl px-4 py-2.5 text-sm outline-none transition-all`}
+                      className={`w-full bg-white/30 backdrop-blur-sm border ${isOverCapacity ? 'border-[var(--error)] focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--text-primary)] focus:ring-1 focus:ring-[var(--text-primary)]'} rounded-xl px-4 py-2.5 text-sm outline-none transition-all`}
                       required
                     />
                     {isOverCapacity && (
@@ -254,7 +254,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
                         const cleanVal = parts.length > 2 ? parts[0] + '.' + parts.slice(1).join('') : val;
                         setFormData({ ...formData, price: cleanVal });
                       }}
-                      className={`w-full bg-[var(--bg-primary)] border ${isInvalidPrice ? 'border-[var(--error)] focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--text-primary)] focus:ring-1 focus:ring-[var(--text-primary)]'} rounded-xl pl-8 pr-4 py-2.5 text-sm outline-none transition-all`}
+                      className={`w-full bg-white/30 backdrop-blur-sm border ${isInvalidPrice ? 'border-[var(--error)] focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--text-primary)] focus:ring-1 focus:ring-[var(--text-primary)]'} rounded-xl pl-8 pr-4 py-2.5 text-sm outline-none transition-all`}
                     />
                     {isInvalidPrice && (
                       <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--error)]">
@@ -272,11 +272,11 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
             </form>
 
             {/* Sticky Footer */}
-            <div className="p-6 border-t border-[var(--border)] bg-[var(--bg-card)] flex gap-3">
+            <div className="p-6 border-t border-[var(--border)] bg-white/40 backdrop-blur-sm flex gap-3">
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[var(--bg-card)] border border-[var(--border)] rounded-xl hover:bg-[var(--bg-secondary)] transition-colors cursor-pointer"
+                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/50 border border-[var(--border)] rounded-xl hover:bg-white/40 transition-colors cursor-pointer"
               >
                 Cancel
               </button>
@@ -284,7 +284,7 @@ export default function AddItemDrawer({ isOpen, onClose, onSuccess, totalUsedCap
                 type="submit"
                 form="add-item-form"
                 disabled={loading}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] transition-colors disabled:opacity-70 cursor-pointer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-colors disabled:opacity-70 cursor-pointer"
               >
                 {loading ? <Loader2 size={16} className="animate-spin" /> : 'Add Item'}
               </button>

@@ -90,16 +90,16 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
   const COLUMN_MIN_WIDTH = 200; 
 
   return (
-    <div className="bg-[var(--bg-card)] rounded-2xl border border-[var(--border)] shadow-sm flex flex-col h-full overflow-hidden">
+    <div className="bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border border-[var(--border)] shadow-sm flex flex-col h-full overflow-hidden">
       
       {/* Scrollable Container */}
       <div className="flex-1 overflow-auto relative flex flex-col">
         <div className="min-w-max w-full flex flex-col flex-1 h-full min-h-[800px]">
           
           {/* Sticky Header (Dates) */}
-          <div className="flex border-b border-[var(--border)] bg-[var(--bg-primary)] sticky top-0 z-40">
+          <div className="flex border-b border-[var(--border)] bg-white/30 backdrop-blur-sm sticky top-0 z-40">
             {/* Corner Cell (Time Axis Label space) */}
-            <div className="w-20 shrink-0 border-r border-[var(--border)] bg-[var(--bg-card)] sticky left-0 z-50 shadow-[2px_0_5px_rgba(0,0,0,0.02)]" />
+            <div className="w-20 shrink-0 border-r border-[var(--border)] bg-white/40 backdrop-blur-sm sticky left-0 z-50 shadow-[2px_0_5px_rgba(0,0,0,0.02)]" />
             
             {/* Date Columns Header */}
             {columns.map((col, idx) => (
@@ -123,7 +123,7 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
             <div className="flex flex-1 relative h-full w-full">
               
               {/* Sticky Y-Axis (Hours) */}
-              <div className="w-20 shrink-0 border-r border-[var(--border)] bg-[var(--bg-card)] sticky left-0 z-30 shadow-[2px_0_5px_rgba(0,0,0,0.02)] relative">
+              <div className="w-20 shrink-0 border-r border-[var(--border)] bg-white/40 backdrop-blur-sm sticky left-0 z-30 shadow-[2px_0_5px_rgba(0,0,0,0.02)] relative">
                 {hoursAxis.map((h, i) => (
                   <div 
                     key={i} 
@@ -136,7 +136,7 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
               </div>
 
               {/* Grid Columns Area */}
-              <div className="flex flex-1 relative bg-[var(--bg-primary)]/10">
+              <div className="flex flex-1 relative bg-white/10">
               
               {/* Global Horizontal Grid Lines (Hours) */}
               {hoursAxis.map((h, i) => (

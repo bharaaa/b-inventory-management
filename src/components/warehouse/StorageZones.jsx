@@ -55,7 +55,7 @@ export default function StorageZones({ items }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] rounded-2xl border border-[var(--border)] p-6"
+      className="bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border border-[var(--border)] p-6"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -66,14 +66,14 @@ export default function StorageZones({ items }) {
             Physical zone utilization
           </p>
         </div>
-        <div className="w-8 h-8 rounded-lg bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-secondary)]">
+        <div className="w-8 h-8 rounded-lg bg-white/30 flex items-center justify-center text-[var(--text-secondary)]">
           <Map size={16} strokeWidth={2} />
         </div>
       </div>
 
       <div className="grid grid-cols-2 gap-4">
         {zones.map((zone, i) => (
-          <div key={zone.name} className="flex flex-col items-center p-4 rounded-xl bg-[var(--bg-primary)] border border-[var(--border)] relative overflow-hidden group">
+          <div key={zone.name} className="flex flex-col items-center p-4 rounded-xl bg-white/30 backdrop-blur-sm border border-[var(--border)] relative overflow-hidden group">
             {/* Elegant Circular Progress */}
             <div className="relative w-16 h-16 mb-3">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
@@ -82,7 +82,7 @@ export default function StorageZones({ items }) {
                   cy="18"
                   r="16"
                   fill="none"
-                  className="stroke-[var(--bg-secondary)]"
+                  className="stroke-white/30"
                   strokeWidth="3"
                 />
                 <motion.circle

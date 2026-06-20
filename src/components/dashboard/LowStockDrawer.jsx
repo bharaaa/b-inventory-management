@@ -12,7 +12,7 @@ export default function LowStockDrawer({ isOpen, onClose, lowStockItems, onViewI
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/20 backdrop-blur-md z-50"
             onClick={onClose}
           />
 
@@ -22,10 +22,10 @@ export default function LowStockDrawer({ isOpen, onClose, lowStockItems, onViewI
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className="fixed inset-y-0 right-0 w-full sm:w-[480px] bg-[var(--bg-primary)] shadow-2xl border-l border-[var(--border)] z-50 flex flex-col"
+            className="fixed inset-y-0 right-0 w-full sm:w-[480px] bg-white/70 backdrop-blur-2xl shadow-2xl border-l border-[var(--border)] z-50 flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-[var(--border)] bg-[var(--bg-card)]">
+            <div className="flex items-center justify-between p-6 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-xl bg-[var(--error)]/10 flex items-center justify-center flex-shrink-0 text-[var(--error)]">
                   <AlertTriangle size={20} strokeWidth={2} />
@@ -41,7 +41,7 @@ export default function LowStockDrawer({ isOpen, onClose, lowStockItems, onViewI
               </div>
               <button
                 onClick={onClose}
-                className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-[var(--bg-secondary)] text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors"
+                className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-white/40 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-colors"
               >
                 <X size={18} />
               </button>
@@ -62,17 +62,17 @@ export default function LowStockDrawer({ isOpen, onClose, lowStockItems, onViewI
                   {lowStockItems.map((item) => (
                     <div 
                       key={item.id}
-                      className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-4 flex items-center justify-between hover:border-[var(--border-hover)] transition-colors"
+                      className="bg-white/50 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 flex items-center justify-between hover:border-[var(--border-hover)] transition-colors"
                     >
                       <div className="flex items-center gap-4">
                         {item.image_url ? (
                           <img
                             src={item.image_url}
                             alt={item.name}
-                            className="w-12 h-12 rounded-lg object-cover bg-[var(--bg-secondary)] border border-[var(--border)]"
+                            className="w-12 h-12 rounded-lg object-cover bg-white/30 border border-[var(--border)]"
                           />
                         ) : (
-                          <div className="w-12 h-12 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)] flex items-center justify-center">
+                          <div className="w-12 h-12 rounded-lg bg-white/30 backdrop-blur-sm border border-[var(--border)] flex items-center justify-center">
                             <Package size={20} className="text-[var(--text-tertiary)]" />
                           </div>
                         )}
@@ -91,7 +91,7 @@ export default function LowStockDrawer({ isOpen, onClose, lowStockItems, onViewI
                       
                       <button
                         onClick={() => onViewItem(item)}
-                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] bg-[var(--bg-secondary)] hover:bg-[var(--border)] hover:text-[var(--text-primary)] rounded-lg transition-colors cursor-pointer shrink-0 ml-4"
+                        className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] bg-white/30 backdrop-blur-sm hover:bg-white/50 hover:text-[var(--text-primary)] rounded-lg transition-colors cursor-pointer shrink-0 ml-4"
                       >
                         View Product
                         <ArrowRight size={14} />

@@ -110,7 +110,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/20 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/20 backdrop-blur-md"
           />
 
           {/* Drawer Panel */}
@@ -119,10 +119,10 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="relative w-full max-w-md h-full bg-[var(--bg-card)] border-l border-[var(--border)] shadow-2xl flex flex-col"
+            className="relative w-full max-w-md h-full bg-white/70 backdrop-blur-2xl border-l border-[var(--border)] shadow-2xl flex flex-col"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-[var(--bg-card)]">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm">
               <div className="flex items-center gap-3">
                 <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
                   {item?.name}
@@ -138,7 +138,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
             </div>
 
             {/* Scrollable Body */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-8 bg-[var(--bg-card)]">
+            <div className="flex-1 overflow-y-auto p-6 space-y-8">
               
               {/* Overview Section */}
               <section>
@@ -147,7 +147,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
                   Overview
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-[var(--bg-primary)] border border-[var(--border)] rounded-xl p-4">
+                  <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
                     <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
                       <Package size={14} />
                       <span className="text-xs font-medium">Current Stock</span>
@@ -156,7 +156,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
                       {item?.stock_count} <span className="text-sm font-normal text-[var(--text-tertiary)]">units</span>
                     </p>
                   </div>
-                  <div className="bg-[var(--bg-primary)] border border-[var(--border)] rounded-xl p-4">
+                  <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
                     <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
                       <DollarSign size={14} />
                       <span className="text-xs font-medium">Unit Price</span>
@@ -165,7 +165,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
                       {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item?.price || 0)}
                     </p>
                   </div>
-                  <div className="bg-[var(--bg-primary)] border border-[var(--border)] rounded-xl p-4">
+                  <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
                     <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
                       <DollarSign size={14} />
                       <span className="text-xs font-medium">Total Value</span>
@@ -174,7 +174,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
                       {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format((item?.stock_count || 0) * (item?.price || 0))}
                     </p>
                   </div>
-                  <div className="bg-[var(--bg-primary)] border border-[var(--border)] rounded-xl p-4">
+                  <div className="bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4">
                     <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
                       <Tag size={14} />
                       <span className="text-xs font-medium">Category</span>
@@ -198,7 +198,7 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
                     <div className="w-6 h-6 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
                   </div>
                 ) : movements.length === 0 ? (
-                  <div className="text-center py-8 bg-[var(--bg-primary)] border border-[var(--border)] border-dashed rounded-xl">
+                  <div className="text-center py-8 bg-white/30 backdrop-blur-sm border border-[var(--border)] border-dashed rounded-xl">
                     <p className="text-sm text-[var(--text-secondary)]">No activity recorded yet.</p>
                   </div>
                 ) : (
@@ -249,11 +249,11 @@ export default function ProductDetailDrawer({ isOpen, onClose, item: initialItem
             </div>
 
             {/* Footer */}
-            <div className="p-6 border-t border-[var(--border)] bg-[var(--bg-card)] flex gap-3">
+            <div className="p-6 border-t border-[var(--border)] bg-white/40 backdrop-blur-sm flex gap-3">
               <button
                 type="button"
                 onClick={onClose}
-                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[var(--bg-primary)] border border-[var(--border)] rounded-xl hover:bg-[var(--bg-secondary)] transition-colors cursor-pointer"
+                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white/40 transition-colors cursor-pointer"
               >
                 Close
               </button>

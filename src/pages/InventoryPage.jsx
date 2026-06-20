@@ -78,7 +78,7 @@ function StockCell({ item, updateStock }) {
       <button
         onClick={() => updateStock(item.id, item.stock_count, -1)}
         disabled={item.stock_count <= 0}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-white/40 hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
         <Minus size={14} />
       </button>
@@ -93,12 +93,12 @@ function StockCell({ item, updateStock }) {
           onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="w-14 text-center font-medium bg-[var(--bg-primary)] border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
+          className="w-14 text-center font-medium bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
         />
       ) : (
         <span
           onClick={() => setIsEditing(true)}
-          className="w-14 text-center font-medium cursor-text hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors tooltip-trigger"
+          className="w-14 text-center font-medium cursor-text hover:bg-white/40 hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors tooltip-trigger"
           title="Click to edit stock"
         >
           {item.stock_count.toLocaleString()}
@@ -107,7 +107,7 @@ function StockCell({ item, updateStock }) {
 
       <button
         onClick={() => updateStock(item.id, item.stock_count, 1)}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-[var(--bg-primary)] hover:text-[var(--text-primary)] transition-colors"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-white/40 hover:text-[var(--text-primary)] transition-colors"
       >
         <Plus size={14} />
       </button>
@@ -291,7 +291,7 @@ export default function InventoryPage() {
             placeholder="Search items..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-9 py-2.5 text-sm bg-[var(--bg-card)] border border-[var(--border)] rounded-xl text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/20 transition-all duration-200"
+            className="w-full pl-9 pr-9 py-2.5 text-sm bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-xl text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/20 transition-all duration-200"
           />
           {search && (
             <button
@@ -308,7 +308,7 @@ export default function InventoryPage() {
           <button
             id="sort-toggle"
             onClick={() => setOpenSort(!openSort)}
-            className="flex items-center gap-2 px-4 py-2.5 text-sm bg-[var(--bg-card)] border border-[var(--border)] rounded-xl text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] transition-all duration-200"
+            className="flex items-center gap-2 px-4 py-2.5 text-sm bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-xl text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] transition-all duration-200"
           >
             <SlidersHorizontal size={15} />
             <span>{sortOptions[sortBy]}</span>
@@ -319,7 +319,7 @@ export default function InventoryPage() {
               initial={{ opacity: 0, y: 4, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
-              className="absolute right-0 sm:left-0 mt-2 w-56 bg-[var(--bg-card)] border border-[var(--border)] rounded-xl shadow-sm z-20 py-1.5 overflow-hidden"
+              className="absolute right-0 sm:left-0 mt-2 w-56 bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-sm z-20 py-1.5 overflow-hidden"
             >
               {Object.entries(sortOptions).map(([key, label]) => (
                 <button
@@ -331,7 +331,7 @@ export default function InventoryPage() {
                   className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
                     sortBy === key
                       ? "text-[var(--accent)] bg-[var(--accent-subtle)] font-medium"
-                      : "text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]"
+                      : "text-[var(--text-secondary)] hover:bg-white/30 hover:text-[var(--text-primary)]"
                   }`}
                 >
                   {label}
@@ -355,7 +355,7 @@ export default function InventoryPage() {
           className={`flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-xl border transition-all duration-200 cursor-pointer sm:ml-4 ${
             isSelectionMode 
               ? "bg-[var(--accent)]/10 border-[var(--accent)]/30 text-[var(--accent)]" 
-              : "bg-[var(--bg-card)] border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
+              : "bg-[var(--bg-card)] backdrop-blur-xl border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-white/50"
           }`}
         >
           <ListChecks size={16} />
@@ -365,7 +365,7 @@ export default function InventoryPage() {
         {/* Add Item Button */}
         <button
           onClick={() => setIsAddModalOpen(true)}
-          className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] transition-colors cursor-pointer sm:ml-4"
+          className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] transition-colors cursor-pointer sm:ml-4 shadow-[0_2px_8px_rgba(124,58,237,0.3)]"
         >
           <Plus size={16} />
           <span>New Item</span>
@@ -377,11 +377,11 @@ export default function InventoryPage() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl overflow-hidden flex flex-col flex-1 min-h-0"
+        className="bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl overflow-hidden flex flex-col flex-1 min-h-0"
       >
         <div className="overflow-auto flex-1">
           <table className="w-full text-sm text-left">
-            <thead className="sticky top-0 z-10 bg-[var(--bg-card)] shadow-[0_1px_0_0_var(--border)]">
+            <thead className="sticky top-0 z-10 bg-[var(--bg-card)] backdrop-blur-xl shadow-[0_1px_0_0_var(--border)]">
               <tr>
                 <th className="p-0 align-middle">
                   <div className={`transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] overflow-hidden flex items-center justify-center py-4 ${isSelectionMode ? "w-[68px] px-6 opacity-100" : "w-0 px-0 opacity-0"}`}>
@@ -429,29 +429,29 @@ export default function InventoryPage() {
                   >
                     <td className="p-0 align-middle">
                       <div className={`transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] overflow-hidden flex items-center justify-center py-4 ${isSelectionMode ? "w-[68px] px-6 opacity-100" : "w-0 px-0 opacity-0"}`}>
-                        <div className="w-4 h-4 rounded bg-[var(--bg-secondary)] animate-pulse flex-shrink-0" />
+                        <div className="w-4 h-4 rounded bg-white/30 animate-pulse flex-shrink-0" />
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-[var(--bg-secondary)] rounded-md w-8 animate-pulse" />
+                      <div className="h-4 bg-white/30 rounded-md w-8 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-[var(--bg-secondary)] rounded-md w-36 animate-pulse" />
+                      <div className="h-4 bg-white/30 rounded-md w-36 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-[var(--bg-secondary)] rounded-md w-16 animate-pulse" />
+                      <div className="h-4 bg-white/30 rounded-md w-16 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-[var(--bg-secondary)] rounded-md w-12 animate-pulse" />
+                      <div className="h-4 bg-white/30 rounded-md w-12 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-6 bg-[var(--bg-secondary)] rounded-full w-20 animate-pulse" />
+                      <div className="h-6 bg-white/30 rounded-full w-20 animate-pulse" />
                     </td>
                     <td className="px-6 py-4">
-                      <div className="h-4 bg-[var(--bg-secondary)] rounded-md w-28 animate-pulse" />
+                      <div className="h-4 bg-white/30 rounded-md w-28 animate-pulse" />
                     </td>
                     <td className="px-6 py-4 text-right">
-                      <div className="h-6 bg-[var(--bg-secondary)] rounded-md w-6 animate-pulse ml-auto" />
+                      <div className="h-6 bg-white/30 rounded-md w-6 animate-pulse ml-auto" />
                     </td>
                   </tr>
                 ))
@@ -505,7 +505,7 @@ export default function InventoryPage() {
                     animate={{ opacity: 1 }}
                     transition={{ duration: 0.3, delay: index * 0.03 }}
                     onClick={() => setViewingItem(item)}
-                    className={`border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 cursor-pointer ${selectedIds.includes(item.id) ? 'bg-[var(--accent)]/5' : 'hover:bg-[var(--bg-secondary)]'}`}
+                    className={`border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 cursor-pointer ${selectedIds.includes(item.id) ? 'bg-[var(--accent)]/5' : 'hover:bg-white/30'}`}
                   >
                     <td className="p-0 align-middle" onClick={(e) => e.stopPropagation()}>
                       <div className={`transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] overflow-hidden flex items-center justify-center py-4 ${isSelectionMode ? "w-[68px] px-6 opacity-100" : "w-0 px-0 opacity-0"}`}>
@@ -543,7 +543,7 @@ export default function InventoryPage() {
                     <td className="px-6 py-4 text-right" onClick={(e) => e.stopPropagation()}>
                       <button
                         onClick={() => setEditingItem(item)}
-                        className="p-1.5 rounded-lg text-[var(--text-tertiary)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)] transition-colors tooltip-trigger"
+                        className="p-1.5 rounded-lg text-[var(--text-tertiary)] hover:bg-white/30 hover:text-[var(--text-primary)] transition-colors tooltip-trigger"
                         title="Edit Item"
                       >
                         <Pencil size={16} />
@@ -593,7 +593,7 @@ export default function InventoryPage() {
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: 50, x: '-50%' }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="fixed bottom-8 left-1/2 z-40 bg-[var(--bg-card)] border border-[var(--border)] shadow-2xl shadow-black/10 rounded-full px-6 py-3 flex items-center gap-6"
+            className="fixed bottom-8 left-1/2 z-40 bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] shadow-2xl shadow-black/10 rounded-full px-6 py-3 flex items-center gap-6"
           >
             <span className="text-sm font-medium text-[var(--text-primary)]">
               <span className="text-[var(--accent)]">{selectedIds.length}</span> item{selectedIds.length > 1 ? 's' : ''} selected
@@ -620,7 +620,7 @@ export default function InventoryPage() {
                 setSelectedIds([]);
                 setIsSelectionMode(false);
               }}
-              className="text-[var(--text-tertiary)] hover:text-[var(--text-primary)] p-1.5 rounded-full hover:bg-[var(--bg-secondary)] transition-colors ml-2 cursor-pointer"
+              className="text-[var(--text-tertiary)] hover:text-[var(--text-primary)] p-1.5 rounded-full hover:bg-white/30 transition-colors ml-2 cursor-pointer"
             >
               <X size={16} />
             </button>
@@ -644,7 +644,7 @@ export default function InventoryPage() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative bg-[var(--bg-card)] border border-[var(--border)] rounded-2xl shadow-2xl p-6 w-full max-w-sm"
+              className="relative bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl shadow-2xl p-6 w-full max-w-sm"
             >
               <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">Delete Selected Items</h3>
               <p className="text-sm text-[var(--text-secondary)] mb-6">
@@ -654,7 +654,7 @@ export default function InventoryPage() {
                 <button
                   type="button"
                   onClick={() => setShowBulkDeleteConfirm(false)}
-                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-[var(--bg-primary)] border border-[var(--border)] rounded-xl hover:bg-[var(--bg-secondary)] transition-colors cursor-pointer"
+                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white/40 transition-colors cursor-pointer"
                 >
                   Cancel
                 </button>
