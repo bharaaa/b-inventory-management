@@ -99,7 +99,7 @@ export default function Layout() {
       </AnimatePresence>
 
       {/* Main content */}
-      <main className="relative z-10 flex-1 flex flex-col h-screen overflow-y-auto overflow-x-hidden">
+      <main className="flex-1 flex flex-col h-screen overflow-y-auto overflow-x-hidden">
         {/* Mobile top bar */}
         {isMobile && (
           <div className="sticky top-0 z-30 flex items-center h-14 px-4 backdrop-blur-xl bg-[var(--bg-card)] border-b border-[var(--border)]">
