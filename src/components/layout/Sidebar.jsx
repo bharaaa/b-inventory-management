@@ -24,12 +24,8 @@ export default function Sidebar({ collapsed, onToggle }) {
   return (
     <aside
       style={{ width: collapsed ? 72 : 256 }}
-      className="glass-panel relative z-20 flex flex-col h-[calc(100vh-2rem)] my-4 ml-4 rounded-3xl transition-[width] duration-300 ease-in-out shrink-0 overflow-hidden"
+      className="relative z-20 flex flex-col h-full py-6 transition-[width] duration-300 ease-in-out shrink-0 overflow-hidden"
     >
-      {/* Inner highlight edge */}
-      <div className="absolute inset-0 pointer-events-none rounded-3xl" 
-        style={{ boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.7), inset -1px 0 0 rgba(255,255,255,0.3)' }} 
-      />
 
       {/* Logo */}
       <div className="flex items-center gap-3 px-5 h-16 shrink-0">

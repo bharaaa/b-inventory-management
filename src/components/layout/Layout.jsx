@@ -38,7 +38,7 @@ export default function Layout() {
 
   return (
     <div 
-      className="flex h-screen w-screen overflow-hidden transition-colors duration-500"
+      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500 p-2 md:p-6"
       style={{
         background: theme === 'dark' 
           ? `radial-gradient(circle at top left, #1a1a1a 0%, #050505 40%, #000000 100%)`
@@ -70,68 +70,73 @@ export default function Layout() {
         <div className="absolute top-[75vh] left-0 w-[100vw] h-[1px] bg-gradient-to-r from-transparent via-[var(--success)] to-transparent opacity-30" />
       </div>
 
-      {/* Desktop sidebar */}
-      {!isMobile && (
-        <Sidebar
-          collapsed={collapsed}
-          onToggle={() => setCollapsed((prev) => !prev)}
-        />
-      )}
+      {/* App Window Shell */}
+      <div className="relative z-10 flex w-full max-w-[1440px] h-full max-h-[94vh] bg-[var(--bg-card)]/40 backdrop-blur-3xl border border-[var(--border)] rounded-[2.5rem] shadow-2xl overflow-hidden glass-refraction">
 
-      {/* Mobile sidebar overlay */}
-      <AnimatePresence>
-        {isMobile && mobileOpen && (
-          <>
-            {/* Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm"
-              onClick={() => setMobileOpen(false)}
-            />
+        {/* Desktop sidebar */}
+        {!isMobile && (
+          <Sidebar
+            collapsed={collapsed}
+            onToggle={() => setCollapsed((prev) => !prev)}
+          />
+        )}
 
-            {/* Slide-in sidebar */}
-            <motion.div
-              initial={{ x: -280 }}
-              animate={{ x: 0 }}
-              exit={{ x: -280 }}
-              transition={{ type: 'spring', stiffness: 350, damping: 35 }}
-              className="fixed inset-y-0 left-0 z-50 w-64"
-            >
-              <Sidebar
-                collapsed={false}
-                onToggle={() => setMobileOpen(false)}
+        {/* Mobile sidebar overlay */}
+        <AnimatePresence>
+          {isMobile && mobileOpen && (
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="fixed inset-0 z-40 bg-black/40 backdrop-blur-md"
+                onClick={() => setMobileOpen(false)}
               />
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
 
-      {/* Main content */}
-      <main className="flex-1 flex flex-col h-screen overflow-y-auto overflow-x-hidden">
-        {/* Mobile top bar */}
-        {isMobile && (
-          <div className="sticky top-0 z-30 flex items-center h-14 px-4 backdrop-blur-sm bg-[var(--bg-card)] border-b border-[var(--border)]">
-            <button
-              onClick={() => setMobileOpen(true)}
-              className="flex items-center justify-center w-9 h-9 rounded-xl text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
-              aria-label="Open navigation"
-            >
-              <Menu className="w-5 h-5" strokeWidth={1.75} />
-            </button>
-            <span className="ml-3 text-sm font-semibold tracking-tight text-[var(--text-primary)]">
-              Crate Inventory
-            </span>
+              {/* Slide-in sidebar */}
+              <motion.div
+                initial={{ x: -280 }}
+                animate={{ x: 0 }}
+                exit={{ x: -280 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 35 }}
+                className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-2xl border-r border-[var(--border)]"
+              >
+                <Sidebar
+                  collapsed={false}
+                  onToggle={() => setMobileOpen(false)}
+                />
+              </motion.div>
+            </>
+          )}
+        </AnimatePresence>
+
+        {/* Nested Main Content Area */}
+        <main className="flex-1 flex flex-col bg-[var(--bg-primary)] md:m-3 md:rounded-[2rem] shadow-[inset_0_2px_12px_rgba(0,0,0,0.1)] border border-[var(--border)]/50 overflow-hidden relative z-20">
+          
+          {/* Top Navigation */}
+          {isMobile && (
+            <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-sm bg-[var(--bg-primary)]/80 border-b border-[var(--border)] shrink-0">
+              <button
+                onClick={() => setMobileOpen(true)}
+                className="flex items-center justify-center w-10 h-10 rounded-xl text-[var(--text-secondary)] hover:bg-[rgba(255,255,255,0.05)] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
+                aria-label="Open navigation"
+              >
+                <Menu className="w-5 h-5" strokeWidth={1.75} />
+              </button>
+              <span className="ml-3 text-sm font-semibold tracking-tight text-[var(--text-primary)]">
+                Crate Inventory
+              </span>
+            </div>
+          )}
+
+          {/* Scrollable Page Content */}
+          <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:px-8 md:pb-8 pt-2">
+            <Outlet />
           </div>
-        )}
-
-        {/* Page content */}
-        <div className="flex-1 flex flex-col min-h-0 p-4 md:p-8">
-          <Outlet />
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   );
 }
