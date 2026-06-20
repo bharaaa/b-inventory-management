@@ -39,7 +39,7 @@ export default function CategoryDropdown({ categories, value, onChange }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 4, scale: 0.98 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute left-0 mt-2 w-full bg-[var(--bg-card)]/95 backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.4),inset_0_1px_0_rgba(255,255,255,0.1)] z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
+            className="absolute left-0 mt-2 w-full bg-[#121212]/85 backdrop-blur-3xl border border-[var(--border)] rounded-xl shadow-[0_16px_40px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)] z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
           >
             {categories.map((cat) => (
               <button
