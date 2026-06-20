@@ -38,7 +38,7 @@ export default function Layout() {
 
   return (
     <div 
-      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500 p-2 md:p-6"
+      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500"
       style={{
         background: theme === 'dark' 
           ? `radial-gradient(circle at top left, #1a1a1a 0%, #050505 40%, #000000 100%)`
@@ -71,7 +71,7 @@ export default function Layout() {
       </div>
 
       {/* App Window Shell */}
-      <div className="relative z-10 flex w-full max-w-[1440px] h-full max-h-[94vh] bg-[var(--bg-card)]/40 backdrop-blur-3xl border border-[var(--border)] rounded-[2.5rem] shadow-2xl overflow-hidden glass-refraction">
+      <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-3xl overflow-hidden glass-refraction">
 
         {/* Desktop sidebar */}
         {!isMobile && (
