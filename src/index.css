@@ -63,63 +63,7 @@
    ============================================================================ */
 
 :root {
-  /* LIGHT MODE TOKENS */
-  /* — Background — */
-  --bg-primary: #eef1f6;
-  --bg-secondary: rgba(255, 255, 255, 0.35);
-  --bg-card: rgba(255, 255, 255, 0.55);
-  --bg-card-hover: rgba(255, 255, 255, 0.72);
-
-  /* — Text — */
-  --text-primary: #1a1a2e;
-  --text-secondary: #4a5568;
-  --text-tertiary: #94a3b8;
-
-  /* — Borders — */
-  --border: rgba(255, 255, 255, 0.55);
-  --border-hover: rgba(255, 255, 255, 0.75);
-  --border-active: rgba(0, 0, 0, 0.4);
-
-  /* — Accent (Black) — */
-  --accent: #000000;
-  --accent-fg: #ffffff;
-  --accent-hover: #333333;
-  --accent-subtle: rgba(0, 0, 0, 0.08);
-  --accent-muted: #666666;
-
-  /* — Semantic — */
-  --success: #10b981;
-  --success-subtle: rgba(16, 185, 129, 0.1);
-  --warning: #f59e0b;
-  --warning-subtle: rgba(245, 158, 11, 0.1);
-  --error: #ef4444;
-  --error-subtle: rgba(239, 68, 68, 0.1);
-
-  /* — Spacing & Radius — */
-  --radius-sm: 0.5rem;
-  --radius-md: 0.75rem;
-  --radius-lg: 1rem;
-  --radius-xl: 1.5rem;
-
-  /* — Transitions — */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
-
-  /* — Glass Tokens (Light Mode) — */
-  --glass-blur: 10px;
-  --glass-saturation: 1.4;
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
-  --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
-  --glass-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  --glass-refraction-light-start: var(--glass-refraction-light-start);
-  --glass-refraction-light-end: var(--glass-refraction-light-end);
-  --glass-refraction-panel-start: var(--glass-refraction-panel-start);
-  --glass-refraction-panel-end: var(--glass-refraction-panel-end);
-}
-
-.dark {
-  /* DARK MODE TOKENS */
+  /* DARK LIQUID GLASS TOKENS (Default) */
   /* — Background — */
   --bg-primary: #050505;
   --bg-secondary: rgba(30, 30, 30, 0.25);
@@ -143,7 +87,26 @@
   --accent-subtle: rgba(255, 255, 255, 0.08);
   --accent-muted: #a1a1aa;
 
-  /* — Glass Tokens (Dark Mode) — */
+  /* — Semantic — */
+  --success: #10b981;
+  --success-subtle: rgba(16, 185, 129, 0.1);
+  --warning: #f59e0b;
+  --warning-subtle: rgba(245, 158, 11, 0.1);
+  --error: #ef4444;
+  --error-subtle: rgba(239, 68, 68, 0.1);
+
+  /* — Spacing & Radius — */
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+
+  /* — Transitions — */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* — Glass Tokens — */
   --glass-blur: 16px;
   --glass-saturation: 1.2;
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
@@ -153,7 +116,6 @@
   --glass-refraction-light-end: var(--glass-refraction-panel-end);
   --glass-refraction-panel-start: rgba(255, 255, 255, 0.04);
   --glass-refraction-panel-end: rgba(255, 255, 255, 0.01);
-
 }
 
 

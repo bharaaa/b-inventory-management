@@ -3,7 +3,7 @@ import { Settings, Sparkles, Monitor, Palette } from "lucide-react";
 import { usePreferences } from "../contexts/PreferencesContext";
 
 export default function SettingsPage() {
-  const { enableRefraction, toggleRefraction, theme, toggleTheme } = usePreferences();
+  const { enableRefraction, toggleRefraction } = usePreferences();
 
   return (
     <div className="max-w-4xl mx-auto w-full">
@@ -45,37 +45,6 @@ export default function SettingsPage() {
           </div>
 
           <div className="space-y-4">
-            {/* Theme Toggle */}
-            <div className="flex items-center justify-between p-4 rounded-2xl bg-[rgba(120,120,120,0.05)] border border-[var(--border)]">
-              <div className="flex items-start gap-4">
-                <div className="w-8 h-8 mt-0.5 rounded-lg bg-[rgba(120,120,120,0.1)] flex items-center justify-center">
-                  <Palette size={16} className="text-[var(--accent)]" />
-                </div>
-                <div>
-                  <h3 className="text-sm font-medium text-[var(--text-primary)]">Application Theme</h3>
-                  <p className="text-xs text-[var(--text-tertiary)] mt-1 max-w-sm">
-                    Switch between Dark and Light mode. Dark mode is optimized for low-light environments.
-                  </p>
-                </div>
-              </div>
-
-              {/* Theme Toggle Switch */}
-              <button
-                onClick={toggleTheme}
-                className={`relative w-12 h-7 rounded-full transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] focus:ring-offset-2 focus:ring-offset-[var(--bg-primary)] ${
-                  theme === 'dark' ? "bg-[var(--accent)]" : "bg-[rgba(120,120,120,0.2)]"
-                }`}
-                aria-pressed={theme === 'dark'}
-                aria-label="Toggle Theme"
-              >
-                <motion.div
-                  className="absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow-sm"
-                  animate={{ x: theme === 'dark' ? 20 : 0 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                />
-              </button>
-            </div>
-
             {/* Refraction Toggle */}
             <div className="flex items-center justify-between p-4 rounded-2xl bg-[rgba(120,120,120,0.05)] border border-[var(--border)]">
               <div className="flex items-start gap-4">

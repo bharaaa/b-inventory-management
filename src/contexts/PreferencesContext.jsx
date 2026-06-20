@@ -9,18 +9,8 @@ export function PreferencesProvider({ children }) {
     return saved !== null ? JSON.parse(saved) : true;
   });
 
-  // Theme State (default to 'dark' to preserve current aesthetic)
-  const [theme, setTheme] = useState(() => {
-    const savedTheme = localStorage.getItem('crate-prefs-theme');
-    return savedTheme ? savedTheme : 'dark';
-  });
-
   const toggleRefraction = () => {
     setEnableRefraction(prev => !prev);
-  };
-
-  const toggleTheme = () => {
-    setTheme(prev => prev === 'dark' ? 'light' : 'dark');
   };
 
   // Refraction Effect
@@ -33,18 +23,13 @@ export function PreferencesProvider({ children }) {
     }
   }, [enableRefraction]);
 
-  // Theme Effect
+  // Permanently enforce dark mode on html tag (if any straggling CSS depends on it)
   useEffect(() => {
-    localStorage.setItem('crate-prefs-theme', theme);
-    if (theme === 'dark') {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, [theme]);
+    document.documentElement.classList.add('dark');
+  }, []);
 
   return (
-    <PreferencesContext.Provider value={{ enableRefraction, toggleRefraction, theme, toggleTheme }}>
+    <PreferencesContext.Provider value={{ enableRefraction, toggleRefraction }}>
       {children}
     </PreferencesContext.Provider>
   );

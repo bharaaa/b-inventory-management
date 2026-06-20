@@ -1,18 +1,17 @@
-import { useState, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import Sidebar from './Sidebar';
-import { usePreferences } from '../../contexts/PreferencesContext';
+import { useState, useEffect } from "react";
+import { Outlet } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
+import Sidebar from "./Sidebar";
+import { usePreferences } from "../../contexts/PreferencesContext";
 
 export default function Layout() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const { theme } = usePreferences();
 
   useEffect(() => {
-    const mq = window.matchMedia('(max-width: 767px)');
+    const mq = window.matchMedia("(max-width: 767px)");
 
     const handleChange = (e) => {
       setIsMobile(e.matches);
@@ -20,38 +19,36 @@ export default function Layout() {
     };
 
     handleChange(mq);
-    mq.addEventListener('change', handleChange);
-    return () => mq.removeEventListener('change', handleChange);
+    mq.addEventListener("change", handleChange);
+    return () => mq.removeEventListener("change", handleChange);
   }, []);
 
   // Lock body scroll when mobile sidebar is open
   useEffect(() => {
     if (mobileOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = '';
+      document.body.style.overflow = "";
     };
   }, [mobileOpen]);
 
   return (
-    <div 
+    <div
       className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500"
       style={{
-        background: theme === 'dark' 
-          ? `radial-gradient(circle at top left, #1a1a1a 0%, #050505 40%, #000000 100%)`
-          : `linear-gradient(135deg, #eef1f6 0%, #e8e0f0 25%, #dfe8f5 50%, #ece5f3 75%, #eef1f6 100%)`,
+        background: `radial-gradient(circle at top left, #1a1a1a 0%, #050505 40%, #000000 100%)`
       }}
     >
       {/* Curated geometric background to maximize glass refraction */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden flex items-center justify-center">
         {/* --- SHARP VIBRANT SHAPES --- */}
-        
+
         {/* Giant Ring (Top Left) */}
         <div className="absolute -top-[20vh] -right-[10vw] w-[45vw] h-[45vw] rounded-full border-2 border-(--accent) opacity-30 mix-blend-multiply bg-(--accent)" />
-        
+
         {/* Solid Vibrant Circle (Center Right) */}
         <div className="absolute top-[30vh] -right-[5vw] w-[30vw] h-[30vw] rounded-full bg-gradient-to-tr from-[var(--accent)] via-[var(--accent-hover)] to-[#ec4899] opacity-15 mix-blend-multiply" />
 
@@ -59,20 +56,19 @@ export default function Layout() {
         <div className="absolute -bottom-[10vh] left-[15vw] w-[20vw] h-[20vw] rounded-full bg-gradient-to-br from-[var(--success)] to-teal-400 opacity-20 mix-blend-multiply" />
 
         {/* --- ARCHITECTURAL LINES --- */}
-        
+
         {/* Primary Diagonal */}
         <div className="absolute top-1/2 left-1/2 w-[200vw] h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-40 -translate-x-1/2 -translate-y-1/2 -rotate-45" />
-        
+
         {/* Secondary Vertical */}
         <div className="absolute top-0 left-[25vw] w-[1px] h-[100vh] bg-gradient-to-b from-[var(--text-tertiary)] to-transparent opacity-30" />
-        
+
         {/* Secondary Horizontal */}
         <div className="absolute top-[75vh] left-0 w-[100vw] h-[1px] bg-gradient-to-r from-transparent via-[var(--success)] to-transparent opacity-30" />
       </div>
 
       {/* App Window Shell */}
       <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-3xl overflow-hidden glass-refraction">
-
         {/* Desktop sidebar */}
         {!isMobile && (
           <Sidebar
@@ -100,7 +96,7 @@ export default function Layout() {
                 initial={{ x: -280 }}
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
-                transition={{ type: 'spring', stiffness: 350, damping: 35 }}
+                transition={{ type: "spring", stiffness: 350, damping: 35 }}
                 className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-2xl border-r border-[var(--border)]"
               >
                 <Sidebar
@@ -113,8 +109,7 @@ export default function Layout() {
         </AnimatePresence>
 
         {/* Nested Main Content Area */}
-        <main className="flex-1 flex flex-col bg-white/20 dark:bg-black/20 backdrop-blur-md md:m-3 md:rounded-[2rem] shadow-[inset_0_2px_12px_rgba(0,0,0,0.1)] border border-[var(--border)]/50 overflow-hidden relative z-20">
-          
+        <main className="flex-1 flex flex-col bg-black/45 backdrop-blur-md md:m-3 md:rounded-[2rem] shadow-[inset_0_2px_12px_rgba(0,0,0,0.1)] border border-[var(--border)]/50 overflow-hidden relative z-20">
           {/* Top Navigation */}
           {isMobile && (
             <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-sm bg-[var(--bg-primary)]/80 border-b border-[var(--border)] shrink-0">
