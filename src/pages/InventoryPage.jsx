@@ -349,7 +349,7 @@ export default function InventoryPage() {
 
         <button
           onClick={() => openDrawer('ADD_ITEM', { totalUsedCapacity, onSuccess: fetchItems })}
-          className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-colors cursor-pointer sm:ml-4"
+          className="flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent-fg)] bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-colors cursor-pointer sm:ml-4"
         >
           <Plus size={16} />
           <span>New Item</span>

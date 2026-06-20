@@ -32,6 +32,7 @@
 
   /* — Accent — */
   --color-accent: var(--accent);
+  --color-accent-fg: var(--accent-fg);
   --color-accent-hover: var(--accent-hover);
   --color-accent-subtle: var(--accent-subtle);
   --color-accent-muted: var(--accent-muted);
@@ -81,6 +82,7 @@
 
   /* — Accent (Black) — */
   --accent: #000000;
+  --accent-fg: #ffffff;
   --accent-hover: #333333;
   --accent-subtle: rgba(0, 0, 0, 0.08);
   --accent-muted: #666666;
@@ -136,8 +138,9 @@
 
   /* — Accent (White) — */
   --accent: #ffffff;
+  --accent-fg: #000000;
   --accent-hover: #d4d4d8;
-  --accent-subtle: var(--glass-refraction-panel-start);
+  --accent-subtle: rgba(255, 255, 255, 0.08);
   --accent-muted: #a1a1aa;
 
   /* — Glass Tokens (Dark Mode) — */

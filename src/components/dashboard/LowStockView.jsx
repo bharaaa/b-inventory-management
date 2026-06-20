@@ -74,7 +74,7 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
                 
                 <button
                   onClick={() => onViewItem(item)}
-                  className="flex items-center justify-center sm:w-auto w-full gap-2 px-4 py-2 text-sm font-semibold text-[var(--accent)] bg-[var(--accent)]/10 backdrop-blur-sm border border-[var(--accent)]/20 hover:bg-[var(--accent)] hover:text-white rounded-xl transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] group-hover:shadow-[0_4px_16px_rgba(124,58,237,0.2),inset_0_1px_0_rgba(255,255,255,0.3)] cursor-pointer"
+                  className="flex items-center justify-center sm:w-auto w-full gap-2 px-4 py-2 text-sm font-semibold text-[var(--accent)] bg-[var(--accent)]/10 backdrop-blur-sm border border-[var(--accent)]/20 hover:bg-[var(--accent)] hover:text-[var(--accent-fg)] rounded-xl transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.2)] group-hover:shadow-[0_4px_16px_rgba(124,58,237,0.2),inset_0_1px_0_rgba(255,255,255,0.3)] cursor-pointer"
                 >
                   View Details
                   <ArrowRight size={16} strokeWidth={2.5} />

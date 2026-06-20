@@ -253,7 +253,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium text-white bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-colors disabled:opacity-70 cursor-pointer"
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent-fg)] bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-colors disabled:opacity-70 cursor-pointer"
                 >
                   {loading ? <Loader2 size={16} className="animate-spin" /> : 'Apply Updates'}
                 </button>
