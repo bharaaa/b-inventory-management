@@ -68,7 +68,7 @@ export default function Layout() {
       </div>
 
       {/* App Window Shell */}
-      <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-3xl overflow-hidden">
+      <div className="relative z-10 flex w-full h-full bg-[var(--bg-card)]/40 backdrop-blur-lg overflow-hidden">
         {/* Desktop sidebar */}
         {!isMobile && (
           <Sidebar
@@ -97,7 +97,7 @@ export default function Layout() {
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
                 transition={{ type: "spring", stiffness: 350, damping: 35 }}
-                className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-2xl border-r border-[var(--border)]"
+                className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-lg border-r border-[var(--border)]"
               >
                 <Sidebar
                   collapsed={false}
