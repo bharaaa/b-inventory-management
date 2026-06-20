@@ -50,7 +50,7 @@ export default function Layout() {
         {/* --- SHARP VIBRANT SHAPES --- */}
         
         {/* Giant Ring (Top Left) */}
-        <div className="absolute -top-[20vh] -left-[10vw] w-[45vw] h-[45vw] rounded-full border-[2px] border-[var(--accent)] opacity-30 mix-blend-multiply" />
+        <div className="absolute -top-[20vh] -right-[10vw] w-[45vw] h-[45vw] rounded-full border-2 border-(--accent) opacity-30 mix-blend-multiply bg-(--accent)" />
         
         {/* Solid Vibrant Circle (Center Right) */}
         <div className="absolute top-[30vh] -right-[5vw] w-[30vw] h-[30vw] rounded-full bg-gradient-to-tr from-[var(--accent)] via-[var(--accent-hover)] to-[#ec4899] opacity-15 mix-blend-multiply" />
@@ -113,7 +113,7 @@ export default function Layout() {
         </AnimatePresence>
 
         {/* Nested Main Content Area */}
-        <main className="flex-1 flex flex-col bg-[var(--bg-primary)] md:m-3 md:rounded-[2rem] shadow-[inset_0_2px_12px_rgba(0,0,0,0.1)] border border-[var(--border)]/50 overflow-hidden relative z-20">
+        <main className="flex-1 flex flex-col bg-white/20 dark:bg-black/20 backdrop-blur-md md:m-3 md:rounded-[2rem] shadow-[inset_0_2px_12px_rgba(0,0,0,0.1)] border border-[var(--border)]/50 overflow-hidden relative z-20">
           
           {/* Top Navigation */}
           {isMobile && (
@@ -132,7 +132,7 @@ export default function Layout() {
           )}
 
           {/* Scrollable Page Content */}
-          <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:px-8 md:pb-8 pt-2">
+          <div className="flex-1 overflow-y-auto overflow-x-hidden p-4 md:px-8 md:pb-8 py-5">
             <Outlet />
           </div>
         </main>
