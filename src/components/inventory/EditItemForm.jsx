@@ -44,16 +44,7 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
     fetchCategories();
   }, [isOpen]);
 
-  // Handle outside click for the custom dropdown
-  useEffect(() => {
-    function handleClick(e) {
-      if (openCategory && !e.target.closest("[data-category-menu]")) {
-        setOpenCategory(false);
-      }
-    }
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
-  }, [openCategory]);
+
 
   const originalStock = item?.stock_count || 0;
   const newStock = parseInt(formData.stock_count || 0, 10);

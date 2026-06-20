@@ -35,16 +35,7 @@ export default function AddItemForm({ isOpen, onClose, onSuccess, totalUsedCapac
     fetchCategories();
   }, [isOpen]);
 
-  // Handle outside click for the custom dropdown
-  useEffect(() => {
-    function handleClick(e) {
-      if (openCategory && !e.target.closest("[data-category-menu]")) {
-        setOpenCategory(false);
-      }
-    }
-    document.addEventListener("click", handleClick);
-    return () => document.removeEventListener("click", handleClick);
-  }, [openCategory]);
+
 
   const isOverCapacity = (totalUsedCapacity + parseInt(formData.stock_count || 0, 10)) > TOTAL_WAREHOUSE_CAPACITY;
   const isInvalidPrice = parseFloat(formData.price || 0) < 0;
