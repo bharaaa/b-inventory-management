@@ -24,7 +24,7 @@ export default function Sidebar({ collapsed, onToggle }) {
   return (
     <aside
       style={{ width: collapsed ? 72 : 256 }}
-      className="relative z-20 flex flex-col h-[calc(100vh-2rem)] my-4 ml-4 rounded-3xl backdrop-blur-2xl bg-white/40 border border-white/50 shadow-lg transition-[width] duration-300 ease-in-out shrink-0 overflow-hidden"
+      className="relative z-20 flex flex-col h-[calc(100vh-2rem)] my-4 ml-4 rounded-3xl backdrop-blur-xl bg-white/40 border border-white/50 shadow-lg transition-[width] duration-300 ease-in-out shrink-0 overflow-hidden glass-refraction"
     >
       {/* Inner highlight edge */}
       <div className="absolute inset-0 pointer-events-none rounded-3xl" 

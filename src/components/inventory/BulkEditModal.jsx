@@ -117,7 +117,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/40 backdrop-blur-md"
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
           />
 
           <motion.div
@@ -125,9 +125,9 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative w-full max-w-md bg-white/70 backdrop-blur-2xl border border-[var(--border)] rounded-2xl shadow-xl"
+            className="relative w-full max-w-md bg-white/70 backdrop-blur-xl border border-[var(--border)] rounded-2xl shadow-xl glass-refraction"
           >
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm rounded-t-2xl">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm rounded-t-2xl glass-refraction">
               <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
                 Bulk Edit ({selectedIds.length} items)
               </h2>
@@ -154,7 +154,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                     onClick={() => setOpenCategory(!openCategory)}
                     className={`w-full flex items-center justify-between px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg focus:outline-none focus:border-[var(--accent)] transition-all cursor-pointer ${
                       openCategory ? "border-[var(--accent)] ring-1 ring-[var(--accent)]/20" : ""
-                    }`}
+                    } glass-refraction`}
                   >
                     <span className={formData.category_id ? "text-[var(--text-primary)]" : "text-[var(--text-tertiary)]"}>
                       {formData.category_id 
@@ -171,7 +171,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 4, scale: 0.98 }}
                         transition={{ duration: 0.15, ease: "easeOut" }}
-                        className="absolute left-0 mt-2 w-full bg-white/70 backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-sm z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto"
+                        className="absolute left-0 mt-2 w-full bg-white/70 backdrop-blur-md border border-[var(--border)] rounded-xl shadow-sm z-50 py-1.5 overflow-hidden max-h-48 overflow-y-auto glass-refraction"
                       >
                         <button
                           type="button"
@@ -221,7 +221,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                     min="0"
                     value={formData.stock_count}
                     onChange={(e) => setFormData({ ...formData, stock_count: e.target.value })}
-                    className="w-full px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)]"
+                    className="w-full px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)] glass-refraction"
                     placeholder="Leave unchanged"
                   />
                 </div>
@@ -236,7 +236,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
                     step="0.01"
                     value={formData.price}
                     onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                    className="w-full px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)]"
+                    className="w-full px-3 py-2 text-sm bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-lg text-[var(--text-primary)] focus:outline-none focus:border-[var(--accent)] transition-all placeholder:text-[var(--text-tertiary)] glass-refraction"
                     placeholder="Leave unchanged"
                   />
                 </div>

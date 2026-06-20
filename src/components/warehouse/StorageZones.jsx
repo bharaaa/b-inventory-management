@@ -55,7 +55,7 @@ export default function StorageZones({ items }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border border-[var(--border)] p-6"
+      className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] p-6"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -73,7 +73,7 @@ export default function StorageZones({ items }) {
 
       <div className="grid grid-cols-2 gap-4">
         {zones.map((zone, i) => (
-          <div key={zone.name} className="flex flex-col items-center p-4 rounded-xl bg-white/30 backdrop-blur-sm border border-[var(--border)] relative overflow-hidden group">
+          <div key={zone.name} className="flex flex-col items-center p-4 rounded-xl bg-white/30 backdrop-blur-sm border border-[var(--border)] relative overflow-hidden group glass-refraction">
             {/* Elegant Circular Progress */}
             <div className="relative w-16 h-16 mb-3">
               <svg className="w-full h-full transform -rotate-90" viewBox="0 0 36 36">

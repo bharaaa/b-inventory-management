@@ -31,7 +31,7 @@ export default function SplashScreen() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-[var(--bg-card)] backdrop-blur-xl border-2 border-[var(--border)] shadow-xl relative"
+          className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-[var(--bg-card)] backdrop-blur-md border-2 border-[var(--border)] shadow-xl relative"
         >
           {/* Inner pulse */}
           <motion.div 

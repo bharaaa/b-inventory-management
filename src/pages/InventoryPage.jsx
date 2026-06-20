@@ -279,7 +279,7 @@ export default function InventoryPage() {
             placeholder="Search items..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-9 pr-9 py-2.5 text-sm bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-xl text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/20 transition-all duration-200"
+            className="w-full pl-9 pr-9 py-2.5 text-sm bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-xl text-[var(--text-primary)] placeholder:text-[var(--text-tertiary)] focus:outline-none focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]/20 transition-all duration-200"
           />
           {search && (
             <button
@@ -295,7 +295,7 @@ export default function InventoryPage() {
           <button
             id="sort-toggle"
             onClick={() => setOpenSort(!openSort)}
-            className="flex items-center gap-2 px-4 py-2.5 text-sm bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-xl text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] transition-all duration-200"
+            className="flex items-center gap-2 px-4 py-2.5 text-sm bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-xl text-[var(--text-secondary)] hover:border-[var(--border-hover)] hover:text-[var(--text-primary)] transition-all duration-200"
           >
             <SlidersHorizontal size={15} />
             <span>{sortOptions[sortBy]}</span>
@@ -306,7 +306,7 @@ export default function InventoryPage() {
               initial={{ opacity: 0, y: 4, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.15, ease: "easeOut" }}
-              className="absolute right-0 sm:left-0 mt-2 w-56 bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-xl shadow-sm z-20 py-1.5 overflow-hidden"
+              className="absolute right-0 sm:left-0 mt-2 w-56 bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-xl shadow-sm z-20 py-1.5 overflow-hidden"
             >
               {Object.entries(sortOptions).map(([key, label]) => (
                 <button
@@ -340,8 +340,8 @@ export default function InventoryPage() {
           className={`flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-medium rounded-xl border transition-all duration-200 cursor-pointer sm:ml-4 ${
             isSelectionMode 
               ? "bg-[var(--accent)]/10 border-[var(--accent)]/30 text-[var(--accent)]" 
-              : "bg-[var(--bg-card)] backdrop-blur-xl border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-white/50"
-          }`}
+              : "bg-[var(--bg-card)] backdrop-blur-md border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)] hover:bg-white/50"
+          } glass-refraction`}
         >
           <ListChecks size={16} />
           <span className="hidden sm:inline">Select</span>
@@ -360,11 +360,11 @@ export default function InventoryPage() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
-        className="bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl overflow-hidden flex flex-col flex-1 min-h-0"
+        className="bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-2xl overflow-hidden flex flex-col flex-1 min-h-0"
       >
         <div className="overflow-auto flex-1">
           <table className="w-full text-sm text-left">
-            <thead className="sticky top-0 z-10 bg-[var(--bg-card)] backdrop-blur-xl shadow-[0_1px_0_0_var(--border)]">
+            <thead className="sticky top-0 z-10 bg-[var(--bg-card)] backdrop-blur-md shadow-[0_1px_0_0_var(--border)]">
               <tr>
                 <th className="p-0 align-middle">
                   <div className={`transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] overflow-hidden flex items-center justify-center py-4 ${isSelectionMode ? "w-[68px] px-6 opacity-100" : "w-0 px-0 opacity-0"}`}>
@@ -551,7 +551,7 @@ export default function InventoryPage() {
             animate={{ opacity: 1, y: 0, x: '-50%' }}
             exit={{ opacity: 0, y: 50, x: '-50%' }}
             transition={{ type: "spring", stiffness: 400, damping: 30 }}
-            className="fixed bottom-8 left-1/2 z-40 bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] shadow-2xl shadow-black/10 rounded-full px-6 py-3 flex items-center gap-6"
+            className="fixed bottom-8 left-1/2 z-40 bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] shadow-2xl shadow-black/10 rounded-full px-6 py-3 flex items-center gap-6"
           >
             <span className="text-sm font-medium text-[var(--text-primary)]">
               <span className="text-[var(--accent)]">{selectedIds.length}</span> item{selectedIds.length > 1 ? 's' : ''} selected
@@ -595,14 +595,14 @@ export default function InventoryPage() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setShowBulkDeleteConfirm(false)}
-              className="absolute inset-0 bg-black/40 backdrop-blur-md"
+              className="absolute inset-0 bg-black/40 backdrop-blur-sm"
             />
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 16 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 16 }}
               transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="relative bg-[var(--bg-card)] backdrop-blur-xl border border-[var(--border)] rounded-2xl shadow-2xl p-6 w-full max-w-sm"
+              className="relative bg-[var(--bg-card)] backdrop-blur-md border border-[var(--border)] rounded-2xl shadow-2xl p-6 w-full max-w-sm"
             >
               <h3 className="text-lg font-bold text-[var(--text-primary)] mb-2">Delete Selected Items</h3>
               <p className="text-sm text-[var(--text-secondary)] mb-6">
@@ -612,7 +612,7 @@ export default function InventoryPage() {
                 <button
                   type="button"
                   onClick={() => setShowBulkDeleteConfirm(false)}
-                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white/40 transition-colors cursor-pointer"
+                  className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/30 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white/40 transition-colors cursor-pointer glass-refraction"
                 >
                   Cancel
                 </button>

@@ -90,7 +90,7 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
   const COLUMN_MIN_WIDTH = 200; 
 
   return (
-    <div className="bg-[var(--bg-card)] backdrop-blur-xl rounded-2xl border border-[var(--border)] shadow-sm flex flex-col h-full overflow-hidden">
+    <div className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] shadow-sm flex flex-col h-full overflow-hidden">
       
       {/* Scrollable Container */}
       <div className="flex-1 overflow-auto relative flex flex-col">
