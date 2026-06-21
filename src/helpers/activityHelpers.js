@@ -14,13 +14,13 @@ export function formatActivityEvent(item) {
   
   if (isStock) {
     icon = isInbound ? ArrowDownRight : ArrowUpRight;
-    bgClass = isInbound ? 'bg-[var(--success-subtle)]' : 'bg-[var(--text-primary)]';
-    iconColor = isInbound ? 'text-[var(--success)]' : 'text-[var(--bg-card)]';
+    bgClass = isInbound ? 'bg-[var(--success)]/10 dark:bg-[var(--success)]/20 border border-[var(--success)]/20 shadow-sm' : 'bg-black/5 dark:bg-white/10 border border-[var(--border)] shadow-sm';
+    iconColor = isInbound ? 'text-[var(--success)]' : 'text-[var(--text-primary)]';
     title = isInbound ? 'Stock Added' : 'Stock Removed';
     description = isInbound ? `Added ${Math.abs(item.quantity)} units` : `Removed ${Math.abs(item.quantity)} units`;
   } else {
     icon = isProductCreated ? Package : item.activity_type === 'category_update' ? Tag : Settings;
-    bgClass = isProductCreated ? 'bg-[var(--accent)]/15 border border-[var(--accent)]/20 shadow-sm' : 'bg-black/5 border border-black/5 shadow-sm';
+    bgClass = isProductCreated ? 'bg-[var(--accent)]/10 dark:bg-[var(--accent)]/20 border border-[var(--accent)]/20 shadow-sm' : 'bg-black/5 dark:bg-white/10 border border-[var(--border)] shadow-sm';
     iconColor = isProductCreated ? 'text-[var(--accent)]' : 'text-[var(--text-secondary)]';
     title = isProductCreated ? 'Product Created' : 
             item.activity_type === 'price_update' ? 'Price Updated' :

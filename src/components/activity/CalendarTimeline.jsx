@@ -185,9 +185,10 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
                         <motion.button
                           onClick={() => onNodeClick && onNodeClick(act)}
                           whileHover={{ scale: 1.15, zIndex: 60 }}
-                          className={`w-8 h-8 rounded-full shadow-sm border-2 border-white dark:border-[#0F0F11] flex items-center justify-center cursor-pointer ${act.bgClass.replace('subtle', 'solid')} bg-white dark:bg-[#0F0F11]`}
+                          className="relative w-8 h-8 rounded-full shadow-sm ring-2 ring-white dark:ring-[#1A1A1A] flex items-center justify-center cursor-pointer overflow-hidden bg-white dark:bg-[#1A1A1A]"
                         >
-                          <IconComp size={16} className={act.iconColor} strokeWidth={3} />
+                          <div className={`absolute inset-0 ${act.bgClass}`} />
+                          <IconComp size={16} className={`relative z-10 ${act.iconColor}`} strokeWidth={3} />
                         </motion.button>
 
                         {/* Tooltip */}
