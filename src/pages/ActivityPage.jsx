@@ -191,15 +191,8 @@ export default function ActivityPage() {
 
   return (
     <div className="flex flex-col h-full min-h-0 pb-2">
-      {/* Click-outside overlay for dropdown */}
-      {isDateDropdownOpen && (
-        <div 
-          className="fixed inset-0 z-40"
-          onClick={() => setIsDateDropdownOpen(false)}
-        />
-      )}
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+      {/* Header & Controls */}
+      <div className="mb-8 flex flex-col lg:flex-row lg:items-end justify-between gap-4">
         <div>
           <motion.h1
             initial={{ opacity: 0, y: -8 }}
@@ -219,58 +212,65 @@ export default function ActivityPage() {
           </motion.p>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
-          className="flex items-center gap-3 w-full sm:w-auto"
-        >
-          {/* Date Filter Custom Dropdown */}
-          <div className="relative z-50">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          {/* Tab Switcher */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className="flex items-center p-1 bg-black/5 dark:bg-white/5 rounded-xl border border-[var(--border)] w-fit"
+          >
             <button
-              onClick={() => setIsDateDropdownOpen(!isDateDropdownOpen)}
-              className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-black/40 backdrop-blur-md border border-[var(--border)] rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-tertiary)] hover:bg-white/80 dark:hover:bg-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 shadow-sm"
+              onClick={() => setActiveTab('log')}
+              className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                activeTab === 'log' 
+                  ? 'bg-[var(--bg-card)] shadow-sm text-[var(--text-primary)] border border-[var(--border)]' 
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
             >
-              <Calendar size={16} className="text-[var(--text-tertiary)]" />
-              {filterOptions.find(o => o.value === dateFilter)?.label}
-              <ChevronDown 
-                size={16} 
-                className={`text-[var(--text-tertiary)] transition-transform duration-200 ${isDateDropdownOpen ? 'rotate-180' : ''}`} 
-              />
+              Activity Log
             </button>
+            <button
+              onClick={() => setActiveTab('timeline')}
+              className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all ${
+                activeTab === 'timeline' 
+                  ? 'bg-[var(--bg-card)] shadow-sm text-[var(--text-primary)] border border-[var(--border)]' 
+                  : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+              }`}
+            >
+              Timeline
+            </button>
+          </motion.div>
 
-            <AnimatePresence>
-              {isDateDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: 8, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 8, scale: 0.95 }}
-                  transition={{ duration: 0.15 }}
-                  className="absolute top-full right-0 mt-2 w-48 bg-white/80 dark:bg-[#1A1A1A]/90 backdrop-blur-md border border-[var(--border)] rounded-xl shadow-xl overflow-hidden py-1"
-                >
-                  {filterOptions.map(option => (
-                    <button
-                      key={option.value}
-                      onClick={() => {
-                        setDateFilter(option.value);
-                        setIsDateDropdownOpen(false);
-                      }}
-                      className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
-                        dateFilter === option.value 
-                          ? 'bg-black/[0.04] dark:bg-white/[0.08] text-[var(--text-primary)] font-medium' 
-                          : 'text-[var(--text-secondary)] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)]'
-                      }`}
-                    >
-                      {option.label}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+          {/* Date Filter */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.25 }}
+            className="flex items-center p-1 bg-black/5 dark:bg-white/5 rounded-xl border border-[var(--border)] w-fit"
+          >
+            {filterOptions.map(option => (
+              <button
+                key={option.value}
+                onClick={() => setDateFilter(option.value)}
+                className={`px-4 py-1.5 rounded-lg text-sm font-medium transition-all whitespace-nowrap ${
+                  dateFilter === option.value 
+                    ? 'bg-[var(--bg-card)] shadow-sm text-[var(--text-primary)] border border-[var(--border)]' 
+                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                }`}
+              >
+                {option.label}
+              </button>
+            ))}
+          </motion.div>
 
           {/* Search */}
-          <div className="relative w-full sm:w-64">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className="relative w-full sm:w-64"
+          >
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-[var(--text-tertiary)]">
               <Search size={16} />
             </div>
@@ -279,34 +279,11 @@ export default function ActivityPage() {
               placeholder="Search activities..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-white/60 dark:bg-black/40 backdrop-blur-md border border-[var(--border)] rounded-xl text-sm text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 focus:border-[var(--accent)] hover:bg-white/80 dark:hover:bg-black/60 transition-all placeholder:text-[var(--text-tertiary)] shadow-sm"
+              className="w-full pl-9 pr-4 py-2 bg-black/5 dark:bg-white/5 border border-[var(--border)] rounded-xl text-sm text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 focus:border-[var(--accent)] hover:bg-black/10 dark:hover:bg-white/10 transition-all placeholder:text-[var(--text-tertiary)]"
             />
-          </div>
-        </motion.div>
-      </div>
-
-      {/* Tabs */}
-      <motion.div
-        initial={{ opacity: 0, y: -4 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
-        className="flex items-center gap-2 mb-6"
-      >
-        <div className="flex bg-white/40 dark:bg-black/40 backdrop-blur-md rounded-xl border border-[var(--border)] p-1 w-full sm:w-auto overflow-x-auto shadow-sm">
-          <button
-            onClick={() => setActiveTab('log')}
-            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'log' ? 'bg-white dark:bg-[#2A2A2A] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] hover:bg-white/50 dark:hover:bg-white/10'}`}
-          >
-            Activity Log
-          </button>
-          <button
-            onClick={() => setActiveTab('timeline')}
-            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'timeline' ? 'bg-white dark:bg-[#2A2A2A] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] hover:bg-white/50 dark:hover:bg-white/10'}`}
-          >
-            Activity Timeline
-          </button>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       <AnimatePresence mode="wait">
         {activeTab === 'log' && (
