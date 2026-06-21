@@ -1,6 +1,6 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Package, Search } from "lucide-react";
+import { Package, Search, Pencil, Plus, Minus } from "lucide-react";
 import DataTable from "../components/ui/DataTable";
 import { useDrawer } from "../contexts/DrawerContext";
 import { useToast } from "../contexts/ToastContext";
@@ -16,10 +16,82 @@ const sortOptions = {
   "name_desc": "Name (Z-A)"
 };
 
+function StockCell({ item, updateStock }: { item: any, updateStock: (id: string, current: number, delta: number) => void }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const [value, setValue] = useState(item.stock_count);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setValue(item.stock_count);
+  }, [item.stock_count]);
+
+  const handleBlur = () => {
+    setIsEditing(false);
+    const parsed = parseInt(value.toString(), 10);
+    if (!isNaN(parsed) && parsed !== item.stock_count && parsed >= 0) {
+      const delta = parsed - item.stock_count;
+      updateStock(item.id, item.stock_count, delta);
+    } else {
+      setValue(item.stock_count);
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      inputRef.current?.blur();
+    }
+    if (e.key === "Escape") {
+      setValue(item.stock_count);
+      setIsEditing(false);
+    }
+  };
+
+  return (
+    <div className="flex items-center gap-2" onClick={e => e.stopPropagation()}>
+      <button
+        onClick={() => updateStock(item.id, item.stock_count, -1)}
+        disabled={item.stock_count <= 0}
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+      >
+        <Minus size={14} />
+      </button>
+
+      {isEditing ? (
+        <input
+          ref={inputRef}
+          type="number"
+          autoFocus
+          min="0"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={handleBlur}
+          onKeyDown={handleKeyDown}
+          className="w-12 text-center font-medium bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
+        />
+      ) : (
+        <span
+          onClick={() => setIsEditing(true)}
+          className="w-12 text-center font-medium cursor-text hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors tooltip-trigger"
+          title="Click to edit stock"
+        >
+          {item.stock_count.toLocaleString()}
+        </span>
+      )}
+
+      <button
+        onClick={() => updateStock(item.id, item.stock_count, 1)}
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)] transition-colors"
+      >
+        <Plus size={14} />
+      </button>
+    </div>
+  );
+}
+
 export default function InventoryPage() {
   const { openDrawer } = useDrawer();
   const { addToast } = useToast();
-  const { items, loading, deleteItems, fetchItems } = useInventory();
+  const { items, loading, deleteItems, fetchItems, updateStock } = useInventory();
   
   const [search, setSearch] = useState("");
   const [openSort, setOpenSort] = useState(false);
@@ -51,15 +123,8 @@ export default function InventoryPage() {
     {
       key: "stock",
       header: "Stock",
-      width: "w-32",
-      render: (item: any) => (
-        <div className="flex items-center gap-2">
-          <div className={`w-1.5 h-1.5 rounded-full ${
-            item.stock_count > 10 ? 'bg-[var(--success)]' : item.stock_count > 0 ? 'bg-[var(--warning)]' : 'bg-[var(--error)]'
-          }`} />
-          <span className="font-medium">{item.stock_count}</span>
-        </div>
-      )
+      width: "w-40",
+      render: (item: any) => <StockCell item={item} updateStock={updateStock} />
     },
     {
       key: "price",
@@ -79,6 +144,23 @@ export default function InventoryPage() {
         <span className="text-sm text-[var(--text-secondary)]">
           {new Date(item.last_updated).toLocaleDateString()}
         </span>
+      )
+    },
+    {
+      key: "actions",
+      header: "",
+      width: "w-16",
+      align: "right",
+      render: (item: any) => (
+        <div className="flex justify-end" onClick={e => e.stopPropagation()}>
+          <button
+            onClick={() => openDrawer('EDIT_ITEM', { item, totalUsedCapacity, onSuccess: fetchItems })}
+            className="p-1.5 rounded-lg text-[var(--text-tertiary)] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)] transition-colors tooltip-trigger"
+            title="Edit Item"
+          >
+            <Pencil size={16} />
+          </button>
+        </div>
       )
     }
   ];

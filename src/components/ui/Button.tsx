@@ -25,9 +25,9 @@ export function Button({
   
   const variants = {
     primary: "bg-[var(--accent)] text-white shadow-[0_2px_8px_rgba(124,58,237,0.3)] hover:bg-[var(--accent-hover)] focus:ring-[var(--accent)]",
-    secondary: "bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border)] hover:bg-black/5 dark:hover:bg-white/5",
+    secondary: "bg-[var(--bg-secondary)] text-[var(--text-primary)] border border-[var(--border)] hover:bg-black/5 dark:hover:bg-white/15",
     outline: "bg-transparent text-[var(--text-primary)] border border-[var(--border)] hover:border-[var(--accent)] hover:text-[var(--accent)]",
-    ghost: "bg-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-black/5 dark:hover:bg-white/5",
+    ghost: "bg-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-black/5 dark:hover:bg-white/15",
     danger: "bg-[var(--error)] text-white shadow-sm hover:bg-red-600 focus:ring-[var(--error)]"
   };
   
