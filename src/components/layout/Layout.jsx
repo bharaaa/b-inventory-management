@@ -42,20 +42,20 @@ export default function Layout() {
       {/* Curated pastel background to maximize glass refraction */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden flex items-center justify-center">
         {/* Soft Blue Blob (Top left) */}
-        <div className="absolute -top-[20vh] left-[10vw] w-[20vw] h-[20vw] rounded-full bg-gradient-to-br from-[#007AFF]/20 to-[#5AC8FA]/15 animate-pulse-slow" />
+        <div className="absolute -top-[25vh] left-[10vw] w-[20vw] h-[20vw] rounded-full bg-linear-to-br from-[#007AFF]/20 to-[#5AC8FA]/15 animate-pulse-slow" />
 
         {/* Soft Blue Blob (Top Right) */}
-        <div className="absolute -top-[10vh] -right-[10vw] w-[40vw] h-[40vw] rounded-full bg-gradient-to-br from-[#007AFF]/20 to-[#5AC8FA]/15 animate-pulse-slow" />
+        <div className="absolute -top-[10vh] -right-[10vw] w-[40vw] h-[40vw] rounded-full bg-linear-to-br from-[#007AFF]/20 to-[#5AC8FA]/15 animate-pulse-slow" />
 
         {/* Soft Green Blob (Bottom Left) */}
-        <div className="absolute -bottom-[10vh] -left-[5vw] w-[30vw] h-[30vw] rounded-full bg-gradient-to-br from-[#30D158]/15 to-[#5AC8FA]/10" />
+        <div className="absolute -bottom-[10vh] -left-[5vw] w-[30vw] h-[30vw] rounded-full bg-linear-to-br from-success/15 to-[#5AC8FA]/10" />
 
         {/* Soft Pink/Orange Blob (Center) */}
-        <div className="absolute top-[30vh] left-[30vw] w-[35vw] h-[35vw] rounded-full bg-gradient-to-br from-[#AF52DE]/15 to-[#FF9F0A]/10" />
+        <div className="absolute top-[30vh] left-[30vw] w-[35vw] h-[35vw] rounded-full bg-linear-to-br from-[#AF52DE]/15 to-warning/10" />
       </div>
 
       {/* App Window Shell */}
-      <div className="relative z-10 flex w-full h-full overflow-hidden">
+      <div className="relative z-10 flex w-full h-full overflow-hidden bg-white/30 backdrop-blur-sm">
         {/* Desktop sidebar */}
         {!isMobile && (
           <Sidebar
@@ -96,7 +96,7 @@ export default function Layout() {
         </AnimatePresence>
 
         {/* Nested Main Content Area */}
-        <main className="flex-1 flex flex-col bg-white/40 backdrop-blur-sm md:m-3 md:rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.8)] border border-white/40 overflow-hidden relative z-20">
+        <main className="flex-1 flex flex-col bg-white/50 backdrop-blur-sm md:m-3 md:rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.8)] border border-white/40 overflow-hidden relative z-20">
           {/* Top Navigation */}
           {isMobile && (
             <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-xl bg-white/60 border-b border-[var(--border)] shrink-0">
