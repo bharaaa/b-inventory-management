@@ -12,7 +12,9 @@ import SplashScreen from "./components/layout/SplashScreen";
 import { ToastProvider } from "./contexts/ToastContext";
 import { DrawerProvider } from "./contexts/DrawerContext";
 import { PreferencesProvider } from "./contexts/PreferencesContext";
+import { CommandPaletteProvider } from "./contexts/CommandPaletteContext";
 import GlobalSideDrawer from "./components/ui/GlobalSideDrawer";
+import { CommandPalette } from "./components/command-palette/CommandPalette";
 import { supabase } from "./services/supabaseClient";
 
 function App() {
@@ -64,17 +66,20 @@ function App() {
     <PreferencesProvider>
       <ToastProvider>
         <DrawerProvider>
-          <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Dashboard />} />
-              <Route path="inventory" element={<InventoryPage />} />
-              <Route path="analytics" element={<AnalyticsPage />} />
-              <Route path="warehouse" element={<WarehousePage />} />
-              <Route path="activity" element={<ActivityPage />} />
-              <Route path="settings" element={<SettingsPage />} />
-            </Route>
-          </Routes>
-          <GlobalSideDrawer />
+          <CommandPaletteProvider>
+            <Routes>
+              <Route path="/" element={<Layout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="inventory" element={<InventoryPage />} />
+                <Route path="analytics" element={<AnalyticsPage />} />
+                <Route path="warehouse" element={<WarehousePage />} />
+                <Route path="activity" element={<ActivityPage />} />
+                <Route path="settings" element={<SettingsPage />} />
+              </Route>
+            </Routes>
+            <GlobalSideDrawer />
+            <CommandPalette />
+          </CommandPaletteProvider>
         </DrawerProvider>
       </ToastProvider>
     </PreferencesProvider>

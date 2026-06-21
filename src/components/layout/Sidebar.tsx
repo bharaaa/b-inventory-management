@@ -47,6 +47,29 @@ export default function Sidebar({ collapsed, onToggle }) {
         </AnimatePresence>
       </div>
 
+      {/* Global Search Trigger */}
+      <div className="px-3 mb-2">
+        <button
+          onClick={() => {
+            const event = new KeyboardEvent('keydown', { key: 'k', metaKey: true });
+            window.dispatchEvent(event);
+          }}
+          className={`group flex items-center justify-between w-full rounded-xl py-2 px-3 text-sm font-medium transition-all duration-200 bg-white/40 dark:bg-black/20 hover:bg-white/60 dark:hover:bg-white/10 text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)] shadow-sm cursor-pointer ${
+            collapsed ? 'justify-center px-0' : ''
+          }`}
+        >
+          <div className="flex items-center gap-3">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            {!collapsed && <span>Search...</span>}
+          </div>
+          {!collapsed && (
+            <kbd className="hidden sm:inline-flex items-center gap-1 rounded border border-[var(--border)] bg-black/5 px-1.5 font-sans text-[10px] font-medium text-[var(--text-tertiary)]">
+              <span className="text-xs">⌘</span>K
+            </kbd>
+          )}
+        </button>
+      </div>
+
       {/* Navigation */}
       <nav className="flex-1 flex flex-col gap-0.5 px-3 pt-2 overflow-y-auto overflow-x-hidden">
         {navItems.map(({ icon: Icon, label, path }) => (
