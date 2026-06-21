@@ -76,7 +76,7 @@ function StockCell({ item, updateStock }) {
           onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="w-12 text-center font-medium bg-white/60 backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
+          className="w-12 text-center font-medium bg-white/60 backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)] [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         />
       ) : (
         <span
