@@ -3,9 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import Dashboard from "./pages/Dashboard";
 import InventoryPage from "./pages/InventoryPage";
-import {
-  AnalyticsPage,
-} from "./pages/PlaceholderPages";
+import AnalyticsPage from "./pages/AnalyticsPage";
 import SettingsPage from "./pages/SettingsPage";
 import WarehousePage from "./pages/WarehousePage";
 import ActivityPage from "./pages/ActivityPage";

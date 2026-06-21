@@ -43,16 +43,3 @@ function PlaceholderPage({ title, description, icon: Icon }) {
     </div>
   );
 }
-
-export function AnalyticsPage() {
-  return (
-    <PlaceholderPage
-      title="Analytics"
-      description="Deep dive into your inventory performance metrics"
-      icon={BarChart3}
-    />
-  );
-}
-
-
-

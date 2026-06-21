@@ -10,8 +10,10 @@ import CategoryChart from "../components/charts/CategoryChart";
 import ValueDistributionChart from "../components/charts/ValueDistributionChart";
 import ActivityTimeline from "../components/dashboard/ActivityTimeline";
 import InventoryTable from "../components/dashboard/InventoryTable";
+import FastMovingProducts from "../components/dashboard/FastMovingProducts";
 import { useDrawer } from "../contexts/DrawerContext";
 import { formatActivityEvent } from "../helpers/activityHelpers";
+import { getFastMovingProducts } from "../helpers/stockHelpers";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -88,6 +90,7 @@ export default function Dashboard() {
   const [categoryDistribution, setCategoryDistribution] = useState([]);
   const [snapshots, setSnapshots] = useState({ lastMonth: null });
   const [recentActivities, setRecentActivities] = useState([]);
+  const [fastMovingProducts, setFastMovingProducts] = useState([]);
 
   useEffect(() => {
     async function fetchItems() {
@@ -192,6 +195,7 @@ export default function Dashboard() {
     fetchItems();
     fetchSnapshots();
     fetchActivities();
+    getFastMovingProducts(30, 5).then(setFastMovingProducts);
 
     // Realtime subscriptions
     const productsSub = supabase
@@ -360,6 +364,7 @@ export default function Dashboard() {
         <motion.div variants={itemVariants} className="lg:col-span-1 flex flex-col gap-5">
           <ValueDistributionChart items={items} />
           <CategoryChart data={categoryDistribution} />
+          <FastMovingProducts items={fastMovingProducts} />
           <ActivityTimeline activities={recentActivities} />
         </motion.div>
         </div>

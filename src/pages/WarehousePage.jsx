@@ -12,8 +12,10 @@ import WarehouseAlerts from "../components/warehouse/WarehouseAlerts";
 import TopStoredProducts from "../components/warehouse/TopStoredProducts";
 import WarehouseSummary from "../components/warehouse/WarehouseSummary";
 import ActivityTimeline from "../components/dashboard/ActivityTimeline";
+import FastMovingProducts from "../components/dashboard/FastMovingProducts";
 import { useDrawer } from "../contexts/DrawerContext";
 import { formatActivityEvent } from "../helpers/activityHelpers";
+import { getFastMovingProducts } from "../helpers/stockHelpers";
 import { TOTAL_WAREHOUSE_CAPACITY } from "../config/constants";
 
 const containerVariants = {
@@ -40,6 +42,7 @@ export default function WarehousePage() {
   const navigate = useNavigate();
   const [items, setItems] = useState([]);
   const [recentActivities, setRecentActivities] = useState([]);
+  const [fastMovingProducts, setFastMovingProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const { openDrawer } = useDrawer();
@@ -101,6 +104,7 @@ export default function WarehousePage() {
     }
 
     await fetchActivities();
+    await getFastMovingProducts(30, 5).then(setFastMovingProducts);
     setLoading(false);
   }
 
@@ -246,6 +250,7 @@ export default function WarehousePage() {
             onOpenLowStock={() => openDrawer('LOW_STOCK', { lowStockItems, onViewItem: (item) => openDrawer('PRODUCT_DETAIL', { item, onEdit: (i) => openDrawer('EDIT_ITEM', { item: i, totalUsedCapacity, onSuccess: fetchData }) }) })} 
           />
           <TopStoredProducts items={items} totalCapacity={TOTAL_WAREHOUSE_CAPACITY} />
+          <FastMovingProducts items={fastMovingProducts} />
         </div>
       </div>
 
