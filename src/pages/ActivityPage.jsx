@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import { formatActivityEvent } from "../helpers/activityHelpers";
 import { timeAgo } from "../helpers/timeAgo";
 import { useDrawer } from "../contexts/DrawerContext";
+import DataTable from "../components/ui/DataTable";
 import ActivityTimeline from "../components/dashboard/ActivityTimeline";
 import CalendarTimeline from "../components/activity/CalendarTimeline";
 
@@ -155,6 +156,39 @@ export default function ActivityPage() {
     { value: "30days", label: "Last 30 Days" }
   ];
 
+  const columns = [
+    {
+      key: "date",
+      header: "Date & Time",
+      render: (movement) => <span className="text-[var(--text-secondary)]">{format(movement.rawDate, "MMM d, yyyy h:mm a")}</span>
+    },
+    {
+      key: "productName",
+      header: "Product Name",
+      render: (movement) => <span className="font-medium text-[var(--text-primary)]">{movement.productName}</span>
+    },
+    {
+      key: "event",
+      header: "Event",
+      render: (movement) => {
+        const IconComp = movement.icon;
+        return (
+          <div className="flex items-center gap-3">
+            <div className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${movement.bgClass} ${movement.iconColor}`}>
+              <IconComp size={16} strokeWidth={3} className={movement.iconColor} />
+            </div>
+            <span className="font-medium text-[var(--text-primary)]">{movement.title}</span>
+          </div>
+        );
+      }
+    },
+    {
+      key: "description",
+      header: "Description",
+      render: (movement) => <span className="text-[var(--text-secondary)]">{movement.description}</span>
+    }
+  ];
+
   return (
     <div className="flex flex-col h-full min-h-0 pb-2">
       {/* Click-outside overlay for dropdown */}
@@ -195,7 +229,7 @@ export default function ActivityPage() {
           <div className="relative z-50">
             <button
               onClick={() => setIsDateDropdownOpen(!isDateDropdownOpen)}
-              className="flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md border border-[var(--border)] rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-tertiary)] hover:bg-white/80 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 shadow-sm"
+              className="flex items-center gap-2 px-4 py-2 bg-white/60 dark:bg-black/40 backdrop-blur-md border border-[var(--border)] rounded-xl text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--text-tertiary)] hover:bg-white/80 dark:hover:bg-black/60 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 shadow-sm"
             >
               <Calendar size={16} className="text-[var(--text-tertiary)]" />
               {filterOptions.find(o => o.value === dateFilter)?.label}
@@ -212,7 +246,7 @@ export default function ActivityPage() {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
-                  className="absolute top-full right-0 mt-2 w-48 bg-white/80 backdrop-blur-md border border-[var(--border)] rounded-xl shadow-xl overflow-hidden py-1"
+                  className="absolute top-full right-0 mt-2 w-48 bg-white/80 dark:bg-[#1A1A1A]/90 backdrop-blur-md border border-[var(--border)] rounded-xl shadow-xl overflow-hidden py-1"
                 >
                   {filterOptions.map(option => (
                     <button
@@ -223,8 +257,8 @@ export default function ActivityPage() {
                       }}
                       className={`w-full text-left px-4 py-2.5 text-sm transition-colors ${
                         dateFilter === option.value 
-                          ? 'bg-black/[0.04] text-[var(--text-primary)] font-medium' 
-                          : 'text-[var(--text-secondary)] hover:bg-black/[0.04] hover:text-[var(--text-primary)]'
+                          ? 'bg-black/[0.04] dark:bg-white/[0.08] text-[var(--text-primary)] font-medium' 
+                          : 'text-[var(--text-secondary)] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)]'
                       }`}
                     >
                       {option.label}
@@ -245,7 +279,7 @@ export default function ActivityPage() {
               placeholder="Search activities..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-4 py-2 bg-white/60 backdrop-blur-md border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 focus:border-[var(--accent)] hover:bg-white/80 transition-all placeholder:text-[var(--text-tertiary)] shadow-sm"
+              className="w-full pl-9 pr-4 py-2 bg-white/60 dark:bg-black/40 backdrop-blur-md border border-[var(--border)] rounded-xl text-sm text-[var(--text-primary)] focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/20 focus:border-[var(--accent)] hover:bg-white/80 dark:hover:bg-black/60 transition-all placeholder:text-[var(--text-tertiary)] shadow-sm"
             />
           </div>
         </motion.div>
@@ -258,16 +292,16 @@ export default function ActivityPage() {
         transition={{ duration: 0.4, delay: 0.15, ease: "easeOut" }}
         className="flex items-center gap-2 mb-6"
       >
-        <div className="flex bg-white/40 backdrop-blur-md rounded-xl border border-[var(--border)] p-1 w-full sm:w-auto overflow-x-auto shadow-sm">
+        <div className="flex bg-white/40 dark:bg-black/40 backdrop-blur-md rounded-xl border border-[var(--border)] p-1 w-full sm:w-auto overflow-x-auto shadow-sm">
           <button
             onClick={() => setActiveTab('log')}
-            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'log' ? 'bg-white text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] hover:bg-white/50'}`}
+            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'log' ? 'bg-white dark:bg-[#2A2A2A] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] hover:bg-white/50 dark:hover:bg-white/10'}`}
           >
             Activity Log
           </button>
           <button
             onClick={() => setActiveTab('timeline')}
-            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'timeline' ? 'bg-white text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] hover:bg-white/50'}`}
+            className={`flex-1 sm:flex-none px-4 py-1.5 text-sm font-medium rounded-lg transition-colors whitespace-nowrap ${activeTab === 'timeline' ? 'bg-white dark:bg-[#2A2A2A] text-[var(--text-primary)] shadow-sm' : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] hover:bg-white/50 dark:hover:bg-white/10'}`}
           >
             Activity Timeline
           </button>
@@ -276,103 +310,23 @@ export default function ActivityPage() {
 
       <AnimatePresence mode="wait">
         {activeTab === 'log' && (
-          <motion.div
+          <DataTable
             key="log"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -16 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="bg-white/60 backdrop-blur-md rounded-2xl border border-[var(--border)] shadow-sm flex-1 flex flex-col min-h-0 overflow-hidden"
-          >
-          <div className="overflow-auto flex-1">
-            <table className="w-full text-sm text-left">
-              <thead className="sticky top-0 z-10 bg-white/80 backdrop-blur-md shadow-[0_1px_0_0_var(--border)]">
-                <tr>
-                  <th className="px-6 py-4 text-xs uppercase font-medium text-[var(--text-tertiary)] tracking-wider">
-                    Date & Time
-                  </th>
-                <th className="px-6 py-4 text-xs uppercase font-medium text-[var(--text-tertiary)] tracking-wider">
-                  Product Name
-                </th>
-                <th className="px-6 py-4 text-xs uppercase font-medium text-[var(--text-tertiary)] tracking-wider">
-                  Event
-                </th>
-                <th className="px-6 py-4 text-xs uppercase font-medium text-[var(--text-tertiary)] tracking-wider">
-                  Description
-                </th>
-              </tr>
-            </thead>
-            <motion.tbody
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="divide-y divide-[var(--border)] bg-transparent"
-            >
-              <AnimatePresence>
-                {loading && activities.length === 0 ? (
-                  <tr>
-                    <td colSpan={4} className="px-6 py-12 text-center">
-                      <div className="flex justify-center">
-                        <div className="w-6 h-6 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
-                      </div>
-                    </td>
-                  </tr>
-                ) : filteredActivities.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={4}
-                      className="px-6 py-12 text-center text-sm text-[var(--text-tertiary)]"
-                    >
-                      No activities found matching your search.
-                    </td>
-                  </tr>
-                ) : (
-                  filteredActivities.map((movement) => {
-                    const IconComp = movement.icon;
-
-                    return (
-                      <motion.tr
-                        key={movement.id}
-                        variants={rowVariants}
-                        initial="hidden"
-                        animate="visible"
-                        exit="hidden"
-                        layout
-                        onClick={() => openDrawer('ACTIVITY_DETAIL', { activity: movement, onViewProduct: (productId) => openDrawer('PRODUCT_DETAIL', { productId }) })}
-                        className="border-b border-[var(--border)] last:border-b-0 transition-colors duration-150 hover:bg-white/40 cursor-pointer"
-                      >
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-[var(--text-secondary)]">
-                          {format(movement.rawDate, "MMM d, yyyy h:mm a")}
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="text-sm font-medium text-[var(--text-primary)]">
-                            {movement.productName}
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center gap-3">
-                            <div
-                              className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${movement.bgClass} ${movement.iconColor}`}
-                            >
-                              <IconComp size={16} strokeWidth={3} className={movement.iconColor} />
-                            </div>
-                            <span className="text-sm font-medium text-[var(--text-primary)]">
-                              {movement.title}
-                            </span>
-                          </div>
-                        </td>
-                        <td className="px-6 py-4 text-sm text-[var(--text-secondary)]">
-                          {movement.description}
-                        </td>
-                      </motion.tr>
-                    );
-                  })
-                )}
-              </AnimatePresence>
-            </motion.tbody>
-          </table>
-        </div>
-        </motion.div>
+            columns={columns}
+            data={filteredActivities}
+            loading={loading}
+            emptyIcon={Search}
+            emptyMessage={
+              <div className="mt-3">
+                <p className="font-medium text-[var(--text-secondary)]">No results found</p>
+                <p className="text-sm mt-1 text-[var(--text-tertiary)]">Try adjusting your search or date filter.</p>
+              </div>
+            }
+            onRowClick={(movement) => openDrawer('ACTIVITY_DETAIL', { 
+              activity: movement, 
+              onViewProduct: (productId) => openDrawer('PRODUCT_DETAIL', { productId }) 
+            })}
+          />
         )}
 
         {activeTab === 'timeline' && (

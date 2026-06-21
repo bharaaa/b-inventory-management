@@ -5,7 +5,7 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
   return (
     <>
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-white/60 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
+      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-white/60 dark:bg-black/40 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
         <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
           Low Stock Alerts
         </h2>
@@ -35,7 +35,7 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: i * 0.05, ease: [0.25, 0.46, 0.45, 0.94] }}
                 key={item.id}
-                className="group relative bg-white/60 backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300 hover:bg-white/80 hover:-translate-y-0.5 hover:shadow-lg shadow-sm"
+                className="group relative bg-white/60 dark:bg-black/40 backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4 transition-all duration-300 hover:bg-white/80 dark:hover:bg-black/60 hover:-translate-y-0.5 hover:shadow-lg shadow-sm"
               >
                 <div className="flex items-center gap-4">
                   {item.image_url ? (
@@ -45,7 +45,7 @@ export default function LowStockView({ isOpen, onClose, lowStockItems, onViewIte
                       className="w-14 h-14 rounded-xl object-cover bg-black/[0.02] border border-[var(--border)]"
                     />
                   ) : (
-                    <div className="w-14 h-14 rounded-xl bg-white/40 backdrop-blur-sm border border-[var(--border)] flex items-center justify-center shadow-sm">
+                    <div className="w-14 h-14 rounded-xl bg-white/40 dark:bg-black/20 backdrop-blur-sm border border-[var(--border)] flex items-center justify-center shadow-sm">
                       <Package size={24} className="text-[var(--text-tertiary)]" strokeWidth={1.5} />
                     </div>
                   )}

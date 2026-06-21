@@ -36,7 +36,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
   return (
     <>
       {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-white/60 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
+      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-white/60 dark:bg-black/40 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
         <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
           Value Breakdown
         </h2>
@@ -49,8 +49,8 @@ export default function TotalValueView({ isOpen, onClose, items }) {
       </div>
 
       {/* Grand Total Summary */}
-      <div className="p-6 border-b border-[var(--border)] bg-white/40 backdrop-blur-sm shadow-sm z-0">
-        <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-[var(--border)] shadow-sm flex items-center justify-between">
+      <div className="p-6 border-b border-[var(--border)] bg-white/40 dark:bg-black/20 backdrop-blur-sm shadow-sm z-0">
+        <div className="bg-white/60 dark:bg-black/40 backdrop-blur-md rounded-2xl p-6 border border-[var(--border)] shadow-sm flex items-center justify-between">
           <div>
             <p className="text-sm font-bold text-[var(--text-secondary)] uppercase tracking-wider mb-1">Grand Total</p>
             <p className="text-4xl font-extrabold text-[var(--text-primary)] tracking-tight drop-shadow-sm">
@@ -71,7 +71,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
         
         {sortedItems.length === 0 ? (
           <div className="text-center py-12">
-            <div className="w-16 h-16 rounded-2xl bg-white/60 backdrop-blur-md shadow-sm border border-[var(--border)] flex items-center justify-center mx-auto mb-4 text-[var(--text-tertiary)]">
+            <div className="w-16 h-16 rounded-2xl bg-white/60 dark:bg-black/40 backdrop-blur-md shadow-sm border border-[var(--border)] flex items-center justify-center mx-auto mb-4 text-[var(--text-tertiary)]">
               <Package size={28} />
             </div>
             <p className="text-sm font-semibold text-[var(--text-primary)]">No items found</p>
@@ -104,7 +104,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                 <motion.div 
                   key={item.id}
                   variants={itemVariants}
-                  className="bg-white/60 backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col gap-3 shadow-sm hover:-translate-y-0.5 hover:shadow-lg hover:bg-white/80 transition-all duration-300 group"
+                  className="bg-white/60 dark:bg-black/40 backdrop-blur-md border border-[var(--border)] rounded-2xl p-4 flex flex-col gap-3 shadow-sm hover:-translate-y-0.5 hover:shadow-lg hover:bg-white/80 dark:hover:bg-black/60 transition-all duration-300 group"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex items-center gap-3">
@@ -115,7 +115,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                           className="w-11 h-11 rounded-xl object-cover bg-black/[0.02] border border-[var(--border)] shadow-sm shrink-0"
                         />
                       ) : (
-                        <div className="w-11 h-11 rounded-xl bg-white/40 backdrop-blur-sm border border-[var(--border)] shadow-sm flex items-center justify-center shrink-0">
+                        <div className="w-11 h-11 rounded-xl bg-white/40 dark:bg-black/20 backdrop-blur-sm border border-[var(--border)] shadow-sm flex items-center justify-center shrink-0">
                           <Package size={18} className="text-[var(--text-tertiary)]" />
                         </div>
                       )}
@@ -131,7 +131,7 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                   </div>
 
                   {/* Calculation Breakdown */}
-                  <div className="flex items-center justify-between text-xs px-3.5 py-2.5 bg-white/50 backdrop-blur-sm rounded-xl border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
+                  <div className="flex items-center justify-between text-xs px-3.5 py-2.5 bg-white/50 dark:bg-black/30 backdrop-blur-sm rounded-xl border border-[var(--border)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
                     <span className="text-[var(--text-secondary)] font-medium">
                       <span className="font-bold text-[var(--text-primary)]">{stock}</span> units
                     </span>
