@@ -47,11 +47,11 @@ function StockCell({ item, updateStock }: { item: any, updateStock: (id: string,
   };
 
   return (
-    <div className="flex items-center gap-2" onClick={e => e.stopPropagation()}>
+    <div className="inline-flex items-center gap-0.5 bg-white/40 dark:bg-black/20 backdrop-blur-md border border-[var(--glass-border)] shadow-sm rounded-lg p-0.5" onClick={e => e.stopPropagation()}>
       <button
         onClick={() => updateStock(item.id, item.stock_count, -1)}
         disabled={item.stock_count <= 0}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-black/5 dark:hover:bg-white/15 hover:text-[var(--text-primary)] transition-colors disabled:opacity-30 disabled:cursor-not-allowed"
       >
         <Minus size={14} />
       </button>
@@ -66,12 +66,12 @@ function StockCell({ item, updateStock }: { item: any, updateStock: (id: string,
           onChange={(e) => setValue(e.target.value)}
           onBlur={handleBlur}
           onKeyDown={handleKeyDown}
-          className="w-12 text-center font-medium bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded px-1 py-0.5 text-sm focus:outline-none focus:border-[var(--accent)]"
+          className="w-12 text-center font-medium bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--accent)] rounded-md px-1 py-0.5 text-sm focus:outline-none focus:ring-1 focus:ring-[var(--accent)]"
         />
       ) : (
         <span
           onClick={() => setIsEditing(true)}
-          className="w-12 text-center font-medium cursor-text hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)] rounded px-1 py-0.5 transition-colors tooltip-trigger"
+          className="w-12 text-center font-medium cursor-text hover:bg-black/5 dark:hover:bg-white/15 hover:text-[var(--text-primary)] rounded-md px-1 py-0.5 transition-colors tooltip-trigger"
           title="Click to edit stock"
         >
           {item.stock_count.toLocaleString()}
@@ -80,7 +80,7 @@ function StockCell({ item, updateStock }: { item: any, updateStock: (id: string,
 
       <button
         onClick={() => updateStock(item.id, item.stock_count, 1)}
-        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)] transition-colors"
+        className="p-1 rounded-md text-[var(--text-tertiary)] hover:bg-black/5 dark:hover:bg-white/15 hover:text-[var(--text-primary)] transition-colors"
       >
         <Plus size={14} />
       </button>
@@ -155,10 +155,10 @@ export default function InventoryPage() {
         <div className="flex justify-end" onClick={e => e.stopPropagation()}>
           <button
             onClick={() => openDrawer('EDIT_ITEM', { item, totalUsedCapacity, onSuccess: fetchItems })}
-            className="p-1.5 rounded-lg text-[var(--text-tertiary)] hover:bg-black/[0.04] dark:hover:bg-white/[0.04] hover:text-[var(--text-primary)] transition-colors tooltip-trigger"
+            className="p-2 rounded-lg bg-white/40 dark:bg-black/20 backdrop-blur-md border border-[var(--glass-border)] shadow-sm text-[var(--text-tertiary)] hover:bg-white/60 dark:hover:bg-white/15 hover:text-[var(--accent)] hover:border-[var(--accent)]/30 transition-all tooltip-trigger"
             title="Edit Item"
           >
-            <Pencil size={16} />
+            <Pencil size={14} strokeWidth={2.5} />
           </button>
         </div>
       )
