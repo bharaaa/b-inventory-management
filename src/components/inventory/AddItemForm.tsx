@@ -246,7 +246,7 @@ export default function AddItemForm({
         <button
           type="button"
           onClick={onClose}
-          className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/50 dark:bg-black/30 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white hover:text-[var(--text-primary)] shadow-sm transition-all duration-200 cursor-pointer"
+          className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/50 dark:bg-black/30 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white dark:hover:bg-white/10 hover:text-[var(--text-primary)] shadow-sm transition-all duration-200 cursor-pointer"
         >
           Cancel
         </button>
