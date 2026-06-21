@@ -40,8 +40,9 @@ export function CommandPalette() {
   const commandContext = useMemo(() => ({
     navigate,
     openDrawer,
-    closePalette
-  }), [navigate, openDrawer, closePalette]);
+    closePalette,
+    products
+  }), [navigate, openDrawer, closePalette, products]);
 
   // Setup Fuse instances
   const commandsFuse = useMemo(() => new Fuse(staticCommands, {

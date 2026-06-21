@@ -22,7 +22,7 @@ export interface CommandContext {
   navigate: (path: string) => void;
   openDrawer: (type: string, data?: any) => void;
   closePalette: () => void;
-  // Can add more context methods here as needed
+  products: any[];
 }
 
 export interface Command {
@@ -147,9 +147,16 @@ export const staticCommands: Command[] = [
     category: 'Smart',
     icon: AlertTriangle,
     keywords: ['low stock', 'out of stock', 'empty', 'critical'],
-    action: ({ navigate, closePalette }) => {
-      // For now, take them to inventory and they can sort by stock
-      navigate('/inventory');
+    action: ({ openDrawer, closePalette, products }) => {
+      const lowStockItems = products.filter(p => p.stock_count < 10);
+      const totalUsedCapacity = products.reduce((sum, item) => sum + (item.stock_count || 0), 0);
+      openDrawer('LOW_STOCK', { 
+        lowStockItems, 
+        onViewItem: (item: any) => openDrawer('PRODUCT_DETAIL', { 
+          item, 
+          onEdit: (i: any) => openDrawer('EDIT_ITEM', { item: i, totalUsedCapacity }) 
+        }) 
+      });
       closePalette();
     }
   },
