@@ -2,34 +2,32 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ExternalLink, Calendar, Info, Box } from 'lucide-react';
 import { format } from 'date-fns';
 
+import DrawerHeader from "../ui/DrawerHeader";
+
 export default function ActivityDetailView({ isOpen, onClose, activity, onViewProduct }) {
   if (!activity) return null;
 
   const Icon = activity.icon;
 
+  const customTitle = (
+    <div className="flex items-center gap-3">
+      <div className={`p-2 rounded-xl ${activity.bgClass}`}>
+        <Icon size={18} strokeWidth={3} className={activity.iconColor} />
+      </div>
+      <div>
+        <h2 className="text-base font-semibold text-[var(--text-primary)]">
+          {activity.title}
+        </h2>
+        <p className="text-xs text-[var(--text-tertiary)]">
+          {format(activity.rawDate, 'PPp')}
+        </p>
+      </div>
+    </div>
+  );
+
   return (
     <>
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/60 dark:bg-black/40 backdrop-blur-md shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
-              <div className="flex items-center gap-3">
-                <div className={`p-2 rounded-xl ${activity.bgClass}`}>
-                  <Icon size={18} strokeWidth={3} className={activity.iconColor} />
-                </div>
-                <div>
-                  <h2 className="text-base font-semibold text-[var(--text-primary)]">
-                    {activity.title}
-                  </h2>
-                  <p className="text-xs text-[var(--text-tertiary)]">
-                    {format(activity.rawDate, 'PPp')}
-                  </p>
-                </div>
-              </div>
-              <button
-                onClick={onClose}
-                className="p-2 text-[var(--text-tertiary)] hover:text-[var(--text-primary)] hover:bg-black/[0.04] rounded-full transition-colors"
-              >
-                <X size={20} />
-              </button>
-            </div>
+      <DrawerHeader title={customTitle} onClose={onClose} />
 
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-6 space-y-6">

@@ -1,24 +1,14 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, AlertTriangle, ArrowRight, Package } from 'lucide-react';
+import DrawerHeader from "../ui/DrawerHeader";
 
 export default function LowStockView({ isOpen, onClose, lowStockItems, onViewItem }) {
   return (
     <>
-      {/* Header */}
-      <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-white/60 dark:bg-black/40 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
-        <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
-          Low Stock Alerts
-        </h2>
-        <button
-          onClick={onClose}
-          className="w-8 h-8 flex items-center justify-center rounded-lg bg-black/[0.02] hover:bg-black/[0.04] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] cursor-pointer"
-        >
-          <X size={20} />
-        </button>
-      </div>
+      <DrawerHeader title="Low Stock Alerts" onClose={onClose} />
 
       {/* Content List */}
-      <div className="flex-1 overflow-y-auto p-6 scrollbar-thin">
+      <div className="flex-1 overflow-y-auto p-6 scrollbar-thin bg-white/70 dark:bg-black/70 backdrop-blur-sm">
         {lowStockItems.length === 0 ? (
           <div className="flex flex-col items-center justify-center h-full py-12 text-center">
             <div className="w-20 h-20 rounded-[28px] bg-[var(--success)]/10 backdrop-blur-md flex items-center justify-center mx-auto mb-6 text-[var(--success)] shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_8px_24px_rgba(16,185,129,0.15)] ring-1 ring-[var(--success)]/20">

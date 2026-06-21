@@ -1,11 +1,24 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { X, Package, DollarSign, Tag, Calendar, Activity, ArrowUpRight, ArrowDownRight, ArrowRight, Settings } from 'lucide-react';
-import { supabase } from '../../services/supabaseClient';
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  X,
+  Package,
+  DollarSign,
+  Tag,
+  Calendar,
+  Activity,
+  ArrowUpRight,
+  ArrowDownRight,
+  ArrowRight,
+  Settings,
+} from "lucide-react";
+import { supabase } from "../../services/supabaseClient";
 import { formatActivityEvent } from "../../helpers/activityHelpers";
-import { formatDate } from '../../helpers/formatDate';
-import { timeAgo } from '../../helpers/timeAgo';
-import { useDrawer } from '../../contexts/DrawerContext';
+import { formatDate } from "../../helpers/formatDate";
+import { timeAgo } from "../../helpers/timeAgo";
+import { useDrawer } from "../../contexts/DrawerContext";
+import DrawerHeader from "../ui/DrawerHeader";
+import DrawerFooter from "../ui/DrawerFooter";
 
 function getStatusBadge(stockCount) {
   if (stockCount >= 50) {
@@ -29,7 +42,13 @@ function getStatusBadge(stockCount) {
   }
 }
 
-export default function ProductDetailView({ isOpen, onClose, item: initialItem, productId, onEdit }) {
+export default function ProductDetailView({
+  isOpen,
+  onClose,
+  item: initialItem,
+  productId,
+  onEdit,
+}) {
   const [fetchedItem, setFetchedItem] = useState(null);
   const [movements, setMovements] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -42,17 +61,17 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
   useEffect(() => {
     async function fetchProduct() {
       if (!isOpen || initialItem || !productId) return;
-      
+
       const { data, error } = await supabase
-        .from('products')
+        .from("products")
         .select(`*, categories(name)`)
-        .eq('id', productId)
+        .eq("id", productId)
         .single();
-        
+
       if (!error && data) {
         setFetchedItem({
           ...data,
-          category_name: data.categories?.name
+          category_name: data.categories?.name,
         });
       }
     }
@@ -64,38 +83,46 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
     async function fetchMovements() {
       if (!isOpen || !currentProductId) return;
       setLoading(true);
-      
+
       const [stockResponse, activityResponse] = await Promise.all([
         supabase
-          .from('stock_movements')
-          .select('*')
-          .eq('product_id', currentProductId)
-          .order('created_at', { ascending: false })
+          .from("stock_movements")
+          .select("*")
+          .eq("product_id", currentProductId)
+          .order("created_at", { ascending: false })
           .limit(20),
         supabase
-          .from('activity_log')
-          .select('*')
-          .eq('product_id', currentProductId)
-          .order('created_at', { ascending: false })
-          .limit(20)
+          .from("activity_log")
+          .select("*")
+          .eq("product_id", currentProductId)
+          .order("created_at", { ascending: false })
+          .limit(20),
       ]);
-        
+
       const merged = [];
       if (!stockResponse.error && stockResponse.data) {
-        merged.push(...stockResponse.data.map(m => formatActivityEvent({
-          ...m,
-          _type: 'stock'
-        })));
+        merged.push(
+          ...stockResponse.data.map((m) =>
+            formatActivityEvent({
+              ...m,
+              _type: "stock",
+            }),
+          ),
+        );
       }
       if (!activityResponse.error && activityResponse.data) {
-        merged.push(...activityResponse.data.map(a => formatActivityEvent({
-          ...a,
-          _type: 'activity'
-        })));
+        merged.push(
+          ...activityResponse.data.map((a) =>
+            formatActivityEvent({
+              ...a,
+              _type: "activity",
+            }),
+          ),
+        );
       }
 
       merged.sort((a, b) => b.rawDate - a.rawDate);
-      
+
       setMovements(merged.slice(0, 50));
       setLoading(false);
     }
@@ -105,152 +132,154 @@ export default function ProductDetailView({ isOpen, onClose, item: initialItem, 
   return (
     <>
       {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-[var(--border)] bg-white/60 dark:bg-black/40 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)]">
-              <div className="flex items-center gap-3">
-                <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
-                  {item?.name}
-                </h2>
-                {item && getStatusBadge(item.stock_count)}
+      <DrawerHeader
+        title={item?.name}
+        badge={item && getStatusBadge(item.stock_count)}
+        onClose={onClose}
+      />
+
+      {/* Scrollable Body */}
+      <div className="flex-1 overflow-y-auto p-6 space-y-8 bg-white/70 dark:bg-black/70 backdrop-blur-sm">
+        {/* Overview Section */}
+        <section>
+          <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
+            <Activity size={16} className="text-[var(--text-tertiary)]" />
+            Overview
+          </h3>
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
+              <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
+                <Package size={14} />
+                <span className="text-xs font-medium">Current Stock</span>
               </div>
-              <button
-                onClick={onClose}
-                className="text-[var(--text-tertiary)] hover:text-[var(--text-secondary)] transition-colors p-1 rounded-md"
-              >
-                <X size={20} />
-              </button>
+              <p className="text-xl font-bold text-[var(--text-primary)]">
+                {item?.stock_count}{" "}
+                <span className="text-sm font-normal text-[var(--text-tertiary)]">
+                  units
+                </span>
+              </p>
             </div>
+            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
+              <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
+                <DollarSign size={14} />
+                <span className="text-xs font-medium">Unit Price</span>
+              </div>
+              <p className="text-xl font-bold text-[var(--text-primary)]">
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format(item?.price || 0)}
+              </p>
+            </div>
+            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
+              <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
+                <DollarSign size={14} />
+                <span className="text-xs font-medium">Total Value</span>
+              </div>
+              <p className="text-xl font-bold text-[var(--text-primary)]">
+                {new Intl.NumberFormat("en-US", {
+                  style: "currency",
+                  currency: "USD",
+                }).format((item?.stock_count || 0) * (item?.price || 0))}
+              </p>
+            </div>
+            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
+              <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
+                <Tag size={14} />
+                <span className="text-xs font-medium">Category</span>
+              </div>
+              <p className="text-sm font-medium text-[var(--text-primary)] mt-1 truncate">
+                {item?.categories?.name || "Uncategorized"}
+              </p>
+            </div>
+          </div>
+        </section>
 
-            {/* Scrollable Body */}
-            <div className="flex-1 overflow-y-auto p-6 space-y-8">
-              
-              {/* Overview Section */}
-              <section>
-                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-4 flex items-center gap-2">
-                  <Activity size={16} className="text-[var(--text-tertiary)]" />
-                  Overview
-                </h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
-                    <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
-                      <Package size={14} />
-                      <span className="text-xs font-medium">Current Stock</span>
-                    </div>
-                    <p className="text-xl font-bold text-[var(--text-primary)]">
-                      {item?.stock_count} <span className="text-sm font-normal text-[var(--text-tertiary)]">units</span>
-                    </p>
-                  </div>
-                  <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
-                    <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
-                      <DollarSign size={14} />
-                      <span className="text-xs font-medium">Unit Price</span>
-                    </div>
-                    <p className="text-xl font-bold text-[var(--text-primary)]">
-                      {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item?.price || 0)}
-                    </p>
-                  </div>
-                  <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
-                    <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
-                      <DollarSign size={14} />
-                      <span className="text-xs font-medium">Total Value</span>
-                    </div>
-                    <p className="text-xl font-bold text-[var(--text-primary)]">
-                      {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format((item?.stock_count || 0) * (item?.price || 0))}
-                    </p>
-                  </div>
-                  <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
-                    <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
-                      <Tag size={14} />
-                      <span className="text-xs font-medium">Category</span>
-                    </div>
-                    <p className="text-sm font-medium text-[var(--text-primary)] mt-1 truncate">
-                      {item?.categories?.name || "Uncategorized"}
-                    </p>
-                  </div>
-                </div>
-              </section>
+        {/* Activity Timeline */}
+        <section>
+          <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-5 flex items-center gap-2">
+            <Calendar size={16} className="text-[var(--text-tertiary)]" />
+            Activity History
+          </h3>
 
-              {/* Activity Timeline */}
-              <section>
-                <h3 className="text-sm font-semibold text-[var(--text-primary)] mb-5 flex items-center gap-2">
-                  <Calendar size={16} className="text-[var(--text-tertiary)]" />
-                  Activity History
-                </h3>
-                
-                {loading ? (
-                  <div className="flex justify-center py-8">
-                    <div className="w-6 h-6 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
-                  </div>
-                ) : movements.length === 0 ? (
-                  <div className="text-center py-8 bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] border-dashed rounded-xl shadow-sm">
-                    <p className="text-sm text-[var(--text-secondary)]">No activity recorded yet.</p>
-                  </div>
-                ) : (
-                  <div className="space-y-6">
-                    {movements.map((movement, index) => {
-                      const isLast = index === movements.length - 1;
-                      const IconComp = movement.icon;
+          {loading ? (
+            <div className="flex justify-center py-8">
+              <div className="w-6 h-6 border-2 border-[var(--accent)] border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : movements.length === 0 ? (
+            <div className="text-center py-8 bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] border-dashed rounded-xl shadow-sm">
+              <p className="text-sm text-[var(--text-secondary)]">
+                No activity recorded yet.
+              </p>
+            </div>
+          ) : (
+            <div className="space-y-6">
+              {movements.map((movement, index) => {
+                const isLast = index === movements.length - 1;
+                const IconComp = movement.icon;
 
-                      return (
-                        <div key={movement.id} className="relative flex gap-4">
-                          {/* Timeline Line */}
-                          {!isLast && (
-                            <div className="absolute left-[15px] top-8 bottom-[-24px] w-px bg-[var(--border)]" />
+                return (
+                  <div key={movement.id} className="relative flex gap-4">
+                    {/* Timeline Line */}
+                    {!isLast && (
+                      <div className="absolute left-[15px] top-8 bottom-[-24px] w-px bg-[var(--border)]" />
+                    )}
+
+                    {/* Icon Badge */}
+                    <div
+                      className={`relative z-10 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${movement.bgClass} ${movement.iconColor}`}
+                    >
+                      <IconComp size={14} strokeWidth={3} />
+                    </div>
+
+                    {/* Content */}
+                    <div className="flex-1 pt-1.5 pb-2">
+                      <div className="flex justify-between items-start mb-1">
+                        <div>
+                          <p className="text-sm font-medium text-[var(--text-primary)]">
+                            {movement.title}
+                          </p>
+                          {movement.description && (
+                            <p className="text-sm text-[var(--text-secondary)] mt-0.5">
+                              {movement.description}
+                            </p>
                           )}
-                          
-                          {/* Icon Badge */}
-                          <div className={`relative z-10 w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${movement.bgClass} ${movement.iconColor}`}>
-                            <IconComp size={14} strokeWidth={3} />
-                          </div>
-                          
-                          {/* Content */}
-                          <div className="flex-1 pt-1.5 pb-2">
-                            <div className="flex justify-between items-start mb-1">
-                              <div>
-                                <p className="text-sm font-medium text-[var(--text-primary)]">
-                                  {movement.title}
-                                </p>
-                                {movement.description && (
-                                  <p className="text-sm text-[var(--text-secondary)] mt-0.5">
-                                    {movement.description}
-                                  </p>
-                                )}
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2 text-xs text-[var(--text-tertiary)] mt-1.5">
-                              <span>{formatDate(movement.createdAt)}</span>
-                              <span>•</span>
-                              <span>{timeAgo(movement.createdAt)}</span>
-                            </div>
-                          </div>
                         </div>
-                      );
-                    })}
+                      </div>
+                      <div className="flex items-center gap-2 text-xs text-[var(--text-tertiary)] mt-1.5">
+                        <span>{formatDate(movement.createdAt)}</span>
+                        <span>•</span>
+                        <span>{timeAgo(movement.createdAt)}</span>
+                      </div>
+                    </div>
                   </div>
-                )}
-              </section>
-
+                );
+              })}
             </div>
+          )}
+        </section>
+      </div>
 
-            {/* Footer */}
-            <div className="p-6 border-t border-[var(--border)] bg-white/40 dark:bg-black/20 backdrop-blur-sm flex gap-3">
-              <button
-                type="button"
-                onClick={onClose}
-                className="flex-1 px-4 py-2.5 text-sm font-medium text-[var(--text-secondary)] bg-white/50 dark:bg-black/30 backdrop-blur-sm border border-[var(--border)] rounded-xl hover:bg-white dark:hover:bg-black/40 hover:text-[var(--text-primary)] transition-colors cursor-pointer shadow-sm"
-              >
-                Close
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  if (onEdit) onEdit(item);
-                  else openDrawer('EDIT_ITEM', { item });
-                }}
-                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent-fg)] bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-all duration-200 cursor-pointer"
-              >
-                Edit Item <ArrowRight size={16} />
-              </button>
-            </div>
+      {/* Footer Actions */}
+      <DrawerFooter>
+        <button
+          type="button"
+          onClick={onClose}
+          className="px-4 py-2.5 text-sm font-semibold text-[var(--text-primary)] hover:bg-black/[0.04] rounded-xl transition-colors cursor-pointer"
+        >
+          Close
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            if (onEdit) onEdit(item);
+            else openDrawer("EDIT_ITEM", { item });
+          }}
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent-fg)] bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-all duration-200 cursor-pointer"
+        >
+          Edit Item <ArrowRight size={16} />
+        </button>
+      </DrawerFooter>
     </>
   );
 }

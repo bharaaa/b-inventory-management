@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, Trash2, AlertCircle } from 'lucide-react';
 import { supabase } from '../../services/supabaseClient';
+import DrawerHeader from "../ui/DrawerHeader";
+import DrawerFooter from "../ui/DrawerFooter";
 import { useToast } from '../../contexts/ToastContext';
 import { TOTAL_WAREHOUSE_CAPACITY } from '../../config/constants';
 import CategoryDropdown from '../ui/CategoryDropdown';
@@ -147,20 +149,10 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
   return (
     <>
       {/* Header */}
-            <div className="flex items-center justify-between px-6 py-5 border-b border-[var(--border)] bg-white/60 dark:bg-black/40 backdrop-blur-sm shadow-[0_1px_0_rgba(0,0,0,0.05)] relative z-10">
-              <h2 className="text-lg font-bold text-[var(--text-primary)] tracking-tight">
-                Edit Item
-              </h2>
-              <button
-                onClick={onClose}
-                className="w-8 h-8 flex items-center justify-center rounded-lg bg-black/[0.02] hover:bg-black/[0.04] backdrop-blur-sm text-[var(--text-tertiary)] hover:text-[var(--text-primary)] transition-all duration-200 border border-[var(--border)] cursor-pointer"
-              >
-                <X size={20} />
-              </button>
-            </div>
+      <DrawerHeader title="Edit Item" onClose={onClose} />
 
             {/* Form Body - Scrollable */}
-            <form id="edit-item-form" onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5">
+            <form id="edit-item-form" onSubmit={handleSubmit} className="flex-1 overflow-y-auto p-6 space-y-5 bg-white/70 dark:bg-black/70 backdrop-blur-sm">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
                   Item Name
@@ -265,8 +257,7 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
               </div>
             </form>
 
-            {/* Sticky Footer */}
-            <div className="p-6 border-t border-[var(--border)] bg-white/40 dark:bg-black/20 backdrop-blur-sm flex gap-3">
+            <DrawerFooter>
               <button
                 type="button"
                 onClick={handleDelete}
@@ -290,7 +281,7 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
               >
                 {loading ? <Loader2 size={16} className="animate-spin" /> : 'Save Changes'}
               </button>
-            </div>
+            </DrawerFooter>
           {/* Delete Confirmation Full-Screen Overlay */}
           <AnimatePresence>
             {showDeleteConfirm && (
