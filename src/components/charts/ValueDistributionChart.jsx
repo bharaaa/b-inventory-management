@@ -28,7 +28,7 @@ function CustomTooltip({ active, payload }) {
   }).format(data.value);
 
   return (
-    <div className="bg-white/80 backdrop-blur-xl rounded-xl border border-black/[0.06] shadow-lg p-3 min-w-[160px]">
+    <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-black/[0.06] shadow-lg p-3 min-w-[160px]">
       <p className="text-xs font-medium text-[var(--text-primary)] mb-1 truncate">
         {data.name}
       </p>
@@ -102,7 +102,7 @@ export default function ValueDistributionChart({ items }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="card"
+      className="bg-black/3 dark:bg-[#1A1A1A]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] shadow-sm p-6"
     >
       {/* Header */}
       <div className="mb-2">

@@ -42,11 +42,11 @@ export default function DataTable({
     >
       <div className="overflow-auto flex-1">
         <table className="w-full text-sm text-left">
-          <thead className="sticky top-0 z-10 bg-[var(--bg-card)] backdrop-blur-md shadow-[0_1px_0_0_var(--border)]">
+          <thead className="sticky top-0 z-10">
             <tr>
               {/* Selection Checkbox Header */}
               {selectionMode && (
-                <th className="p-0 align-middle">
+                <th className="p-0 align-middle bg-white/90 dark:bg-[#1A1A1A]/90 backdrop-blur-2xl border-b border-[var(--border)] shadow-sm">
                   <div className={`transition-all duration-300 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] overflow-hidden flex items-center justify-center py-4 w-[68px] px-6 opacity-100`}>
                     <div className="relative flex items-center justify-center w-5 h-5 flex-shrink-0">
                       <input
@@ -65,7 +65,7 @@ export default function DataTable({
               {columns.map((col, idx) => (
                 <th
                   key={col.key || idx}
-                  className={`px-6 py-4 text-xs uppercase font-medium text-[var(--text-tertiary)] tracking-wider ${col.width || ""} ${col.align ? `text-${col.align}` : ""}`}
+                  className={`bg-white/90 dark:bg-[#1A1A1A]/90 backdrop-blur-2xl border-b border-[var(--border)] shadow-sm px-6 py-4 text-xs uppercase font-medium text-[var(--text-tertiary)] tracking-wider ${col.width || ""} ${col.align ? `text-${col.align}` : ""}`}
                 >
                   {col.header}
                 </th>

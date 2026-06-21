@@ -97,9 +97,9 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
         <div className="min-w-max w-full flex flex-col flex-1 h-full min-h-[800px]">
           
           {/* Sticky Header (Dates) */}
-          <div className="flex border-b border-[var(--border)] bg-[var(--bg-card)] backdrop-blur-md sticky top-0 z-40">
+          <div className="flex border-b border-[var(--border)] bg-white/90 dark:bg-[#1A1A1A]/90 backdrop-blur-2xl sticky top-0 z-40">
             {/* Corner Cell (Time Axis Label space) */}
-            <div className="w-20 shrink-0 border-r border-[var(--border)] bg-[var(--bg-card)] backdrop-blur-md sticky left-0 z-50 shadow-[2px_0_5px_rgba(0,0,0,0.02)]" />
+            <div className="w-20 shrink-0 border-r border-[var(--border)] bg-white/90 dark:bg-[#1A1A1A]/90 backdrop-blur-2xl sticky left-0 z-50 shadow-[2px_0_5px_rgba(0,0,0,0.02)]" />
             
             {/* Date Columns Header */}
             {columns.map((col, idx) => (
@@ -123,7 +123,7 @@ export default function CalendarTimeline({ activities = [], dateFilter = "all", 
             <div className="flex flex-1 relative h-full w-full">
               
               {/* Sticky Y-Axis (Hours) */}
-              <div className="w-20 shrink-0 border-r border-[var(--border)] bg-[var(--bg-card)] backdrop-blur-md sticky left-0 z-30 shadow-[2px_0_5px_rgba(0,0,0,0.02)] relative">
+              <div className="w-20 shrink-0 border-r border-[var(--border)] bg-white/90 dark:bg-[#1A1A1A]/90 backdrop-blur-2xl sticky left-0 z-30 shadow-[2px_0_5px_rgba(0,0,0,0.02)] relative">
                 {hoursAxis.map((h, i) => (
                   <div 
                     key={i} 

@@ -163,7 +163,7 @@ export default function InventoryTable({ items = [], loading = false }) {
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="card flex flex-col h-full"
+      className="bg-black/3 dark:bg-[#1A1A1A]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] shadow-sm p-6 flex flex-col flex-1 overflow-hidden"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
