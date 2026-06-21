@@ -160,7 +160,8 @@ export const StockService = {
       .from('stock_movements')
       .insert([{
         product_id: productId,
-        quantity: delta
+        quantity: delta,
+        movement_type: delta > 0 ? 'inbound' : 'outbound'
       }]);
 
     if (moveError) {
