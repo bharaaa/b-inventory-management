@@ -84,7 +84,7 @@ export default function Layout() {
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
                 transition={{ type: "spring", stiffness: 350, damping: 35 }}
-                className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-[7px] border-r border-[var(--border)]"
+                className="fixed inset-y-0 left-0 z-50 w-64 shadow-[var(--glass-shadow-lg)]"
               >
                 <Sidebar
                   collapsed={false}
