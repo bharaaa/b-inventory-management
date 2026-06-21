@@ -7,6 +7,7 @@ import DrawerFooter from "../ui/DrawerFooter";
 import { useToast } from "../../contexts/ToastContext";
 import { TOTAL_WAREHOUSE_CAPACITY } from "../../config/constants";
 import CategoryDropdown from "../ui/CategoryDropdown";
+import { useCurrency } from "../../hooks/useCurrency";
 
 export default function AddItemForm({
   isOpen,
@@ -15,6 +16,7 @@ export default function AddItemForm({
   totalUsedCapacity = 0,
 }) {
   const { addToast } = useToast();
+  const { currency, convertToBasePrice, formatPrice } = useCurrency();
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [formData, setFormData] = useState({
@@ -69,7 +71,7 @@ export default function AddItemForm({
           name: formData.name,
           category_id: formData.category_id,
           stock_count: parseInt(formData.stock_count, 10),
-          price: parseFloat(formData.price) || 0,
+          price: convertToBasePrice(parseFloat(formData.price) || 0),
           last_updated: new Date().toISOString(),
         },
       ])
@@ -81,7 +83,7 @@ export default function AddItemForm({
         {
           product_id: newProduct.id,
           activity_type: "product_created",
-          description: `Product created with initial price of $${newProduct.price} and ${newProduct.stock_count} stock.`,
+          description: `Product created with initial price of ${formatPrice(newProduct.price)} and ${newProduct.stock_count} stock.`,
         },
       ]);
     }
@@ -192,14 +194,14 @@ export default function AddItemForm({
               htmlFor="price"
               className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5"
             >
-              Price (USD)
+              Price ({currency})
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                 <span
                   className={`text-sm ${isInvalidPrice ? "text-[var(--error)]" : "text-[var(--text-tertiary)]"}`}
                 >
-                  $
+                  {currency === 'USD' ? '$' : 'Rp'}
                 </span>
               </div>
               <input
@@ -234,7 +236,7 @@ export default function AddItemForm({
             </div>
             {isInvalidPrice && (
               <p className="text-[11px] text-[var(--error)] font-medium mt-1.5 flex items-center gap-1">
-                Price cannot be less than $0
+                Price cannot be less than 0
               </p>
             )}
           </div>

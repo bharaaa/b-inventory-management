@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 import { motion } from 'framer-motion';
+import { useCurrency } from '../../hooks/useCurrency';
 
 const timeRanges = ['7D', '30D', '90D'];
 
@@ -48,7 +49,7 @@ function CustomTooltip({ active, payload, label }) {
   );
 }
 
-export default function StockMovementChart({ data }) {
+export default function StockMovementChart({ data = [], loading = false }) {
   const [activeRange, setActiveRange] = useState('30D');
 
   const filteredData = (() => {
@@ -67,11 +68,8 @@ export default function StockMovementChart({ data }) {
   const totalSalesValue = filteredData.reduce((sum, day) => sum + (day.salesValue || 0), 0);
   const totalOrdersCount = filteredData.reduce((sum, day) => sum + (day.ordersCount || 0), 0);
 
-  const formatCurrency = (val) => {
-    if (val === 0) return '$0';
-    if (val >= 1000) return `$${(val / 1000).toFixed(1)}k`;
-    return `$${val.toLocaleString()}`;
-  };
+  const { formatPrice } = useCurrency();
+  const formatValue = (val) => formatPrice(val, true);
 
   const formatCount = (val) => {
     if (val === 0) return '0';
@@ -111,7 +109,7 @@ export default function StockMovementChart({ data }) {
       {/* Summary values */}
       <div className="flex items-baseline gap-3 mb-5">
         <span className="text-2xl font-bold text-[var(--text-primary)] tracking-tight">
-          {formatCurrency(totalSalesValue)}
+          {formatValue(totalSalesValue)}
         </span>
         <span className="text-lg text-[var(--text-tertiary)] font-medium">
           {formatCount(totalOrdersCount)} orders

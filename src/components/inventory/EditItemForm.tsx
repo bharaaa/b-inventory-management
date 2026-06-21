@@ -7,9 +7,11 @@ import DrawerFooter from "../ui/DrawerFooter";
 import { useToast } from '../../contexts/ToastContext';
 import { TOTAL_WAREHOUSE_CAPACITY } from '../../config/constants';
 import CategoryDropdown from '../ui/CategoryDropdown';
+import { useCurrency } from '../../hooks/useCurrency';
 
 export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUsedCapacity = 0 }) {
   const { addToast } = useToast();
+  const { currency, formatPrice, convertPrice, convertToBasePrice } = useCurrency();
   const [loading, setLoading] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [categories, setCategories] = useState([]);
@@ -26,10 +28,10 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
         name: item.name || '',
         category_id: item.category_id || '',
         stock_count: item.stock_count || 0,
-        price: item.price || ''
+        price: item.price ? convertPrice(item.price) : ''
       });
     }
-  }, [item]);
+  }, [item, convertPrice]);
 
   useEffect(() => {
     async function fetchCategories() {
@@ -78,18 +80,18 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
         name: formData.name,
         category_id: formData.category_id,
         stock_count: parseInt(formData.stock_count, 10),
-        price: newPrice,
+        price: convertToBasePrice(newPrice),
         last_updated: new Date().toISOString()
       })
       .eq('id', item.id);
 
     if (!error) {
       const logs = [];
-      if (newPrice !== oldPrice) {
+      if (newPrice !== parseFloat(convertPrice(oldPrice).toString())) {
         logs.push({
           product_id: item.id,
           activity_type: 'price_update',
-          description: `Price changed from $${oldPrice} to $${newPrice}`
+          description: `Price changed from ${formatPrice(oldPrice)} to ${formatPrice(convertToBasePrice(newPrice))}`
         });
       }
       if (formData.name !== item.name) {
@@ -214,13 +216,13 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
                   )}
                 </div>
                 <div className="flex-1">
-                  <label htmlFor="price" className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
-                    Price (USD)
-                  </label>
-                  <div className="relative">
-                    <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                      <span className={`text-sm ${isInvalidPrice ? 'text-[var(--error)]' : 'text-[var(--text-tertiary)]'}`}>$</span>
-                    </div>
+                    <label htmlFor="price" className="block text-sm font-medium text-[var(--text-secondary)] mb-1.5">
+                      Price ({currency})
+                    </label>
+                    <div className="relative">
+                      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <span className={`text-sm ${isInvalidPrice ? 'text-[var(--error)]' : 'text-[var(--text-tertiary)]'}`}>{currency === 'USD' ? '$' : 'Rp'}</span>
+                      </div>
                     <input
                       id="price"
                       type="number"
@@ -242,17 +244,17 @@ export default function EditItemForm({ isOpen, onClose, item, onSuccess, totalUs
                       }}
                       className={`w-full bg-white/60 dark:bg-black/40 backdrop-blur-sm shadow-sm border ${isInvalidPrice ? 'border-[var(--error)] focus:ring-4 focus:ring-[var(--error)]/20 text-[var(--error)]' : 'border-[var(--border)] focus:border-[var(--accent)] focus:ring-4 focus:ring-[var(--accent)]/10 hover:border-[var(--accent)]/50'} rounded-xl pl-8 pr-4 py-2.5 text-sm outline-none focus:bg-white dark:focus:bg-black/60 hover:bg-white/80 dark:hover:bg-black/60 transition-all duration-200`}
                     />
+                      {isInvalidPrice && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--error)]">
+                          <AlertCircle size={16} />
+                        </div>
+                      )}
+                    </div>
                     {isInvalidPrice && (
-                      <div className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--error)]">
-                        <AlertCircle size={16} />
-                      </div>
+                      <p className="text-[11px] text-[var(--error)] font-medium mt-1.5 flex items-center gap-1">
+                        Price cannot be less than 0
+                      </p>
                     )}
-                  </div>
-                  {isInvalidPrice && (
-                    <p className="text-[11px] text-[var(--error)] font-medium mt-1.5 flex items-center gap-1">
-                      Price cannot be less than $0
-                    </p>
-                  )}
                 </div>
               </div>
             </form>

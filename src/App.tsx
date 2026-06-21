@@ -13,6 +13,7 @@ import { ToastProvider } from "./contexts/ToastContext";
 import { DrawerProvider } from "./contexts/DrawerContext";
 import { PreferencesProvider } from "./contexts/PreferencesContext";
 import { CommandPaletteProvider } from "./contexts/CommandPaletteContext";
+import { CurrencyProvider } from "./contexts/CurrencyContext";
 import GlobalSideDrawer from "./components/ui/GlobalSideDrawer";
 import { CommandPalette } from "./components/command-palette/CommandPalette";
 import { supabase } from "./services/supabaseClient";
@@ -65,22 +66,24 @@ function App() {
   return (
     <PreferencesProvider>
       <ToastProvider>
-        <DrawerProvider>
-          <CommandPaletteProvider>
-            <Routes>
-              <Route path="/" element={<Layout />}>
-                <Route index element={<Dashboard />} />
-                <Route path="inventory" element={<InventoryPage />} />
-                <Route path="analytics" element={<AnalyticsPage />} />
-                <Route path="warehouse" element={<WarehousePage />} />
-                <Route path="activity" element={<ActivityPage />} />
-                <Route path="settings" element={<SettingsPage />} />
-              </Route>
-            </Routes>
-            <GlobalSideDrawer />
-            <CommandPalette />
-          </CommandPaletteProvider>
-        </DrawerProvider>
+        <CurrencyProvider>
+          <DrawerProvider>
+            <CommandPaletteProvider>
+              <Routes>
+                <Route path="/" element={<Layout />}>
+                  <Route index element={<Dashboard />} />
+                  <Route path="inventory" element={<InventoryPage />} />
+                  <Route path="analytics" element={<AnalyticsPage />} />
+                  <Route path="warehouse" element={<WarehousePage />} />
+                  <Route path="activity" element={<ActivityPage />} />
+                  <Route path="settings" element={<SettingsPage />} />
+                </Route>
+              </Routes>
+              <GlobalSideDrawer />
+              <CommandPalette />
+            </CommandPaletteProvider>
+          </DrawerProvider>
+        </CurrencyProvider>
       </ToastProvider>
     </PreferencesProvider>
   );

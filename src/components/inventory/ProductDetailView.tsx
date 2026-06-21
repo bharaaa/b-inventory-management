@@ -17,6 +17,7 @@ import { formatActivityEvent } from "../../helpers/activityHelpers";
 import { formatDate } from "../../helpers/formatDate";
 import { timeAgo } from "../../helpers/timeAgo";
 import { useDrawer } from "../../contexts/DrawerContext";
+import { useCurrency } from "../../hooks/useCurrency";
 import DrawerHeader from "../ui/DrawerHeader";
 import DrawerFooter from "../ui/DrawerFooter";
 
@@ -53,6 +54,7 @@ export default function ProductDetailView({
   const [movements, setMovements] = useState([]);
   const [loading, setLoading] = useState(false);
   const { openDrawer } = useDrawer();
+  const { currency, rates, formatPrice, convertPrice } = useCurrency();
 
   const item = initialItem || fetchedItem;
   const currentProductId = initialItem?.id || productId;
@@ -159,29 +161,42 @@ export default function ProductDetailView({
                 </span>
               </p>
             </div>
-            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
-              <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
-                <DollarSign size={14} />
-                <span className="text-xs font-medium">Unit Price</span>
+            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
+                  <DollarSign size={14} />
+                  <span className="text-xs font-medium">Unit Price</span>
+                </div>
+                <p className="text-xl font-bold text-[var(--text-primary)]">
+                  {formatPrice(item?.price || 0)}
+                </p>
               </div>
-              <p className="text-xl font-bold text-[var(--text-primary)]">
-                {new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                }).format(item?.price || 0)}
-              </p>
+              {currency !== 'USD' && (
+                <p className="text-xs text-[var(--text-tertiary)] mt-1 font-medium">
+                  Base: ${Number(item?.price || 0).toLocaleString('en-US', {minimumFractionDigits: 2})} USD
+                </p>
+              )}
+              {currency === 'USD' && rates?.IDR && (
+                <p className="text-xs text-[var(--text-tertiary)] mt-1 font-medium">
+                  ≈ Rp {Number(convertPrice(item?.price || 0) * (rates.IDR / (rates[currency] || 1))).toLocaleString('id-ID')} IDR
+                </p>
+              )}
             </div>
-            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
-              <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
-                <DollarSign size={14} />
-                <span className="text-xs font-medium">Total Value</span>
+            <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">
+                  <DollarSign size={14} />
+                  <span className="text-xs font-medium">Total Value</span>
+                </div>
+                <p className="text-xl font-bold text-[var(--text-primary)]">
+                  {formatPrice((item?.stock_count || 0) * (item?.price || 0))}
+                </p>
               </div>
-              <p className="text-xl font-bold text-[var(--text-primary)]">
-                {new Intl.NumberFormat("en-US", {
-                  style: "currency",
-                  currency: "USD",
-                }).format((item?.stock_count || 0) * (item?.price || 0))}
-              </p>
+              {currency !== 'USD' && (
+                <p className="text-xs text-[var(--text-tertiary)] mt-1 font-medium">
+                  Base: ${Number((item?.stock_count || 0) * (item?.price || 0)).toLocaleString('en-US', {minimumFractionDigits: 2})} USD
+                </p>
+              )}
             </div>
             <div className="bg-white/60 dark:bg-black/40 backdrop-blur-sm border border-[var(--border)] rounded-xl p-4 shadow-sm">
               <div className="flex items-center gap-2 text-[var(--text-secondary)] mb-1">

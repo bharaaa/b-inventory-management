@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import GlassCard from '../ui/GlassCard';
+import { useCurrency } from '../../hooks/useCurrency';
 import {
   PieChart,
   Pie,
@@ -18,15 +19,12 @@ const PIE_COLORS = [
   '#FF453A',
 ];
 
-function CustomTooltip({ active, payload }) {
+function CustomTooltip({ active, payload }: any) {
+  const { formatPrice } = useCurrency();
   if (!active || !payload?.length) return null;
 
   const data = payload[0].payload;
-  const formattedValue = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(data.value);
+  const formattedValue = formatPrice(data.value, false);
 
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-xl border border-black/[0.06] shadow-lg p-3 min-w-[160px]">

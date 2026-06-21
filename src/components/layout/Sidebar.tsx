@@ -10,6 +10,7 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from 'lucide-react';
+import CurrencySelector from '../ui/CurrencySelector';
 
 const navItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/' },
@@ -115,6 +116,8 @@ export default function Sidebar({ collapsed, onToggle }) {
 
       {/* Bottom section */}
       <div className="mt-auto border-t border-black/[0.06] px-3 py-3 flex flex-col gap-2">
+        <CurrencySelector collapsed={collapsed} />
+        
         {/* Workspace indicator */}
         <div
           className={`flex items-center gap-3 rounded-xl py-2 px-3 ${

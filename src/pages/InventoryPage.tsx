@@ -5,6 +5,7 @@ import DataTable from "../components/ui/DataTable";
 import { useDrawer } from "../contexts/DrawerContext";
 import { useToast } from "../contexts/ToastContext";
 import { useInventory } from "../hooks/useInventory";
+import { useCurrency } from "../hooks/useCurrency";
 import { InventoryFilterBar } from "../components/inventory/InventoryFilterBar";
 import { InventoryBulkActions } from "../components/inventory/InventoryBulkActions";
 
@@ -92,6 +93,7 @@ export default function InventoryPage() {
   const { openDrawer } = useDrawer();
   const { addToast } = useToast();
   const { items, loading, deleteItems, fetchItems, updateStock } = useInventory();
+  const { formatPrice } = useCurrency();
   
   const [search, setSearch] = useState("");
   const [openSort, setOpenSort] = useState(false);
@@ -129,12 +131,12 @@ export default function InventoryPage() {
     {
       key: "price",
       header: "Price",
-      width: "w-32",
+      sortable: true,
       render: (item: any) => (
-        <span className="text-[var(--text-secondary)]">
-          {item.price ? `$${item.price.toFixed(2)}` : '-'}
+        <span className="font-medium text-[var(--text-primary)]">
+          {item.price ? formatPrice(item.price) : '-'}
         </span>
-      )
+      ),
     },
     {
       key: "last_updated",

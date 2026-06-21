@@ -3,9 +3,11 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, ChevronDown } from 'lucide-react';
 import { supabase } from '../../services/supabaseClient';
 import { useToast } from '../../contexts/ToastContext';
+import { useCurrency } from '../../hooks/useCurrency';
 
 export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds }) {
   const { addToast } = useToast();
+  const { currency, convertToBasePrice, formatPrice } = useCurrency();
   const [loading, setLoading] = useState(false);
   const [categories, setCategories] = useState([]);
   const [openCategory, setOpenCategory] = useState(false);
@@ -48,7 +50,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
     const updates = { last_updated: new Date().toISOString() };
     if (formData.category_id) updates.category_id = formData.category_id;
     if (formData.stock_count !== '') updates.stock_count = parseInt(formData.stock_count, 10);
-    if (formData.price !== '') updates.price = parseFloat(formData.price);
+    if (formData.price !== '') updates.price = convertToBasePrice(parseFloat(formData.price));
 
     // If nothing to update except last_updated, just close
     if (Object.keys(updates).length === 1) {
@@ -76,7 +78,7 @@ export default function BulkEditModal({ isOpen, onClose, onSuccess, selectedIds 
           logs.push({
             product_id: item.id,
             activity_type: 'price_update',
-            description: `Price bulk updated from $${item.price} to $${updates.price}`
+            description: `Price bulk updated from ${formatPrice(item.price)} to ${formatPrice(updates.price)}`
           });
         }
         if ('category_id' in updates && updates.category_id !== item.category_id) {

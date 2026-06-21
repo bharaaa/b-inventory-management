@@ -10,6 +10,7 @@ import InventoryTable from "../components/dashboard/InventoryTable";
 import FastMovingProducts from "../components/dashboard/FastMovingProducts";
 import { useDrawer } from "../contexts/DrawerContext";
 import { useDashboardStats } from "../hooks/useDashboardStats";
+import { useCurrency } from "../hooks/useCurrency";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -46,11 +47,8 @@ export default function Dashboard() {
   const lowStockCount = lowStockItems.length;
   const totalUsedCapacity = items.reduce((sum, item) => sum + (item.stock_count || 0), 0);
   const totalValue = items.reduce((sum, item) => sum + (item.stock_count * (item.price || 0)), 0);
-  const formattedTotalValue = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(totalValue);
+  const { formatPrice } = useCurrency();
+  const formattedTotalValue = formatPrice(totalValue, false);
   
   const warehouseHealth = totalProductsCount === 0 ? 100 : Math.round(((totalProductsCount - lowStockCount) / totalProductsCount) * 100);
 

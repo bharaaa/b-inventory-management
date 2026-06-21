@@ -16,6 +16,9 @@ import {
 } from 'lucide-react';
 import { getFastMovingProducts, getDeadStockProducts, getDemandTrendProducts } from '../helpers/stockHelpers';
 import { supabase } from '../services/supabaseClient';
+import { ExportButton } from "../components/analytics/ExportButton";
+import { useDrawer } from "../contexts/DrawerContext";
+import { useCurrency } from "../hooks/useCurrency";
 import GlassCard from '../components/ui/GlassCard';
 import MetricCard from '../components/ui/MetricCard';
 import { useNavigate } from 'react-router-dom';
@@ -61,8 +64,9 @@ export default function AnalyticsPage() {
   const maxOutbound = fastMoving.length > 0 ? fastMoving[0].totalOutbound : 0;
   
   // Dead Stock KPIs
-  const totalDeadValue = deadStock.reduce((sum, item) => sum + item.valueLocked, 0);
-  const formattedDeadValue = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(totalDeadValue);
+  const totalDeadValue = deadStock.reduce((sum, item) => sum + (item.currentStock * item.price), 0);
+  const { formatPrice } = useCurrency();
+  const formattedDeadValue = formatPrice(totalDeadValue, false);
   const worstDeadStock = deadStock.length > 0 ? deadStock[0].name : "None";
   
   // Demand Trend KPIs
