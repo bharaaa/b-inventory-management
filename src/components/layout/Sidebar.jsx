@@ -29,7 +29,7 @@ export default function Sidebar({ collapsed, onToggle }) {
 
       {/* Logo */}
       <div className="flex items-center gap-3 px-5 h-16 shrink-0">
-        <div className="flex items-center justify-center w-8 h-8 shrink-0 rounded-full overflow-hidden bg-white/80 dark:bg-black/20 border border-black/5 dark:border-white/5 shadow-sm">
+        <div className="flex items-center justify-center w-8 h-8 shrink-0 rounded-full overflow-hidden bg-white/80 dark:bg-black/20 border border-[var(--accent)]/20 shadow-[0_2px_10px_var(--accent-subtle)] transition-all duration-300">
           <img src="/crate-logo.png" alt="Crate Logo" className="w-full h-full object-cover" />
         </div>
         <AnimatePresence>

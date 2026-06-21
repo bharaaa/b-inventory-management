@@ -18,7 +18,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-    <!-- Prevent Dark Mode FOUC -->
+    <!-- Prevent Dark Mode and Theme FOUC -->
     <script>
       (function() {
         try {
@@ -28,6 +28,11 @@
             document.documentElement.classList.add('dark');
           } else {
             document.documentElement.classList.remove('dark');
+          }
+
+          var accent = localStorage.getItem('app-accent');
+          if (accent && accent !== 'blue') {
+            document.documentElement.classList.add('theme-' + accent);
           }
         } catch (e) {}
       })();

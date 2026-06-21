@@ -8,6 +8,11 @@ export function PreferencesProvider({ children }) {
     return saved || 'system';
   });
 
+  const [accent, setAccent] = useState(() => {
+    const saved = localStorage.getItem('app-accent');
+    return saved || 'blue';
+  });
+
   useEffect(() => {
     localStorage.setItem('app-theme', theme);
     const root = document.documentElement;
@@ -25,6 +30,22 @@ export function PreferencesProvider({ children }) {
       root.classList.remove('dark');
     }
   }, [theme]);
+
+  useEffect(() => {
+    localStorage.setItem('app-accent', accent);
+    const root = document.documentElement;
+    
+    // Remove any existing theme-* classes
+    root.classList.forEach(className => {
+      if (className.startsWith('theme-')) {
+        root.classList.remove(className);
+      }
+    });
+
+    if (accent !== 'blue') {
+      root.classList.add(`theme-${accent}`);
+    }
+  }, [accent]);
 
   // Listen for system theme changes if set to 'system'
   useEffect(() => {
@@ -44,7 +65,7 @@ export function PreferencesProvider({ children }) {
   }, [theme]);
 
   return (
-    <PreferencesContext.Provider value={{ theme, setTheme }}>
+    <PreferencesContext.Provider value={{ theme, setTheme, accent, setAccent }}>
       {children}
     </PreferencesContext.Provider>
   );

@@ -43,7 +43,7 @@ export default function ActivityTimeline({ activities = [], title = "Recent Acti
           </h3>
           <button 
             onClick={() => navigate('/activity')}
-            className="px-3 py-1.5 rounded-full bg-[var(--accent)]/10 hover:bg-[var(--accent)]/20 text-[var(--accent)] text-[11px] font-bold tracking-wide uppercase backdrop-blur-md border border-[var(--accent)]/20 transition-all duration-300 cursor-pointer shadow-[0_2px_8px_rgba(124,58,237,0.1)] hover:shadow-[0_4px_12px_rgba(124,58,237,0.2)] hover:-translate-y-0.5"
+            className="px-3 py-1.5 rounded-full bg-[var(--accent)]/10 hover:bg-[var(--accent)]/20 text-[var(--accent)] text-[11px] font-bold tracking-wide uppercase backdrop-blur-md border border-[var(--accent)]/20 transition-all duration-300 cursor-pointer shadow-[0_2px_8px_var(--accent-subtle)] hover:shadow-[0_4px_12px_var(--accent-subtle)] hover:-translate-y-0.5"
           >
             View All
           </button>

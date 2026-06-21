@@ -118,6 +118,29 @@
   --glass-border-hover: rgba(255, 255, 255, 0.6);
 }
 
+:root.theme-violet {
+  --accent: #7C3AED;
+  --accent-fg: #ffffff;
+  --accent-hover: #6D28D9;
+  --accent-subtle: rgba(124, 58, 237, 0.08);
+  --accent-muted: #A78BFA;
+}
+
+:root.theme-emerald {
+  --accent: #10B981;
+  --accent-fg: #ffffff;
+  --accent-hover: #059669;
+  --accent-subtle: rgba(16, 185, 129, 0.08);
+  --accent-muted: #34D399;
+}
+
+:root.theme-rose {
+  --accent: #F43F5E;
+  --accent-fg: #ffffff;
+  --accent-hover: #E11D48;
+  --accent-subtle: rgba(244, 63, 94, 0.08);
+  --accent-muted: #FB7185;
+}
 :root.dark {
   /* DARK LIQUID GLASS TOKENS */
   /* — Background — */

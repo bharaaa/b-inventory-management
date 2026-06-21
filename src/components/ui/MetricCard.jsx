@@ -21,7 +21,7 @@ export default function MetricCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
       onClick={onClick}
-      className={`p-6 transition-all duration-200 group hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-md hover:bg-black/5 dark:hover:bg-[#222222]/60 ${onClick ? 'cursor-pointer' : ''}`}
+      className={`p-6 transition-all duration-300 group hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-[0_8px_30px_var(--accent-subtle)] hover:border-[var(--accent)]/30 hover:bg-[var(--accent)]/5 dark:hover:bg-[var(--accent)]/10 ${onClick ? 'cursor-pointer' : ''}`}
     >
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm font-medium text-[var(--text-secondary)]">
@@ -29,7 +29,7 @@ export default function MetricCard({
         </p>
         <ChevronRight
           size={16}
-          className="text-[var(--text-tertiary)] group-hover:text-[var(--text-secondary)] transition-colors"
+          className="text-[var(--text-tertiary)] group-hover:text-[var(--accent)] transition-colors"
         />
       </div>
 

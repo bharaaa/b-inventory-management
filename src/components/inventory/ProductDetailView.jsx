@@ -275,7 +275,7 @@ export default function ProductDetailView({
             if (onEdit) onEdit(item);
             else openDrawer("EDIT_ITEM", { item });
           }}
-          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent-fg)] bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_2px_8px_rgba(124,58,237,0.3)] transition-all duration-200 cursor-pointer"
+          className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 text-sm font-semibold text-[var(--accent-fg)] bg-[var(--accent)] rounded-xl hover:bg-[var(--accent-hover)] shadow-[0_4px_14px_var(--accent-subtle)] transition-all duration-200 cursor-pointer"
         >
           Edit Item <ArrowRight size={16} />
         </button>

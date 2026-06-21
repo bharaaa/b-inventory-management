@@ -3,7 +3,7 @@ import { Settings, Sparkles, Monitor, Palette, Moon, Sun } from "lucide-react";
 import { usePreferences } from "../contexts/PreferencesContext";
 
 export default function SettingsPage() {
-  const { theme, setTheme } = usePreferences();
+  const { theme, setTheme, accent, setAccent } = usePreferences();
 
   return (
     <div className="max-w-4xl mx-auto w-full">
@@ -73,6 +73,30 @@ export default function SettingsPage() {
                </button>
              </div>
           </div>
+
+          <div className="p-5 mt-4 rounded-2xl bg-white/10 border border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+             <div>
+               <h3 className="text-sm font-semibold text-[var(--text-primary)]">Accent Color</h3>
+               <p className="text-xs text-[var(--text-tertiary)] mt-1">Choose your primary brand color.</p>
+             </div>
+             
+             <div className="flex items-center gap-4 p-1">
+               {[
+                 { id: 'blue', color: '#007AFF' },
+                 { id: 'violet', color: '#7C3AED' },
+                 { id: 'emerald', color: '#10B981' },
+                 { id: 'rose', color: '#F43F5E' }
+               ].map(c => (
+                 <button
+                   key={c.id}
+                   onClick={() => setAccent(c.id)}
+                   className={`w-7 h-7 rounded-full shadow-sm transition-all duration-300 cursor-pointer ${accent === c.id ? 'ring-2 ring-offset-2 ring-offset-[var(--bg-primary)] ring-[var(--text-primary)] scale-110' : 'hover:scale-110 opacity-70 hover:opacity-100'}`}
+                   style={{ backgroundColor: c.color }}
+                   aria-label={`Set accent color to ${c.id}`}
+                 />
+               ))}
+             </div>
+           </div>
         </motion.section>
 
         <motion.section
