@@ -37,7 +37,7 @@ export default function Layout() {
 
   return (
     <div
-      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500 bg-[#F7F8FA] dark:bg-black"
+      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500 bg-white/5 dark:bg-black/50"
     >
       {/* Curated pastel background to maximize glass refraction */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden flex items-center justify-center">
@@ -55,7 +55,7 @@ export default function Layout() {
       </div>
 
       {/* App Window Shell */}
-      <div className="relative z-10 flex w-full h-full overflow-hidden backdrop-blur-[60px] dark:bg-black/20">
+      <div className="relative z-10 flex w-full h-full overflow-hidden backdrop-blur-[7px] dark:bg-black/30">
         {/* Desktop sidebar */}
         {!isMobile && (
           <Sidebar
@@ -73,7 +73,7 @@ export default function Layout() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.5 }}
                 className="fixed inset-0 z-40 bg-black/15 backdrop-blur-sm"
                 onClick={() => setMobileOpen(false)}
               />
@@ -84,7 +84,7 @@ export default function Layout() {
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
                 transition={{ type: "spring", stiffness: 350, damping: 35 }}
-                className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-xl border-r border-[var(--border)]"
+                className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-[7px] border-r border-[var(--border)]"
               >
                 <Sidebar
                   collapsed={false}
@@ -96,10 +96,10 @@ export default function Layout() {
         </AnimatePresence>
 
         {/* Nested Main Content Area */}
-        <main className="flex-1 flex flex-col bg-[var(--bg-card)] backdrop-blur-sm md:m-3 md:rounded-[2rem] shadow-[var(--glass-shadow),var(--glass-highlight)] border border-[var(--glass-border)] overflow-hidden relative z-20 transition-colors duration-500">
+        <main className="flex-1 flex flex-col bg-white/70 dark:bg-black/40 backdrop-blur-[7px] md:m-3 md:rounded-[2rem] shadow-[var(--glass-shadow-lg),var(--glass-highlight)] border border-[var(--glass-border)] overflow-hidden relative z-20 transition-colors duration-500">
           {/* Top Navigation */}
           {isMobile && (
-            <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-xl bg-[var(--bg-card)] border-b border-[var(--border)] shrink-0 transition-colors duration-500">
+            <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-[7px] bg-[var(--bg-card)] border-b border-[var(--border)] shrink-0 transition-colors duration-500">
               <button
                 onClick={() => setMobileOpen(true)}
                 className="flex items-center justify-center w-10 h-10 rounded-xl text-[var(--text-secondary)] hover:bg-black/[0.04] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"
