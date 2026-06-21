@@ -69,8 +69,8 @@
   /* — Background — */
   --bg-primary: #F7F8FA;
   --bg-secondary: rgba(0, 0, 0, 0.03);
-  --bg-card: rgba(255, 255, 255, 0.40);
-  --bg-card-hover: rgba(255, 255, 255, 0.50);
+  --bg-card: rgba(0, 0, 0, 0.04);
+  --bg-card-hover: rgba(0, 0, 0, 0.08);
 
   /* — Text — */
   --text-primary: #111111;
@@ -123,8 +123,8 @@
   /* — Background — */
   --bg-primary: #0F0F11;
   --bg-secondary: rgba(255, 255, 255, 0.05);
-  --bg-card: rgba(30, 30, 30, 0.40);
-  --bg-card-hover: rgba(50, 50, 50, 0.50);
+  --bg-card: rgba(255, 255, 255, 0.08);
+  --bg-card-hover: rgba(255, 255, 255, 0.12);
 
   /* — Text — */
   --text-primary: #ffffff;
@@ -279,7 +279,7 @@
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
     border: 1px solid var(--glass-border);
-    box-shadow: var(--glass-shadow), var(--glass-highlight);
+    box-shadow: var(--glass-shadow-lg), var(--glass-highlight);
     transition:
       border-color var(--transition-base),
       background-color var(--transition-base),
@@ -301,7 +301,7 @@
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     padding: 1.5rem;
-    box-shadow: var(--glass-shadow), var(--glass-highlight);
+    box-shadow: var(--glass-shadow-lg), var(--glass-highlight);
     transition:
       border-color var(--transition-base),
       background-color var(--transition-base),
@@ -322,7 +322,7 @@
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     padding: 0;
-    box-shadow: var(--glass-shadow), var(--glass-highlight);
+    box-shadow: var(--glass-shadow-lg), var(--glass-highlight);
   }
 
   /* — Glass Panel (For Sidebar/Drawers) —
