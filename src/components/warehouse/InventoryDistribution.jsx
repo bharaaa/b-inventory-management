@@ -36,7 +36,7 @@ export default function InventoryDistribution({ items, totalStock }) {
             Stock volume by category
           </p>
         </div>
-        <div className="w-10 h-10 rounded-xl bg-[var(--text-primary)] flex items-center justify-center text-[var(--bg-card)]">
+        <div className="w-10 h-10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-[var(--border)] bg-white/50 dark:bg-black/40 text-[var(--accent)] shadow-sm">
           <PieChartIcon size={20} strokeWidth={2} />
         </div>
       </div>

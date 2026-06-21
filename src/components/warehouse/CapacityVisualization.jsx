@@ -25,7 +25,7 @@ export default function CapacityVisualization({ usedCapacity, totalCapacity, ite
             Physical warehouse space
           </p>
         </div>
-        <div className={`w-10 h-10 rounded-xl flex items-center justify-center ${percentage >= 90 ? 'bg-[var(--error)]/10 text-[var(--error)]' : 'bg-[var(--accent)]/10 text-[var(--accent)]'}`}>
+        <div className={`w-10 h-10 rounded-xl flex items-center justify-center backdrop-blur-sm border shadow-sm ${percentage >= 90 ? 'bg-[var(--error)]/10 dark:bg-[var(--error)]/20 text-[var(--error)] border-[var(--error)]/20' : 'bg-white/50 dark:bg-black/40 text-[var(--accent)] border-[var(--border)]'}`}>
           {percentage >= 90 ? <AlertTriangle size={20} strokeWidth={2} /> : <Layers size={20} strokeWidth={2} />}
         </div>
       </div>

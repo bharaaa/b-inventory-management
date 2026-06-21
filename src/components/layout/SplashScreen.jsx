@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export default function SplashScreen() {
   return (
-    <div className="fixed inset-0 z-[999] bg-[var(--bg-card)] flex flex-col items-center justify-center overflow-hidden">
+    <div className="fixed inset-0 z-[999] bg-[var(--bg-primary)] dark:bg-black flex flex-col items-center justify-center overflow-hidden">
       
       {/* Background ambient glow */}
       <motion.div 
@@ -31,7 +31,7 @@ export default function SplashScreen() {
             repeat: Infinity,
             ease: "easeInOut"
           }}
-          className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-[var(--bg-card)] backdrop-blur-md border-2 border-[var(--border)] shadow-xl relative"
+          className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden bg-white/50 dark:bg-black/40 backdrop-blur-md border-2 border-[var(--border)] shadow-xl relative"
         >
           {/* Inner pulse */}
           <motion.div 
