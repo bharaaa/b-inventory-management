@@ -68,16 +68,19 @@ Crate is built on a robust relational data model designed for scale and auditabi
 ## Screenshots
 
 ### Dashboard
-![Dashboard Placeholder](./docs/screenshots/dashboard.png)
+![Dashboard](./docs/screenshots/dashboard.png)
 
 ### Inventory
-![Inventory Placeholder](./docs/screenshots/inventory.png)
+![Inventory](./docs/screenshots/inventory.png)
 
 ### Product Detail Drawer
-![Product Detail Drawer Placeholder](./docs/screenshots/product-detail.png)
+![Product Detail Drawer](./docs/screenshots/product-detail.png)
 
 ### Activity Timeline
-![Activity Timeline Placeholder](./docs/screenshots/activity-timeline.png)
+![Activity Timeline](./docs/screenshots/activity-timeline.png)
+
+### Analytics
+![Activity Timeline](./docs/screenshots/activity-timeline.png)
 
 ## Getting Started
 
@@ -90,8 +93,8 @@ Crate is built on a robust relational data model designed for scale and auditabi
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/crate.git
-cd crate
+git clone https://github.com/bharaaa/b-inventory-management.git
+cd b-inventory-management
 ```
 
 2. Install dependencies:
@@ -158,27 +161,3 @@ src/
 Crate is designed to be **clean, fast, and data-driven**. Inspired by modern SaaS products like Linear and Stripe, the interface intentionally avoids visual clutter, favoring a minimalist "Liquid Glass" aesthetic that surfaces critical data immediately. 
 
 The application prioritizes usability and speed over unnecessary visual complexity. Micro-interactions, dynamic currency conversions, and keyboard shortcuts (like the Command Palette) are built-in to ensure that operations teams can execute their tasks with minimal friction and maximum confidence.
-
-## License
-
-MIT License
-
-Copyright (c) 2026
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
