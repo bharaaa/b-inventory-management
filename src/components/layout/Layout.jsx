@@ -37,7 +37,7 @@ export default function Layout() {
 
   return (
     <div
-      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500 bg-[#F7F8FA]"
+      className="flex items-center justify-center h-screen w-screen overflow-hidden transition-colors duration-500 bg-[#F7F8FA] dark:bg-black"
     >
       {/* Curated pastel background to maximize glass refraction */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden flex items-center justify-center">
@@ -55,7 +55,7 @@ export default function Layout() {
       </div>
 
       {/* App Window Shell */}
-      <div className="relative z-10 flex w-full h-full overflow-hidden bg-white/30 backdrop-blur-sm">
+      <div className="relative z-10 flex w-full h-full overflow-hidden backdrop-blur-[60px] dark:bg-black/20">
         {/* Desktop sidebar */}
         {!isMobile && (
           <Sidebar
@@ -84,7 +84,7 @@ export default function Layout() {
                 animate={{ x: 0 }}
                 exit={{ x: -280 }}
                 transition={{ type: "spring", stiffness: 350, damping: 35 }}
-                className="fixed inset-y-0 left-0 z-50 w-64 bg-white/70 backdrop-blur-md border-r border-[var(--border)]"
+                className="fixed inset-y-0 left-0 z-50 w-64 bg-[var(--bg-card)] backdrop-blur-xl border-r border-[var(--border)]"
               >
                 <Sidebar
                   collapsed={false}
@@ -96,10 +96,10 @@ export default function Layout() {
         </AnimatePresence>
 
         {/* Nested Main Content Area */}
-        <main className="flex-1 flex flex-col bg-white/50 backdrop-blur-sm md:m-3 md:rounded-[2rem] shadow-[0_8px_32px_rgba(0,0,0,0.04),inset_0_1px_1px_rgba(255,255,255,0.8)] border border-white/40 overflow-hidden relative z-20">
+        <main className="flex-1 flex flex-col bg-[var(--bg-card)] backdrop-blur-sm md:m-3 md:rounded-[2rem] shadow-[var(--glass-shadow),var(--glass-highlight)] border border-[var(--glass-border)] overflow-hidden relative z-20 transition-colors duration-500">
           {/* Top Navigation */}
           {isMobile && (
-            <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-xl bg-white/60 border-b border-[var(--border)] shrink-0">
+            <div className="sticky top-0 z-30 flex items-center h-16 px-4 backdrop-blur-xl bg-[var(--bg-card)] border-b border-[var(--border)] shrink-0 transition-colors duration-500">
               <button
                 onClick={() => setMobileOpen(true)}
                 className="flex items-center justify-center w-10 h-10 rounded-xl text-[var(--text-secondary)] hover:bg-black/[0.04] hover:text-[var(--text-primary)] transition-colors duration-150 cursor-pointer"

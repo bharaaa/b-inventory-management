@@ -3,6 +3,8 @@
 
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ============================================================================
    DESIGN SYSTEM — Crate Inventory Management
    
@@ -112,6 +114,34 @@
   --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
   --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.06);
   --glass-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-border-hover: rgba(255, 255, 255, 0.6);
+}
+
+:root.dark {
+  /* DARK LIQUID GLASS TOKENS */
+  /* — Background — */
+  --bg-primary: #0F0F11;
+  --bg-secondary: rgba(255, 255, 255, 0.05);
+  --bg-card: rgba(30, 30, 30, 0.40);
+  --bg-card-hover: rgba(50, 50, 50, 0.50);
+
+  /* — Text — */
+  --text-primary: #ffffff;
+  --text-secondary: #9CA3AF;
+  --text-tertiary: #6B7280;
+
+  /* — Borders — */
+  --border: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(255, 255, 255, 0.2);
+  --border-active: rgba(255, 255, 255, 0.25);
+
+  /* — Glass Tokens — */
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --glass-shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.3);
+  --glass-highlight: inset 0 1px 1px rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-border-hover: rgba(255, 255, 255, 0.2);
 }
 
 
@@ -248,7 +278,7 @@
     background: var(--bg-card);
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--glass-border);
     box-shadow: var(--glass-shadow), var(--glass-highlight);
     transition:
       border-color var(--transition-base),
@@ -257,7 +287,7 @@
   }
 
   .glass:hover {
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: var(--glass-border-hover);
     background: var(--bg-card-hover);
   }
 
@@ -268,7 +298,7 @@
     background: var(--bg-card);
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     padding: 1.5rem;
     box-shadow: var(--glass-shadow), var(--glass-highlight);
@@ -279,7 +309,7 @@
   }
 
   .card:hover {
-    border-color: rgba(255, 255, 255, 0.6);
+    border-color: var(--glass-border-hover);
     background: var(--bg-card-hover);
   }
 
@@ -289,7 +319,7 @@
     background: var(--bg-card);
     backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturation));
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-xl);
     padding: 0;
     box-shadow: var(--glass-shadow), var(--glass-highlight);
