@@ -1,67 +1,184 @@
-# Inventory Management Dashboard
+<h1 align="center">Crate</h1>
+
+<p align="center">
+  <strong>Inventory intelligence for the modern supply chain.</strong>
+</p>
+
+<p align="center">
+  Crate is a high-performance, real-time inventory management platform designed to bring clarity and precision to stock operations. It combines a sleek, modern interface with robust underlying architecture to provide absolute visibility into your warehouse operations, pricing history, and stock movement.
+</p>
+
+<br />
 
 ## Overview
-This project is an inventory management dashboard, built to manage and monitor product stock efficiently. The application provides a clean and responsive interface for viewing, searching, and organizing inventory data.
 
-The frontend is developed using React and Tailwind CSS, while Supabase is used as the backend service for data storage and retrieval.
+Crate is built for modern operations teams and businesses that require a sophisticated yet highly accessible way to manage their inventory. It solves the fragmentation problem of traditional inventory systems by uniting product catalogs, stock tracking, warehouse organization, and real-time analytics into a single, cohesive ecosystem.
 
-🔗 Live Demo: https://b-inventory-management.netlify.app
+By prioritizing speed, usability, and data accuracy, Crate ensures that you always know exactly what you have, where it is, and how its value is changing.
 
 ## Features
-- Display inventory data (ID, Name, Stock Count, Last Updated)
-- Search functionality for quick item lookup
-- Sorting by multiple attributes (name, stock, last updated)
-- Loading states using skeleton UI for better user experience
-- Responsive design optimized for both desktop and mobile devices
-- Human-friendly timestamp display (relative and formatted date)
 
-## Code Structure
-### Structure Explanation
-- components/
-Contains reusable UI components. The InventoryDashboard component handles:
-	•	Data fetching from Supabase
-	•	Search and sorting logic
-	•	Rendering of UI states (loading, empty, data display)
-- services/
-Contains configuration for external services.
-supabaseClient.js initializes and exports the Supabase client instance.
-- helpers/
-Contains javascript function used in components.
-- app.jsx
-Responsible for bootstrapping and rendering the application.
+### Inventory Management
+- **Product Catalog**: Centralized database of all products with detailed metadata.
+- **Advanced Search**: Instantly find products across thousands of SKUs.
+- **Filtering & Sorting**: Drill down into specific categories or stock levels.
+- **Stock Management**: Effortlessly adjust stock levels, track capacities, and prevent stockouts.
 
-## Local Development Setup
-1. Clone repository
-2. Install dependencies
-`npm install`
-3. Run Development Server
-`npm run dev`
-Access the application at:
-`http://localhost:5173`
+### Stock Intelligence
+- **Stock Movement History**: Immutable ledger of all inbound and outbound stock transactions.
+- **Inventory Activity Timeline**: Chronological, real-time feed of all warehouse events.
+- **Inventory Insights**: Actionable analytics on fast-moving items, dead stock, and demand trends.
 
-## Deployment
-The application is deployed using Netlify. Deployment is configured by connecting the GitHub repository to Netlify and setting the required environment variables in the Netlify dashboard.
+### Pricing
+- **Price Tracking**: Maintain historical records of pricing adjustments over time.
+- **Dynamic Pricing**: Single source of truth for base prices.
+- **Multi-currency Support**: Seamless global currency switching (USD and IDR) with real-time exchange rates.
 
-## AI-Assisted Development
-AI tools were utilized during development to:
-- Explore and validate UI/UX design decisions
-- Refine component structure and state management
-- Assist in implementing features such as search, sorting, and loading states
-- Improve code readability and maintainability
+### Warehouse
+- **Warehouse Organization**: Define and manage distinct storage zones and aisles.
+- **Inventory Location Management**: Accurately map products to physical warehouse locations.
+- **Capacity Monitoring**: Visual indicators for zone capacities to prevent overstocking.
 
-All generated suggestions were reviewed and adapted to align with project requirements and best practices.
+### Productivity
+- **Command Palette**: Lightning-fast, keyboard-first workflow for power users (Cmd+K).
+- **Quick Actions**: Rapidly execute common tasks without navigating away from your current view.
+- **Bulk Operations**: Edit multiple products simultaneously to save time.
 
-## Technical Notes
-- Supabase is used as a Backend-as-a-Service (BaaS) with a predefined database schema.
-- The application uses the public anon key, with security expected to be enforced via Supabase Row Level Security (RLS) policies.
-- The project focuses on simplicity, clarity, and maintainability as an MVP.
+## Tech Stack
 
-## Future Improvement
-- Add create, update, and delete (CRUD) functionality
-- Implement authentication and role-based access control
-- Enable real-time updates using Supabase subscriptions
-- Add inventory insights (e.g., low stock alerts, summary metrics)
+| Component | Technology | Description |
+|-----------|------------|-------------|
+| **Frontend** | React | Core UI framework for building interactive components. |
+| **Language** | TypeScript | End-to-end type safety and developer experience. |
+| **Styling** | Tailwind CSS | Utility-first styling for a highly custom, modern aesthetic. |
+| **Database** | Supabase | PostgreSQL-backed database with real-time subscriptions. |
+| **Icons** | Lucide React | Clean, consistent iconography throughout the application. |
 
-## Author
-Developed by Bhara Alfhaniawan
-:::
+## Architecture
+
+Crate is built on a robust relational data model designed for scale and auditability:
+
+- **Products**: The core entities representing physical goods. Each product holds its base price and current aggregated stock count.
+- **Stock Movements**: Tracked completely separately from the products themselves. Every change in stock (inbound or outbound) creates an immutable ledger entry. This ensures absolute traceability and prevents silent stock discrepancies.
+- **Activity Logs**: A separate system that records all user and system actions (e.g., price updates, product creation), forming the backbone of the activity timeline.
+- **Warehouses**: Spatial architecture allowing for precise mapping of inventory to physical zones and capacity limits.
+
+**Single Source of Truth Philosophy**: Crate enforces a strict single source of truth for pricing. Base prices are stored in a primary currency (USD), and all other currency displays are computed dynamically on the client side. This prevents data fragmentation and ensures consistency across the entire platform.
+
+## Screenshots
+
+### Dashboard
+![Dashboard Placeholder](./docs/screenshots/dashboard.png)
+
+### Inventory
+![Inventory Placeholder](./docs/screenshots/inventory.png)
+
+### Product Detail Drawer
+![Product Detail Drawer Placeholder](./docs/screenshots/product-detail.png)
+
+### Activity Timeline
+![Activity Timeline Placeholder](./docs/screenshots/activity-timeline.png)
+
+## Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+- A Supabase account
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/crate.git
+cd crate
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+### Environment Variables
+
+Create a `.env` file in the root directory and add your Supabase credentials:
+
+```env
+# Your Supabase project URL (e.g., https://xyzcompany.supabase.co)
+VITE_SUPABASE_URL=your_supabase_url
+
+# Your Supabase public anonymous key for client-side authentication
+VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+```
+
+### Development Server
+
+Start the local development server:
+```bash
+npm run dev
+```
+
+### Build Commands
+
+Create a production-ready build:
+```bash
+npm run build
+```
+
+Preview the production build locally:
+```bash
+npm run preview
+```
+
+## Folder Structure
+
+```text
+src/
+├── components/   # Reusable UI components organized by feature (inventory, dashboard, etc.)
+├── contexts/     # React contexts for global state management (Currency, Drawers, etc.)
+├── features/     # Encapsulated feature modules
+├── helpers/      # Utility functions and formatters
+├── hooks/        # Custom React hooks encapsulating complex logic
+├── pages/        # Top-level route components
+├── services/     # API clients and external service integrations (Supabase, Exchange Rates)
+├── types/        # Global TypeScript interfaces and type definitions
+└── utils/        # General helper scripts
+```
+
+## Future Roadmap
+
+- **Advanced Inventory Forecasting**: Predictive models to anticipate stockouts before they happen.
+- **AI-powered Inventory Insights**: Automated recommendations for reorder points and dead stock liquidation.
+- **Multi-warehouse Support**: Scale operations across multiple physical distribution centers.
+- **Bulk Product Operations**: Enhanced workflows for mass updates and inventory reconciliation.
+- **Import/Export Workflows**: Seamless integration with external ERPs and accounting software via CSV/Excel.
+
+## Design Philosophy
+
+Crate is designed to be **clean, fast, and data-driven**. Inspired by modern SaaS products like Linear and Stripe, the interface intentionally avoids visual clutter, favoring a minimalist "Liquid Glass" aesthetic that surfaces critical data immediately. 
+
+The application prioritizes usability and speed over unnecessary visual complexity. Micro-interactions, dynamic currency conversions, and keyboard shortcuts (like the Command Palette) are built-in to ensure that operations teams can execute their tasks with minimal friction and maximum confidence.
+
+## License
+
+MIT License
+
+Copyright (c) 2026
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

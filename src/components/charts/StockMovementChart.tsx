@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { format } from 'date-fns';
-import GlassCard from '../ui/GlassCard';
+import { useState } from "react";
+import { format } from "date-fns";
+import GlassCard from "../ui/GlassCard";
 import {
   BarChart,
   Bar,
@@ -9,11 +9,11 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
-} from 'recharts';
-import { motion } from 'framer-motion';
-import { useCurrency } from '../../hooks/useCurrency';
+} from "recharts";
+import { motion } from "framer-motion";
+import { useCurrency } from "../../hooks/useCurrency";
 
-const timeRanges = ['7D', '30D', '90D'];
+const timeRanges = ["7D", "30D", "90D"];
 
 function CustomTooltip({ active, payload, label }) {
   if (!active || !payload?.length) return null;
@@ -27,7 +27,9 @@ function CustomTooltip({ active, payload, label }) {
         <div className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-1.5">
             <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
-            <span className="text-xs text-[var(--text-secondary)]">Inbound</span>
+            <span className="text-xs text-[var(--text-secondary)]">
+              Inbound
+            </span>
           </div>
           <span className="text-xs font-medium text-[var(--text-primary)]">
             {payload[0]?.value}
@@ -37,7 +39,9 @@ function CustomTooltip({ active, payload, label }) {
           <div className="flex items-center justify-between gap-4">
             <div className="flex items-center gap-1.5">
               <span className="w-2 h-2 rounded-full bg-[var(--success)]" />
-              <span className="text-xs text-[var(--text-secondary)]">Outbound</span>
+              <span className="text-xs text-[var(--text-secondary)]">
+                Outbound
+              </span>
             </div>
             <span className="text-xs font-medium text-[var(--text-primary)]">
               {payload[1]?.value}
@@ -50,29 +54,35 @@ function CustomTooltip({ active, payload, label }) {
 }
 
 export default function StockMovementChart({ data = [], loading = false }) {
-  const [activeRange, setActiveRange] = useState('30D');
+  const [activeRange, setActiveRange] = useState("30D");
 
   const filteredData = (() => {
     if (!data) return [];
     switch (activeRange) {
-      case '7D':
+      case "7D":
         return data.slice(-7);
-      case '90D':
+      case "90D":
         return data;
-      case '30D':
+      case "30D":
       default:
         return data.slice(-30);
     }
   })();
 
-  const totalSalesValue = filteredData.reduce((sum, day) => sum + (day.salesValue || 0), 0);
-  const totalOrdersCount = filteredData.reduce((sum, day) => sum + (day.ordersCount || 0), 0);
+  const totalSalesValue = filteredData.reduce(
+    (sum, day) => sum + (day.salesValue || 0),
+    0,
+  );
+  const totalOrdersCount = filteredData.reduce(
+    (sum, day) => sum + (day.ordersCount || 0),
+    0,
+  );
 
   const { formatPrice } = useCurrency();
   const formatValue = (val) => formatPrice(val, true);
 
   const formatCount = (val) => {
-    if (val === 0) return '0';
+    if (val === 0) return "0";
     if (val >= 1000) return `${(val / 1000).toFixed(1)}k`;
     return val.toString();
   };
@@ -96,8 +106,8 @@ export default function StockMovementChart({ data = [], loading = false }) {
               onClick={() => setActiveRange(range)}
               className={`text-xs rounded-lg px-3 py-1.5 transition-all duration-200 cursor-pointer ${
                 activeRange === range
-                  ? 'bg-[var(--bg-card)] text-[var(--text-primary)] font-medium shadow-sm'
-                  : 'text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]'
+                  ? "bg-[var(--bg-card)] text-[var(--text-primary)] font-medium shadow-sm"
+                  : "text-[var(--text-tertiary)] hover:text-[var(--text-secondary)]"
               }`}
             >
               {range}
@@ -134,19 +144,19 @@ export default function StockMovementChart({ data = [], loading = false }) {
               dataKey="date"
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 11, fill: '#a3a3a3' }}
+              tick={{ fontSize: 11, fill: "#a3a3a3" }}
               dy={8}
               interval="preserveStartEnd"
             />
             <YAxis
               axisLine={false}
               tickLine={false}
-              tick={{ fontSize: 11, fill: '#a3a3a3' }}
+              tick={{ fontSize: 11, fill: "#a3a3a3" }}
               width={40}
             />
             <Tooltip
-              content={<CustomTooltip />}
-              cursor={{ fill: 'rgba(0, 0, 0, 0.04)', radius: 4 }}
+              content={<CustomTooltip active={undefined} payload={undefined} label={undefined} />}
+              cursor={{ fill: "rgba(0, 0, 0, 0.04)", radius: 4 }}
             />
             <Bar
               dataKey="inbound"
