@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import GlassCard from '../ui/GlassCard';
 
 export default function WarehouseSummary({ items }) {
   const productsStored = items.length;
@@ -23,11 +24,11 @@ export default function WarehouseSummary({ items }) {
   ];
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-white/80 dark:bg-[#1A1A1A]/80 backdrop-blur-sm rounded-2xl border border-[var(--border)] shadow-sm p-6"
+      className="p-6"
     >
       <h3 className="text-sm font-semibold text-[var(--text-primary)] tracking-tight mb-6">
         Warehouse Summary
@@ -41,6 +42,6 @@ export default function WarehouseSummary({ items }) {
           </div>
         ))}
       </div>
-    </motion.div>
+    </GlassCard>
   );
 }

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ChevronRight, TrendingUp, TrendingDown } from "lucide-react";
+import GlassCard from "./GlassCard";
 
 export default function MetricCard({
   title,
@@ -15,16 +16,12 @@ export default function MetricCard({
   const isGood = inverseGood ? !isPositive : isPositive;
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.4,
-        delay: index * 0.1,
-        ease: [0.25, 0.46, 0.45, 0.94],
-      }}
+      transition={{ duration: 0.4, delay: index * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
       onClick={onClick}
-      className={`bg-black/3 dark:bg-[#1A1A1A]/50 backdrop-blur-sm shadow-sm border border-[var(--border)] rounded-2xl p-6 transition-all duration-200 group hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-md hover:bg-black/5 dark:hover:bg-[#222222]/60 ${onClick ? "cursor-pointer" : ""}`}
+      className={`p-6 transition-all duration-200 group hover:scale-[1.02] hover:-translate-y-0.5 hover:shadow-md hover:bg-black/5 dark:hover:bg-[#222222]/60 ${onClick ? 'cursor-pointer' : ''}`}
     >
       <div className="flex items-center justify-between mb-4">
         <p className="text-sm font-medium text-[var(--text-secondary)]">
@@ -64,6 +61,6 @@ export default function MetricCard({
           )}
         </div>
       )}
-    </motion.div>
+    </GlassCard>
   );
 }

@@ -6,16 +6,17 @@ import {
   Tooltip,
   ResponsiveContainer,
   Cell,
-} from 'recharts';
-import { motion } from 'framer-motion';
+} from "recharts";
+import { motion } from "framer-motion";
+import GlassCard from "../ui/GlassCard";
 
 const BAR_COLORS = [
-  '#007AFF',
-  '#5AC8FA',
-  '#30D158',
-  '#FF9F0A',
-  '#AF52DE',
-  '#FF453A',
+  "#007AFF",
+  "#5AC8FA",
+  "#30D158",
+  "#FF9F0A",
+  "#AF52DE",
+  "#FF453A",
 ];
 
 function CustomTooltip({ active, payload }) {
@@ -31,7 +32,7 @@ function CustomTooltip({ active, payload }) {
       <div className="flex items-center gap-1.5">
         <span
           className="w-2 h-2 rounded-full"
-          style={{ backgroundColor: payload[0].color || '#171717' }}
+          style={{ backgroundColor: payload[0].color || "#171717" }}
         />
         <span className="text-xs text-[var(--text-secondary)]">
           {count.toLocaleString()} items
@@ -43,11 +44,11 @@ function CustomTooltip({ active, payload }) {
 
 export default function CategoryChart({ data }) {
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-black/3 dark:bg-[#1A1A1A]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] shadow-sm p-6"
+      className="p-6"
     >
       {/* Header */}
       <div className="mb-6">
@@ -72,11 +73,11 @@ export default function CategoryChart({ data }) {
               axisLine={false}
               tickLine={false}
               width={100}
-              tick={{ fontSize: 12, fill: '#a3a3a3' }}
+              tick={{ fontSize: 12, fill: "#a3a3a3" }}
             />
             <Tooltip
               content={<CustomTooltip />}
-              cursor={{ fill: 'rgba(0, 0, 0, 0.04)', radius: 6 }}
+              cursor={{ fill: "rgba(0, 0, 0, 0.04)", radius: 6 }}
             />
             <Bar dataKey="count" barSize={28} radius={[0, 6, 6, 0]}>
               {(data || []).map((_, index) => (
@@ -96,9 +97,10 @@ export default function CategoryChart({ data }) {
           {data?.length || 0} categories
         </span>
         <span className="text-xs text-[var(--text-tertiary)]">
-          {data?.reduce((sum, d) => sum + d.count, 0).toLocaleString() || 0} total items
+          {data?.reduce((sum, d) => sum + d.count, 0).toLocaleString() || 0}{" "}
+          total items
         </span>
       </div>
-    </motion.div>
+    </GlassCard>
   );
 }

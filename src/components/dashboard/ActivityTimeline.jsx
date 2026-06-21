@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import GlassCard from '../ui/GlassCard';
 
 
 
@@ -28,11 +29,11 @@ export default function ActivityTimeline({ activities = [], title = "Recent Acti
   const visibleActivities = limit ? activities.slice(0, limit) : activities;
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-black/3 dark:bg-[#1A1A1A]/80 backdrop-blur-sm rounded-2xl border border-[var(--border)] shadow-sm p-6"
+      className="p-6"
     >
       {/* Header */}
       {showHeader && (
@@ -99,6 +100,6 @@ export default function ActivityTimeline({ activities = [], title = "Recent Acti
           No recent activity
         </p>
       )}
-    </motion.div>
+    </GlassCard>
   );
 }

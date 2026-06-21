@@ -1,5 +1,6 @@
 import { motion, useMotionValue, useTransform, animate } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import GlassCard from '../ui/GlassCard';
 
 function AnimatedScore({ score }) {
   const [displayed, setDisplayed] = useState(0);
@@ -31,11 +32,11 @@ export default function WarehouseHealth({ score = 0 }) {
 
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-white/80 dark:bg-[#1A1A1A]/80 backdrop-blur-sm rounded-2xl border border-[var(--border)] shadow-sm p-6"
+      className="p-6"
     >
       <p className="text-sm font-medium text-[var(--text-secondary)]">
         Warehouse Health
@@ -88,6 +89,6 @@ export default function WarehouseHealth({ score = 0 }) {
       </div>
 
 
-    </motion.div>
+    </GlassCard>
   );
 }

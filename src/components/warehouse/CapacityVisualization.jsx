@@ -1,16 +1,17 @@
 import { motion } from 'framer-motion';
 import { Layers, AlertTriangle } from 'lucide-react';
+import GlassCard from '../ui/GlassCard';
 
 export default function CapacityVisualization({ usedCapacity, totalCapacity, itemCount }) {
   const percentage = Math.round((usedCapacity / totalCapacity) * 100) || 0;
   const availableCapacity = totalCapacity - usedCapacity;
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={`bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border p-6 transition-colors duration-500 ${percentage >= 90 ? 'border-[var(--error)] shadow-[0_0_15px_rgba(239,68,68,0.15)] relative overflow-hidden' : 'border-[var(--border)]'}`}
+      className={`p-6 transition-colors duration-500 ${percentage >= 90 ? '!border-[var(--error)] !shadow-[0_0_15px_rgba(239,68,68,0.15)] relative overflow-hidden' : ''}`}
     >
       {percentage >= 90 && (
         <div className="absolute top-0 left-0 w-full h-1 bg-[var(--error)] animate-pulse" />
@@ -76,6 +77,6 @@ export default function CapacityVisualization({ usedCapacity, totalCapacity, ite
           <p className="text-xs text-[var(--text-secondary)] font-medium mt-1">Unique SKUs</p>
         </div>
       </div>
-    </motion.div>
+    </GlassCard>
   );
 }

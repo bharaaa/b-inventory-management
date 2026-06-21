@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import GlassCard from '../ui/GlassCard';
 import { Link } from 'react-router-dom';
 import { Plus, Minus } from 'lucide-react';
 import { timeAgo } from '../../helpers/timeAgo';
@@ -159,11 +160,11 @@ export default function InventoryTable({ items = [], loading = false }) {
   };
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-black/3 dark:bg-[#1A1A1A]/50 backdrop-blur-sm rounded-2xl border border-[var(--border)] shadow-sm p-6 flex flex-col flex-1 overflow-hidden"
+      className="p-6 flex flex-col flex-1 overflow-hidden"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-5">
@@ -246,6 +247,6 @@ export default function InventoryTable({ items = [], loading = false }) {
           No inventory items found
         </p>
       )}
-    </motion.div>
+    </GlassCard>
   );
 }

@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
-import { Map } from 'lucide-react';
+import { Map as MapIcon, Package } from 'lucide-react';
+import GlassCard from '../ui/GlassCard';
 
 const ZONE_NAMES = ['Zone A', 'Zone B', 'Zone C', 'Zone D'];
 const ZONE_COLORS = [
@@ -51,11 +52,11 @@ export default function StorageZones({ items }) {
   }, [items]);
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] p-6"
+      className="p-6"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -67,7 +68,7 @@ export default function StorageZones({ items }) {
           </p>
         </div>
         <div className="w-8 h-8 rounded-lg bg-[rgba(255,255,255,0.03)] flex items-center justify-center text-[var(--text-secondary)]">
-          <Map size={16} strokeWidth={2} />
+          <MapIcon size={16} strokeWidth={2} />
         </div>
       </div>
 
@@ -114,6 +115,6 @@ export default function StorageZones({ items }) {
           </div>
         ))}
       </div>
-    </motion.div>
+    </GlassCard>
   );
 }

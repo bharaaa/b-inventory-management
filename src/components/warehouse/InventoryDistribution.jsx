@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useMemo } from 'react';
 import { PieChart as PieChartIcon } from 'lucide-react';
+import GlassCard from '../ui/GlassCard';
 
 export default function InventoryDistribution({ items, totalStock }) {
   const distribution = useMemo(() => {
@@ -20,11 +21,11 @@ export default function InventoryDistribution({ items, totalStock }) {
   }, [items, totalStock]);
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] p-6"
+      className="p-6"
     >
       <div className="flex items-center justify-between mb-6">
         <div>
@@ -66,6 +67,6 @@ export default function InventoryDistribution({ items, totalStock }) {
           <p className="text-sm text-[var(--text-tertiary)] text-center py-4">No data available</p>
         )}
       </div>
-    </motion.div>
+    </GlassCard>
   );
 }

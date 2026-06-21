@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Package, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import GlassCard from '../ui/GlassCard';
 
 export default function TopStoredProducts({ items, totalCapacity }) {
   const navigate = useNavigate();
@@ -9,11 +10,11 @@ export default function TopStoredProducts({ items, totalCapacity }) {
     .slice(0, 4);
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] p-6"
+      className="p-6"
     >
       <div className="flex items-center justify-between mb-5">
         <div>
@@ -76,6 +77,6 @@ export default function TopStoredProducts({ items, totalCapacity }) {
         View All Inventory
         <ArrowRight size={14} />
       </button>
-    </motion.div>
+    </GlassCard>
   );
 }

@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { AlertCircle, PackageX, ChevronRight } from 'lucide-react';
+import GlassCard from '../ui/GlassCard';
 
 export default function WarehouseAlerts({ items, onOpenLowStock }) {
   const alerts = items
@@ -13,11 +14,11 @@ export default function WarehouseAlerts({ items, onOpenLowStock }) {
     .slice(0, 4); // show top 4 alerts
 
   return (
-    <motion.div
+    <GlassCard
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="bg-[var(--bg-card)] backdrop-blur-md rounded-2xl border border-[var(--border)] p-6"
+      className="p-6"
     >
       <div className="flex items-center justify-between mb-4">
         <div>
@@ -75,6 +76,6 @@ export default function WarehouseAlerts({ items, onOpenLowStock }) {
           <ChevronRight size={14} />
         </button>
       )}
-    </motion.div>
+    </GlassCard>
   );
 }
