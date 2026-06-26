@@ -117,32 +117,6 @@ export default function Sidebar({ collapsed, onToggle }) {
       {/* Bottom section */}
       <div className="mt-auto border-t border-black/[0.06] px-3 py-3 flex flex-col gap-2">
         <CurrencySelector collapsed={collapsed} />
-        
-        {/* Workspace indicator */}
-        <div
-          className={`flex items-center gap-3 rounded-xl py-2 px-3 ${
-            collapsed ? 'justify-center' : ''
-          }`}
-        >
-          <span className="relative flex h-2 w-2 shrink-0">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--success)] opacity-40" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--success)]" />
-          </span>
-          <AnimatePresence>
-            {!collapsed && (
-              <motion.span
-                initial={{ opacity: 0, x: -4 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -4 }}
-                transition={{ duration: 0.12 }}
-                className="text-xs font-medium text-[var(--text-tertiary)] whitespace-nowrap"
-              >
-                Workspace
-              </motion.span>
-            )}
-          </AnimatePresence>
-        </div>
-
         {/* Collapse toggle */}
         <button
           onClick={onToggle}

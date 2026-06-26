@@ -178,7 +178,7 @@ export default function ProductDetailView({
               )}
               {currency === 'USD' && rates?.IDR && (
                 <p className="text-xs text-[var(--text-tertiary)] mt-1 font-medium">
-                  ≈ Rp {Number(convertPrice(item?.price || 0) * (rates.IDR / (rates[currency] || 1))).toLocaleString('id-ID')} IDR
+                  ≈ Rp {Number(convertPrice(item?.price || 0) * (rates.IDR / (rates[currency] || 1))).toLocaleString('id-ID', { maximumFractionDigits: 0 })} IDR
                 </p>
               )}
             </div>

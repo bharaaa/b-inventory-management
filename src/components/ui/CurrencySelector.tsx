@@ -14,7 +14,7 @@ export default function CurrencySelector({
 }: {
   collapsed?: boolean;
 }) {
-  const { currency, setCurrency, loading } = useCurrency();
+  const { currency, setCurrency, loading, rates } = useCurrency();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -94,6 +94,22 @@ export default function CurrencySelector({
                   </span>
                 </button>
               ))}
+              <div className="mt-1 pt-1.5 border-t border-[var(--border)] px-3 py-1 flex items-center gap-1.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--success)] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[var(--success)]"></span>
+                </span>
+                <div className="flex flex-col">
+                  <span className="text-[11px] text-[var(--text-secondary)] font-medium">
+                    Using live exchange rates
+                  </span>
+                  {rates?.IDR && (
+                    <span className="text-[10px] text-[var(--text-tertiary)] mt-0.5">
+                      1 USD = Rp {rates.IDR.toLocaleString('id-ID', { maximumFractionDigits: 0 })}
+                    </span>
+                  )}
+                </div>
+              </div>
             </div>
           </motion.div>
         )}

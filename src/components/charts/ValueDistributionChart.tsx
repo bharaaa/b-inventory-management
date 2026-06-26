@@ -50,6 +50,7 @@ function CustomTooltip({ active, payload }: any) {
 }
 
 export default function ValueDistributionChart({ items }) {
+  const { formatPrice } = useCurrency();
   const chartData = useMemo(() => {
     if (!items || items.length === 0) return [];
 
@@ -90,11 +91,7 @@ export default function ValueDistributionChart({ items }) {
     return chartData.reduce((sum, item) => sum + item.value, 0);
   }, [chartData]);
 
-  const formattedTotal = new Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  }).format(totalValue);
+  const formattedTotal = formatPrice(totalValue, false);
 
   return (
     <GlassCard

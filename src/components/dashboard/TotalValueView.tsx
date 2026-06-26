@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { X, DollarSign, Package } from "lucide-react";
 import DrawerHeader from "../ui/DrawerHeader";
+import { useCurrency } from "../../hooks/useCurrency";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -35,11 +36,8 @@ export default function TotalValueView({ isOpen, onClose, items }) {
     return valueB - valueA;
   });
 
-  const formattedGrandTotal = new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 0,
-  }).format(grandTotal);
+  const { formatPrice } = useCurrency();
+  const formattedGrandTotal = formatPrice(grandTotal, false);
 
   return (
     <>
@@ -94,16 +92,8 @@ export default function TotalValueView({ isOpen, onClose, items }) {
                   ? ((totalItemValue / grandTotal) * 100).toFixed(1)
                   : 0;
 
-              const formattedPrice = new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-              }).format(price);
-
-              const formattedTotal = new Intl.NumberFormat("en-US", {
-                style: "currency",
-                currency: "USD",
-                maximumFractionDigits: 0,
-              }).format(totalItemValue);
+              const formattedPrice = formatPrice(price);
+              const formattedTotal = formatPrice(totalItemValue, false);
 
               return (
                 <motion.div
