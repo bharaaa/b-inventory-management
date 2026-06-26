@@ -154,7 +154,7 @@ export function CommandPalette() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.98, y: -10 }}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
-          className="relative w-full max-w-[750px] bg-[var(--bg-card)]/90 backdrop-blur-2xl border border-[var(--glass-border)] shadow-[var(--glass-shadow-lg)] rounded-2xl overflow-hidden flex flex-col"
+          className="relative w-full max-w-[750px] bg-white/80 dark:bg-[#1A1A1A]/80 backdrop-blur-3xl border border-[var(--border)] shadow-[var(--glass-shadow-lg)] rounded-2xl overflow-hidden flex flex-col"
           style={{ maxHeight: '70vh' }}
         >
           <CommandInput value={searchQuery} onChange={setSearchQuery} isOpen={isOpen} />
